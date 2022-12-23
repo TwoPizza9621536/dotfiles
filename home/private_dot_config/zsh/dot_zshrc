@@ -1,0 +1,53 @@
+## Tmux
+if (( $+commands[tmux] )) && [[ -z ${KITTY_PID+X} ]] &&
+ [[ ! "$TERM_PROGRAM" == "vscode" ]] && [[ ! -f "/run/.toolboxenv" ]] &&
+ [[ -z ${TMUX+X}${ZSH_SCRIPT+X}${ZSH_EXECUTION_STRING+X} ]]; then
+ exec tmux -u
+fi
+
+## User Configuration
+export GPG_TTY=$TTY
+HISTFILE=$ZDOTDIR/.zsh_history
+HISTSIZE=1000
+SAVEHIST=10000
+HIST_STAMPS=yyyy-mm-dd
+
+ZSH_THEME=powerlevel10k/powerlevel10k
+
+ENABLE_CORRECTION=true
+COMPLETION_WAITING_DOTS=true
+DISABLE_AUTO_UPDATE=true
+ZSH_AUTOSUGGEST_MANUAL_REBIND=1
+
+# Load rsePlugins
+plugins=(
+  aliases
+  autopep8
+  bw
+  chezmoi
+  deno
+  dotenv
+  exa
+  fd
+  fzf
+  golang
+  gpg-agent
+  npm
+  pdm
+  poetry
+  pylint
+  ripgrep
+  rust
+  ssh-agent
+  tmux
+  vi-mode
+  zsh-autosuggestions
+  zsh-syntax-highlighting
+  zsh-history-substring-search
+)
+fpath+=$ZSH_CUSTOM/plugins/zsh-completions/src
+
+source $ZSH/oh-my-zsh.sh
+source $ZDOTDIR/p10k.zsh
+
+unset plugins

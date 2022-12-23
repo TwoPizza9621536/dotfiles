@@ -1,0 +1,49 @@
+[apply]
+	whitespace = fix
+
+[commit]
+	gpgSign = true
+
+[core]
+	editor = code --wait
+
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+
+[format]
+	signoff = true
+
+[gpg]
+	format = ssh
+
+[gpg "ssh"]
+	allowedSignersFile = {{ .chezmoi.homeDir }}/.config/git/allowed_signers
+
+[init]
+	defaultBranch = main
+
+[mergetool]
+	keepBackup = false
+
+[pull]
+	ff = true
+
+[rebase]
+	autostash = true
+
+[status]
+	submoduleSummary = true
+
+[tag]
+	gpgSign = true
+
+[user]
+	name = {{ .name }}
+	email = {{ .email }}
+	signingkey = key::{{ .ssh }}
+
+[url "git@github.com:"]
+	insteadOf = https://github.com/

@@ -1,0 +1,68 @@
+# Locale
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+
+# Free Desktop
+export XDG_CACHE_HOME=$HOME/.cache
+export XDG_CONFIG_HOME=$HOME/.config
+export XDG_DATA_HOME=$HOME/.local/share
+export XDG_STATE_HOME=$HOME/.local/state
+
+export PKG_CONFIG_PATH=/usr/lib64/pkgconfig:/usr/local/lib/pkgconfig
+export MANPATH=$XDG_DATA_HOME/man:/usr/local/share/man:/usr/share/man
+
+# ZSH
+export ZSH=$ZDOTDIR/oh-my-zsh
+export ZSH_CUSTOM=$ZSH/custom
+
+# asdf
+export ASDF_DIR=$XDG_DATA_HOME/asdf
+export ASDF_DATA_DIR=$XDG_DATA_HOME/asdf
+export ASDF_CONFIG_FILE=$XDG_CONFIG_HOME/asdf/asdfrc
+
+export ASDF_CRATE_DEFAULT_PACKAGES_FILE=$XDG_CONFIG_HOME/asdf/cargo-crates
+export ASDF_GOLANG_DEFAULT_PACKAGES_FILE=$XDG_CONFIG_HOME/asdf/go-modules
+export ASDF_PERL_DEFAULT_PACKAGES_FILE=$XDG_CONFIG_HOME/asdf/perl-modules
+export ASDF_PYTHON_DEFAULT_PACKAGES_FILE=$XDG_CONFIG_HOME/asdf/python-modules
+
+# Dotnet
+export NUGET_PACKAGES=$XDG_CACHE_HOME/NuGetPackages
+
+# Node
+export NODE_REPL_HISTORY=$XDG_DATA_HOME/node_repl_history
+export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/npmrc
+
+# Python
+export PYTHONPYCACHEPREFIX=$XDG_CACHE_HOME/python
+export JUPYTER_CONFIG_DIR=$XDG_CONFIG_HOME/jupyter
+export CONDARC=$XDG_CONFIG_HOME/conda/condarc
+
+# Ruby
+export BUNDLE_PATH=$XDG_DATA_HOME/bundle
+
+# Perl
+export PERL_CPANM_HOME=$XDG_DATA_HOME/cpanm
+
+# Kubernetes
+export MINIKUBE_HOME=$XDG_DATA_HOME/minikube
+
+# Wget
+export WGETRC=$XDG_CONFIG_HOME/wgetrc
+
+# FZF
+export FZF_BASE=$XDG_DATA_HOME/asdf/installs/fzf/0.35.1/shell
+
+# Export Path
+export PATH=$HOME/.local/bin:$PATH:$HOME/.dotnet/tools
+
+# Editor
+if (( $+commands[nvim] )); then
+  export EDITOR=nvim
+elif (( $+commands[nano] )); then
+  export EDITOR=nano
+elif (( $+commands[vim] )); then
+  export EDITOR=vim
+else
+  export EDITOR=vi
+fi
+export VISUAL=$EDITOR

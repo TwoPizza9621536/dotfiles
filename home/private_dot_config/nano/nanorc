@@ -1,0 +1,193 @@
+## Make 'nextword' (Ctrl+Right) and 'chopwordright' (Ctrl+Delete)
+## stop at word ends instead of at beginnings.
+set afterends
+
+## Automatic Indents
+set autoindent
+
+## Set Closing Brackets
+set brackets ""')>]}"
+
+## Constantly display the cursor position in the status bar or minibar.
+set constantshow
+
+## Vertical Stripe
+set guidestripe 80
+
+## Remember the used search/replace strings for the next session.
+set historylog
+
+## Display a "scrollbar" on the righthand side of the edit window.
+set indicator
+
+## Scroll the buffer contents per half-screen instead of per line.
+set jumpyscrolling
+
+## Display Line Numbers
+set linenumbers
+
+## Enable vim-style lock-files.
+# set locking
+
+## Match Brackets
+set matchbrackets "(<[{)>]}"
+
+## Mouse Support
+set mouse
+
+## Switch on multiple file buffers (inserting a file will put it into
+## a separate buffer).
+set multibuffer
+
+## Remember Cursor Position
+set positionlog
+
+## Closing Punctuation For Ending Sentences.
+set punct "!.?"
+
+## Make the Home key smarter: when Home is pressed anywhere but at the
+## very beginning of non-whitespace characters on a line, the cursor
+## will jump to that beginning (either forwards or backwards).  If the
+## cursor is already at that position, it will jump to the true start
+## of the line (the left edge).
+set smarthome
+
+## Set State Flags in the Title Bar: I = auto-indenting,
+## M = mark, L = hard-wrapping long lines, R = recording, S = soft-wrapping.
+set stateflags
+
+## Use 4 Spaces for Tabs
+set tabsize 4
+
+## Use Spaces
+set tabstospaces
+
+## Trim Whitespace
+set trimblanks
+
+## The two single-column characters used to display the first characters
+## of tabs and spaces.  187 in ISO 8859-1 (0000BB in Unicode) and 183 in
+## ISO-8859-1 (0000B7 in Unicode) seem to be good values for these.
+## The default when in a UTF-8 locale:
+set whitespace "»·"
+## The default otherwise:
+# set whitespace ">."
+
+## Paint the interface elements of nano.  These are examples; there are
+## no colors by default, except for errorcolor and spotlightcolor.
+set titlecolor bold,white,blue
+set promptcolor lightwhite,grey
+set statuscolor bold,white,green
+set errorcolor bold,white,red
+set spotlightcolor black,lightyellow
+set selectedcolor lightwhite,magenta
+set stripecolor ,yellow
+set scrollercolor cyan
+set numbercolor cyan
+set keycolor cyan
+set functioncolor green
+
+## In root's .nanorc you might want to use:
+# set titlecolor bold,white,magenta
+# set promptcolor black,yellow
+# set statuscolor bold,white,magenta
+# set errorcolor bold,white,red
+# set spotlightcolor black,orange
+# set selectedcolor lightwhite,cyan
+# set stripecolor ,yellow
+# set scrollercolor magenta
+# set numbercolor magenta
+# set keycolor lightmagenta
+# set functioncolor magenta
+
+## === Syntax coloring ===
+## For all details, see 'man nanorc', section SYNTAX HIGHLIGHTING.
+
+## To include most of the existing syntax definitions, you can do:
+include "/usr/share/nano/*.nanorc"
+include "~/.config/nano/extra/*.nanorc"
+
+## Or you can select just the ones you need.  For example:
+# include "/usr/share/nano/html.nanorc"
+# include "/usr/share/nano/python.nanorc"
+# include "/usr/share/nano/sh.nanorc"
+
+## In /usr/share/nano/extra/ you can find some syntaxes that are
+## specific for certain distros or for some less common languages.
+
+
+## If <Tab> should always produce four spaces when editing a Python file,
+## independent of the settings of 'tabsize' and 'tabstospaces':
+extendsyntax python tabgives "    "
+
+## If <Tab> should always produce an actual TAB when editing a Makefile:
+extendsyntax makefile tabgives "	"
+
+
+## === Key bindings ===
+## For all details, see 'man nanorc', section REBINDING KEYS.
+
+## If you want to suspend nano with one keystroke (instead of with ^T^Z):
+unbind M-T main
+bind M-T suspend main
+
+## The <Ctrl+Delete> keystroke deletes the word to the right of the cursor.
+## On some terminals the <Ctrl+Backspace> keystroke produces ^H, which is
+## the ASCII character for backspace, so it is bound by default to the
+## backspace function.  The <Backspace> key itself produces a different
+## keycode, which is hard-bound to the backspace function.  So, if you
+## normally use <Backspace> for backspacing and not ^H, you can make
+## <Ctrl+Backspace> delete the word to the left of the cursor with:
+# bind ^H chopwordleft main
+
+## For a more mnemonic Comment keystroke (overriding Cut-from-cursor):
+# bind M-K comment main
+
+## If you want ^L to just refresh the screen and not center the cursor:
+# bind ^L refresh main
+
+## When you sometimes type M-J instead of M-K, or M-T instead of M-R:
+# unbind M-J main
+# unbind M-T main
+## (Those functions are still accessible through ^T^J and ^T^V.)
+
+## For quickly uppercasing or lowercasing the word under the cursor.
+## (These effectively do a Ctrl+Right followed by a Shift+Ctrl+Left,
+## and then pipe the selected text through a sed command.)
+#bind Sh-M-U "^[Oc^[[1;6D^T|sed 's/.*/\U&/'^M" main
+#bind Sh-M-L "^[Oc^[[1;6D^T|sed 's/.*/\L&/'^M" main
+
+## If you would like nano to have keybindings that are more "usual",
+## such as ^O for Open, ^F for Find, ^H for Help, and ^Q for Quit,
+## then uncomment these:
+bind ^X cut main
+bind ^C copy main
+bind ^V paste all
+bind ^Q exit all
+bind ^S savefile main
+bind ^W writeout main
+bind ^O insert main
+set multibuffer
+bind ^H help all
+bind ^H exit help
+bind ^F whereis all
+bind ^G findnext all
+bind ^B wherewas all
+bind ^D findprevious all
+bind ^R replace main
+bind ^Z undo main
+bind ^Y redo main
+unbind ^K main
+unbind ^U all
+unbind ^N main
+unbind ^Y all
+unbind M-J main
+
+#unbind M-T main
+bind ^A mark main
+bind ^P location main
+bind ^T gotoline main
+bind ^T gotodir browser
+bind ^T cutrestoffile execute
+bind ^L linter execute
+bind ^E execute main

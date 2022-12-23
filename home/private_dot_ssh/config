@@ -1,0 +1,10 @@
+HashKnownHosts no
+VisualHostKey yes
+
+Host *
+    ControlMaster auto
+    ControlPath ~/.ssh/controlmasters/%r@%h:%p
+    ControlPersist 5
+    ServerAliveCountMax 6
+    ServerAliveInterval 300
+    UseRoaming no

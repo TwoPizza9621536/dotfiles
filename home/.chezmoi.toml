@@ -1,0 +1,10 @@
+progress = true
+
+[data]
+email = "twopizza9621536@gmail.com"
+name = "Samuel Wu"
+ssh = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJZdfKEnvBhRVtUtu/PmS1tbQuBh8iU24z1srhijLU70"
+
+[merge]
+command = "code"
+args = ["-w", "-m", "{{ .Destination }}", "{{ .Source }}", "{{ .Target }}"]

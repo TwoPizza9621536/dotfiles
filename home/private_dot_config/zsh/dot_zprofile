@@ -1,0 +1,9 @@
+# Load asdf
+plugins=(asdf)
+fpath=($ASDF_DIR/completions $fpath)
+
+source $ZSH/oh-my-zsh.sh
+source $ASDF_DIR/plugins/java/set-java-home.zsh
+source $ASDF_DIR/plugins/dotnet-core/set-dotnet-home.zsh
+
+unset plugins

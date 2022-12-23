@@ -1,0 +1,14 @@
+wheel
+setuptools
+autopep8
+doki-theme-jupyter
+hyfetch
+jupyter
+thefuck
+pep8
+pdm
+poetry
+pylint
+pyright
+pytest
+virtualenv

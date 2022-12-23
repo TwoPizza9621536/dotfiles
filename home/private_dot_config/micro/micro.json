@@ -1,0 +1,16 @@
+{
+  "colorcolumn": 80,
+  "ft:json": {
+    "tabsize": 2
+  },
+  "ft:yaml": {
+    "tabsize": 2
+  },
+  "makefile": {
+    "tabsize": 8,
+    "tabtospaces": false
+  },
+  "savecursor": true,
+  "scrollbar": true,
+  "tabstospaces": true
+}
