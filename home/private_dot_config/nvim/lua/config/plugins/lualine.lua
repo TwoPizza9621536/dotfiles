@@ -7,14 +7,14 @@ local M = {
 }
 
 function M.init()
-    local colors = require('vscode.colors')
+    local vscolors = require('vscode.colors')
 
     require('vscode').setup {
         disable_nvimtree_bg = true,
         group_overrides = {
             Cursor = {
-                fg = colors.vscDarkBlue,
-                bg = colors.vscLightGreen,
+                fg = vscolors.vscDarkBlue,
+                bg = vscolors.vscLightGreen,
                 bold = true,
             },
         },
@@ -73,22 +73,6 @@ function M.init()
             theme = bubblegum,
         },
         sections = {
-            lualine_b = {
-                { 'diagnostics' },
-                {
-                    function()
-                        local navic = require('nvim-navic')
-                        local ret = navic.get_location()
-                        return ret:len() > 2000 and 'navic error' or ret
-                    end,
-                    cond = function()
-                        local navic = require('nvim-navic')
-                        return navic.is_available()
-                    end,
-                    color = { bg = '#1E1E1E' },
-                },
-            },
-            lualine_c = { 'branch', 'diff', 'filename' },
             -- Use vim-airline defaults for sections X, Y and Z.
             lualine_x = { 'filetype' },
             lualine_y = { 'encoding', 'fileformat' },
