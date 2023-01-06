@@ -1,7 +1,7 @@
 bat 0.22.1
 bitwarden v1.22.1
-chezmoi 2.27.3
-deno 1.29.1
+chezmoi 2.29.1
+deno 1.29.2
 dotnet-core 7.0.101
 exa 0.10.1
 fd 8.6.0

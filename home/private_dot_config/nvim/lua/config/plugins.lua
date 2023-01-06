@@ -3,7 +3,7 @@ return {
     'nvim-tree/nvim-web-devicons',
     'folke/which-key.nvim',
     'b0o/SchemaStore.nvim',
-    { 'andweeb/presence.nvim', lazy = false },
+    { 'andweeb/presence.nvim', lazy = 'VeryLazy' },
     { 'gpanders/editorconfig.nvim', event = 'BufReadPre' },
     {
         'chrisbra/unicode.vim',

@@ -46,7 +46,6 @@ stripComponents = 1
 [".local/share/asdf"]
 type = "git-repo"
 url = "https://github.com/asdf-vm/asdf.git"
-refreshPeriod = "168h"
 
 [".config/tmux/plugins/tpm"]
 type = "git-repo"
