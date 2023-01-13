@@ -9,6 +9,7 @@ fzf 0.35.1
 golang 1.19.4
 java temurin-17.0.5+8
 julia 1.8.3
+lazygit 0.36.0
 lua 5.4.4
 luaJIT 2.0.5--2.4.4
 neovim stable

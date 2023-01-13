@@ -10,7 +10,7 @@ module.exports = {
         // default font size in pixels for all tabs
         fontSize: 14,
         // font family with optional fallbacks
-        fontFamily: '"VictorMono Nerd Font Mono", Menlo, "DejaVu Sans Mono", Consolas, "Lucida Console", monospace',
+        fontFamily: '"VictorMono Nerd Font", Menlo, "DejaVu Sans Mono", Consolas, "Lucida Console", monospace',
         // default font weight: 'normal' or 'bold'
         fontWeight: 'normal',
         // font weight for bold characters: 'normal' or 'bold'
@@ -122,7 +122,7 @@ module.exports = {
         // todo: does not pick up config changes automatically, need to restart terminal :/
         webLinksActivationKey: '',
         // if `false` (without backticks and without quotes), Hyper will use ligatures provided by some fonts
-        disableLigatures: true,
+        disableLigatures: false,
         // set to true to disable auto updates
         disableAutoUpdates: false,
         // set to true to enable screen reading apps (like NVDA) to read the contents of the terminal
@@ -138,8 +138,8 @@ module.exports = {
     //   `@company/project`
     //   `project#1.0.1`
     plugins: [
-      'hyper-transparent',
-      'doki-theme-hyper',
+        'doki-theme-hyper',
+        'hyper-transparent',
     ],
     // in development, you can create a directory under
     // `~/.hyper_plugins/local/` and include it here
@@ -150,19 +150,19 @@ module.exports = {
     // 'window:devtools': 'cmd+alt+o',
     },
     dokiSettings: {
-      backgrounds: {
-        dark: {
-          opacity: 0.2 // default is 0.10
-        },
-        light: {
-          opacity: 0.4 // default is 0.15
+        backgrounds: {
+            dark: {
+                opacity: 0.2
+            },
+            light: {
+                opacity: 0.4
+            }
         }
-      }
     },
     systemMatch: {
-      enabled: true,
-      lightTheme: 'Natsuki Dark', // Best
-      darkTheme: 'Yuri Dark', // Girl
+        enabled: true,
+        lightTheme: 'Natsuki Dark',
+        darkTheme: 'Yuri Dark',
     },
 };
 //# sourceMappingURL=config-default.js.map
