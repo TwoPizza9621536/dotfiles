@@ -3,37 +3,37 @@
 return {
     -- bufferline
     {
-        'akinsho/nvim-bufferline.lua',
-        event = 'VeryLazy',
+        "akinsho/nvim-bufferline.lua",
+        event = "VeryLazy",
         init = function()
             vim.keymap.set(
-                'n',
-                '<s-h>',
-                '<cmd>BufferLineCyclePrev<cr>',
-                { desc = 'Prev Buffer' }
+                "n",
+                "<s-h>",
+                "<cmd>BufferLineCyclePrev<cr>",
+                { desc = "Prev Buffer" }
             )
             vim.keymap.set(
-                'n',
-                '<s-l>',
-                '<cmd>BufferLineCycleNext<cr>',
-                { desc = 'Next Buffer' }
+                "n",
+                "<s-l>",
+                "<cmd>BufferLineCycleNext<cr>",
+                { desc = "Next Buffer" }
             )
             vim.keymap.set(
-                'n',
-                '<leader>b[',
-                '<cmd>BufferLineCyclePrev<cr>',
-                { desc = 'Previous' }
+                "n",
+                "<leader>b[",
+                "<cmd>BufferLineCyclePrev<cr>",
+                { desc = "Previous" }
             )
             vim.keymap.set(
-                'n',
-                '<leader>b]',
-                '<cmd>BufferLineCycleNext<cr>',
-                { desc = 'Next' }
+                "n",
+                "<leader>b]",
+                "<cmd>BufferLineCycleNext<cr>",
+                { desc = "Next" }
             )
         end,
         opts = {
             options = {
-                diagnostics = 'nvim_lsp',
+                diagnostics = "nvim_lsp",
                 -- stylua: ignore
                 diagnostics_indicator = function(_, _, diag)
                     local icons = require('config.icons').diagnostics
@@ -42,20 +42,20 @@ return {
                         .. (diag.info and icons.Info .. diag.info or '')
                     return vim.trim(ret)
                 end,
-                modified_icon = '●',
+                modified_icon = "●",
                 numbers = function(opts)
                     return string.format(
-                        '%s·%s',
+                        "%s·%s",
                         opts.raise(opts.ordinal),
                         opts.lower(opts.id)
                     )
                 end,
                 offsets = {
                     {
-                        filetype = 'neo-tree',
-                        text = 'Neo Tree',
-                        highlight = 'Directory',
-                        text_align = 'center',
+                        filetype = "neo-tree",
+                        text = "Neo Tree",
+                        highlight = "Directory",
+                        text_align = "center",
                     },
                 },
                 show_close_icon = false,
@@ -65,21 +65,21 @@ return {
 
     -- statusline
     {
-        'nvim-lualine/lualine.nvim',
-        event = 'VeryLazy',
+        "nvim-lualine/lualine.nvim",
+        event = "VeryLazy",
         opts = function()
             -- Port the bubblegum theme from vim-airlines
             local colors = {
-                dark_gray = '#303030',
-                med_gray_hi = '#444444',
-                med_gray_lo = '#3a3a3a',
-                light_gray = '#b2b2b2',
-                green = '#afd787',
-                blue = '#87afd7',
-                purple = '#afafd7',
-                orange = '#d7af5f',
-                red = '#d78787',
-                pink = '#d7afd7',
+                dark_gray = "#303030",
+                med_gray_hi = "#444444",
+                med_gray_lo = "#3a3a3a",
+                light_gray = "#b2b2b2",
+                green = "#afd787",
+                blue = "#87afd7",
+                purple = "#afafd7",
+                orange = "#d7af5f",
+                red = "#d78787",
+                pink = "#d7afd7",
             }
 
             local bubblegum = {
@@ -107,7 +107,7 @@ return {
                 },
             }
 
-            local icons = require('config.icons')
+            local icons = require("config.icons")
 
             local function fg(name)
                 -- stylua: ignore
@@ -120,9 +120,9 @@ return {
 
             return {
                 extensions = {
-                    'man',
-                    'nvim-dap-ui',
-                    'nvim-tree',
+                    "man",
+                    "nvim-dap-ui",
+                    "nvim-tree",
                 },
                 options = {
                     globalstatus = true,
@@ -130,9 +130,9 @@ return {
                 },
                 sections = {
                     lualine_b = {
-                        'branch',
+                        "branch",
                         {
-                            'diff',
+                            "diff",
                             symbols = {
                                 added = icons.git.added,
                                 modified = icons.git.modified,
@@ -140,7 +140,7 @@ return {
                             },
                         },
                         {
-                            'diagnostics',
+                            "diagnostics",
                             symbols = {
                                 error = icons.diagnostics.Error,
                                 warn = icons.diagnostics.Warn,
@@ -180,10 +180,10 @@ return {
                             end,
                             color = fg('Constant'),
                         },
-                        'filetype',
+                        "filetype",
                     },
-                    lualine_y = { 'encoding', 'fileformat' },
-                    lualine_z = { '%p%% :%l/%L ☰ :%v' },
+                    lualine_y = { "encoding", "fileformat" },
+                    lualine_z = { "%p%% :%l/%L ☰ :%v" },
                 },
             }
         end,
@@ -191,8 +191,8 @@ return {
 
     -- indent guides for Neovim
     {
-        'lukas-reineke/indent-blankline.nvim',
-        event = 'BufReadPre',
+        "lukas-reineke/indent-blankline.nvim",
+        event = "BufReadPre",
         config = function(_, opts)
             -- stylua: ignore start
             vim.cmd([[highlight IndentBlanklineIndent1 guifg=#E06C75 gui=nocombine]])
@@ -205,45 +205,45 @@ return {
             require('indent_blankline').setup(opts)
         end,
         opts = {
-            char = '┆',
+            char = "┆",
             char_highlight_list = {
-                'IndentBlanklineIndent1',
-                'IndentBlanklineIndent2',
-                'IndentBlanklineIndent3',
-                'IndentBlanklineIndent4',
-                'IndentBlanklineIndent5',
-                'IndentBlanklineIndent6',
+                "IndentBlanklineIndent1",
+                "IndentBlanklineIndent2",
+                "IndentBlanklineIndent3",
+                "IndentBlanklineIndent4",
+                "IndentBlanklineIndent5",
+                "IndentBlanklineIndent6",
             },
             filetype_exclude = {
-                'alpha',
-                'dashboard',
-                'help',
-                'lazy',
-                'mason',
-                'neo-tree',
-                'Trouble',
+                "alpha",
+                "dashboard",
+                "help",
+                "lazy",
+                "mason",
+                "neo-tree",
+                "Trouble",
             },
             show_current_context = true,
             show_current_context_start = true,
             show_end_of_line = true,
             show_trailing_blankline_indent = false,
-            space_char_blankline = ' ',
+            space_char_blankline = " ",
         },
     },
 
     -- lsp symbol navigation for lualine
     {
-        'SmiteshP/nvim-navic',
+        "SmiteshP/nvim-navic",
         init = function()
             vim.g.navic_silence = true
-            require('util').on_attach(function(client, buffer)
+            require("util").on_attach(function(client, buffer)
                 if client.server_capabilities.documentSymbolProvider then
-                    require('nvim-navic').attach(client, buffer)
+                    require("nvim-navic").attach(client, buffer)
                 end
             end)
         end,
         opts = function()
-            local icons = require('config.icons').kinds
+            local icons = require("config.icons").kinds
             return {
                 depth_limit = 5,
                 highlight = true,
@@ -275,7 +275,7 @@ return {
                     TypeParameter = icons.TypeParameter,
                     Variable = icons.Variable,
                 },
-                separator = ' ',
+                separator = " ",
             }
         end,
     },

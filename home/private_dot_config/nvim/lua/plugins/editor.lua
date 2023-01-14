@@ -3,34 +3,34 @@
 return {
     -- file explorer
     {
-        'nvim-neo-tree/neo-tree.nvim',
-        cmd = 'Neotree',
+        "nvim-neo-tree/neo-tree.nvim",
+        cmd = "Neotree",
         keys = {
             {
-                '<leader>fe',
+                "<leader>fe",
                 function()
-                    require('neo-tree.command').execute {
+                    require("neo-tree.command").execute {
                         toggle = true,
-                        dir = require('util').get_root(),
+                        dir = require("util").get_root(),
                     }
                 end,
-                desc = 'Explorer NeoTree (root dir)',
+                desc = "Explorer NeoTree (root dir)",
             },
             {
-                '<leader>fE',
-                '<cmd>Neotree toggle<CR>',
-                desc = 'Explorer NeoTree (cwd)',
+                "<leader>fE",
+                "<cmd>Neotree toggle<CR>",
+                desc = "Explorer NeoTree (cwd)",
             },
             {
-                '<leader>e',
-                '<leader>fe',
-                desc = 'Explorer NeoTree (root dir)',
+                "<leader>e",
+                "<leader>fe",
+                desc = "Explorer NeoTree (root dir)",
                 remap = true,
             },
             {
-                '<leader>E',
-                '<leader>fE',
-                desc = 'Explorer NeoTree (cwd)',
+                "<leader>E",
+                "<leader>fE",
+                desc = "Explorer NeoTree (cwd)",
                 remap = true,
             },
         },
@@ -38,8 +38,8 @@ return {
             vim.g.neo_tree_remove_legacy_commands = 1
             if vim.fn.argc() == 1 then
                 local stat = vim.loop.fs_stat(vim.fn.argv(0))
-                if stat and stat.type == 'directory' then
-                    require('neo-tree')
+                if stat and stat.type == "directory" then
+                    require("neo-tree")
                 end
             end
         end,
@@ -48,25 +48,25 @@ return {
 
     -- search/replace in multiple files
     {
-        'windwp/nvim-spectre',
+        "windwp/nvim-spectre",
         keys = {
             {
-                '<leader>sr',
+                "<leader>sr",
                 function()
-                    require('spectre').open()
+                    require("spectre").open()
                 end,
-                desc = 'Replace in files (Spectre)',
+                desc = "Replace in files (Spectre)",
             },
         },
     },
 
     -- easily jump to any location and enhanced f/t motions for Leap
     {
-        'ggandor/leap.nvim',
-        dependencies = { 'ggandor/flit.nvim', opts = { labeled_modes = 'nv' } },
-        event = 'VeryLazy',
+        "ggandor/leap.nvim",
+        dependencies = { "ggandor/flit.nvim", opts = { labeled_modes = "nv" } },
+        event = "VeryLazy",
         config = function(_, opts)
-            local leap = require('leap')
+            local leap = require("leap")
             for k, v in pairs(opts) do
                 leap.opts[k] = v
             end
@@ -76,41 +76,41 @@ return {
 
     -- which-key
     {
-        'folke/which-key.nvim',
-        event = 'VeryLazy',
+        "folke/which-key.nvim",
+        event = "VeryLazy",
         config = function(_, opts)
-            local wk = require('which-key')
+            local wk = require("which-key")
             wk.setup(opts)
             wk.register {
-                mode = { 'n', 'v' },
-                ['g'] = { name = '+goto' },
-                [']'] = { name = '+next' },
-                ['['] = { name = '+prev' },
-                ['<leader><tab>'] = { name = '+tabs' },
-                ['<leader>b'] = { name = '+buffer' },
-                ['<leader>c'] = { name = '+code' },
-                ['<leader>d'] = { name = '+debug' },
-                ['<leader>f'] = { name = '+file/find' },
-                ['<leader>g'] = { name = '+git' },
-                ['<leader>gh'] = { name = '+hunks' },
-                ['<leader>q'] = { name = '+quit/session' },
-                ['<leader>s'] = { name = '+search' },
-                ['<leader>sn'] = { name = '+noice' },
-                ['<leader>u'] = { name = '+ui' },
-                ['<leader>w'] = { name = '+windows' },
-                ['<leader>x'] = { name = '+diagnostics/quickfix' },
+                mode = { "n", "v" },
+                ["g"] = { name = "+goto" },
+                ["]"] = { name = "+next" },
+                ["["] = { name = "+prev" },
+                ["<leader><tab>"] = { name = "+tabs" },
+                ["<leader>b"] = { name = "+buffer" },
+                ["<leader>c"] = { name = "+code" },
+                ["<leader>d"] = { name = "+debug" },
+                ["<leader>f"] = { name = "+file/find" },
+                ["<leader>g"] = { name = "+git" },
+                ["<leader>gh"] = { name = "+hunks" },
+                ["<leader>q"] = { name = "+quit/session" },
+                ["<leader>s"] = { name = "+search" },
+                ["<leader>sn"] = { name = "+noice" },
+                ["<leader>u"] = { name = "+ui" },
+                ["<leader>w"] = { name = "+windows" },
+                ["<leader>x"] = { name = "+diagnostics/quickfix" },
             }
         end,
         opts = {
             plugins = { spelling = true },
-            key_labels = { ['<leader>'] = 'SPC' },
+            key_labels = { ["<leader>"] = "SPC" },
         },
     },
 
     -- git signs
     {
-        'lewis6991/gitsigns.nvim',
-        event = 'BufReadPre',
+        "lewis6991/gitsigns.nvim",
+        event = "BufReadPre",
         opts = {
             on_attach = function(buffer)
                 local gs = package.loaded.gitsigns
@@ -138,65 +138,65 @@ return {
 
     -- references
     {
-        'RRethy/vim-illuminate',
-        event = 'BufReadPost',
+        "RRethy/vim-illuminate",
+        event = "BufReadPost",
         keys = {
             {
-                ']]',
+                "]]",
                 function()
-                    require('illuminate').goto_next_reference(false)
+                    require("illuminate").goto_next_reference(false)
                 end,
-                desc = 'Next Reference',
+                desc = "Next Reference",
             },
             {
-                '[[',
+                "[[",
                 function()
-                    require('illuminate').goto_prev_reference(false)
+                    require("illuminate").goto_prev_reference(false)
                 end,
-                desc = 'Prev Reference',
+                desc = "Prev Reference",
             },
         },
         config = function(_, opts)
-            require('illuminate').configure(opts)
+            require("illuminate").configure(opts)
         end,
         opts = { delay = 200 },
     },
 
     -- buffer remove
     {
-        'echasnovski/mini.bufremove',
+        "echasnovski/mini.bufremove",
         keys = {
             {
-                '<leader>bd',
+                "<leader>bd",
                 function()
-                    require('mini.bufremove').delete(0, false)
+                    require("mini.bufremove").delete(0, false)
                 end,
-                desc = 'Delete Buffer',
+                desc = "Delete Buffer",
             },
             {
-                '<leader>bD',
+                "<leader>bD",
                 function()
-                    require('mini.bufremove').delete(0, true)
+                    require("mini.bufremove").delete(0, true)
                 end,
-                desc = 'Delete Buffer (Force)',
+                desc = "Delete Buffer (Force)",
             },
         },
     },
 
     -- better diagnostics list and others
     {
-        'folke/trouble.nvim',
-        cmd = { 'TroubleToggle', 'Trouble' },
+        "folke/trouble.nvim",
+        cmd = { "TroubleToggle", "Trouble" },
         keys = {
             {
-                '<leader>xx',
-                '<cmd>TroubleToggle document_diagnostics<cr>',
-                desc = 'Document Diagnostics (Trouble)',
+                "<leader>xx",
+                "<cmd>TroubleToggle document_diagnostics<cr>",
+                desc = "Document Diagnostics (Trouble)",
             },
             {
-                '<leader>xX',
-                '<cmd>TroubleToggle workspace_diagnostics<cr>',
-                desc = 'Workspace Diagnostics (Trouble)',
+                "<leader>xX",
+                "<cmd>TroubleToggle workspace_diagnostics<cr>",
+                desc = "Workspace Diagnostics (Trouble)",
             },
         },
         opts = { use_diagnostic_signs = true },
@@ -204,89 +204,89 @@ return {
 
     -- todo comments
     {
-        'folke/todo-comments.nvim',
-        cmd = { 'TodoTrouble', 'TodoTelescope' },
-        event = 'BufReadPost',
+        "folke/todo-comments.nvim",
+        cmd = { "TodoTrouble", "TodoTelescope" },
+        event = "BufReadPost",
         keys = {
             {
-                ']t',
+                "]t",
                 function()
-                    require('todo-comments').jump_next()
+                    require("todo-comments").jump_next()
                 end,
-                desc = 'Next todo comment',
+                desc = "Next todo comment",
             },
             {
-                '[t',
+                "[t",
                 function()
-                    require('todo-comments').jump_prev()
+                    require("todo-comments").jump_prev()
                 end,
-                desc = 'Previous todo comment',
+                desc = "Previous todo comment",
             },
             {
-                '<leader>xt',
-                '<cmd>TodoTrouble<cr>',
-                desc = 'Todo Trouble',
+                "<leader>xt",
+                "<cmd>TodoTrouble<cr>",
+                desc = "Todo Trouble",
             },
             {
-                '<leader>xs',
-                '<cmd>TodoTrouble keywords=TODO,FIX,FIXME<cr>',
-                desc = 'Todo Trouble Sort',
+                "<leader>xs",
+                "<cmd>TodoTrouble keywords=TODO,FIX,FIXME<cr>",
+                desc = "Todo Trouble Sort",
             },
-            { '<leader>xT', '<cmd>TodoTelescope<cr>', desc = 'Todo Telescope' },
+            { "<leader>xT", "<cmd>TodoTelescope<cr>", desc = "Todo Telescope" },
         },
         config = true,
     },
 
     -- Scrollbar
     {
-        'petertriho/nvim-scrollbar',
-        dependencies = 'kevinhwang91/nvim-hlslens',
-        event = 'BufReadPost',
+        "petertriho/nvim-scrollbar",
+        dependencies = "kevinhwang91/nvim-hlslens",
+        event = "BufReadPost",
         keys = {
             {
-                'n',
+                "n",
                 function()
                     vim.cmd([[execute('normal! ' . v:count1 . 'n')]])
-                    require('hlslens').start()
+                    require("hlslens").start()
                 end,
-                desc = 'Jump to Next Matching Word',
+                desc = "Jump to Next Matching Word",
             },
             {
-                'N',
+                "N",
                 function()
                     vim.cmd([[execute('normal! ' . v:count1 . 'N')]])
-                    require('hlslens').start()
+                    require("hlslens").start()
                 end,
-                desc = 'Jump to Previous Matching Word',
+                desc = "Jump to Previous Matching Word",
             },
             {
-                '*',
+                "*",
                 [[*<cmd>lua require('hlslens').start()<cr>]],
-                desc = 'Find Next Matching Word',
+                desc = "Find Next Matching Word",
             },
             {
-                '#',
+                "#",
                 [[#<cmd>lua require('hlslens').start()<cr>]],
-                desc = 'Find Previous Matching Word',
+                desc = "Find Previous Matching Word",
             },
             {
-                'n',
-                'g*',
+                "n",
+                "g*",
                 [[g*<cmd>lua require('hlslens').start()<cr>]],
-                { desc = 'Find Next Whole Word' },
+                { desc = "Find Next Whole Word" },
             },
             {
-                'g#',
+                "g#",
                 [[g#<cmd>lua require('hlslens').start()<cr>]],
-                desc = 'Find Previous Whole Word',
+                desc = "Find Previous Whole Word",
             },
         },
         config = function(_, opts)
-            require('scrollbar').setup(opts)
-            require('hlslens').setup()
-            require('scrollbar.handlers.search').setup()
-            require('scrollbar.handlers.gitsigns').setup()
+            require("scrollbar").setup(opts)
+            require("hlslens").setup()
+            require("scrollbar.handlers.search").setup()
+            require("scrollbar.handlers.gitsigns").setup()
         end,
-        opts = { handle = { color = '#808080' } },
+        opts = { handle = { color = "#808080" } },
     },
 }

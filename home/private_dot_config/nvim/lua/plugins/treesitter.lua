@@ -3,22 +3,22 @@
 return {
     -- syntax highlight
     {
-        'nvim-treesitter/nvim-treesitter',
-        build = ':TSUpdate',
+        "nvim-treesitter/nvim-treesitter",
+        build = ":TSUpdate",
         dependencies = {
-            'nvim-treesitter/nvim-treesitter-context',
-            'p00f/nvim-ts-rainbow',
+            "nvim-treesitter/nvim-treesitter-context",
+            "p00f/nvim-ts-rainbow",
         },
-        event = 'BufReadPost',
+        event = "BufReadPost",
         ---@param opts TSConfig
         config = function(plugin, opts)
             if plugin.ensure_installed then
-                require('util').deprecate(
-                    'treesitter.ensure_installed',
-                    'treesitter.opts.ensure_installed'
+                require("util").deprecate(
+                    "treesitter.ensure_installed",
+                    "treesitter.opts.ensure_installed"
                 )
             end
-            require('nvim-treesitter.configs').setup(opts)
+            require("nvim-treesitter.configs").setup(opts)
         end,
         ---@type TSConfig
         opts = {
@@ -28,16 +28,16 @@ return {
             indent = { enable = true },
             rainbow = { enable = true },
             ensure_installed = {
-                'bash',
-                'c',
-                'help',
-                'html',
-                'jsonc',
-                'lua',
-                'markdown',
-                'markdown_inline',
-                'python',
-                'vim',
+                "bash",
+                "c",
+                "help",
+                "html",
+                "jsonc",
+                "lua",
+                "markdown",
+                "markdown_inline",
+                "python",
+                "vim",
             },
         },
     },

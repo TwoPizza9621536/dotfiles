@@ -1,6 +1,6 @@
 -- From https://github.com/LazyVim/LazyVim
 -- Apache License 2.0
-local Util = require('lazy.core.util')
+local Util = require("lazy.core.util")
 
 local M = {}
 
@@ -9,35 +9,35 @@ M.autoformat = true
 function M.toggle()
     M.autoformat = not M.autoformat
     if M.autoformat then
-        Util.info('Enabled format on save', { title = 'Format' })
+        Util.info("Enabled format on save", { title = "Format" })
     else
-        Util.warn('Disabled format on save', { title = 'Format' })
+        Util.warn("Disabled format on save", { title = "Format" })
     end
 end
 
 function M.format()
     local buf = vim.api.nvim_get_current_buf()
     local ft = vim.bo[buf].filetype
-    local have_nls = #require('null-ls.sources').get_available(
+    local have_nls = #require("null-ls.sources").get_available(
         ft,
-        'NULL_LS_FORMATTING'
+        "NULL_LS_FORMATTING"
     ) > 0
 
-    vim.lsp.buf.format(vim.tbl_deep_extend('force', {
+    vim.lsp.buf.format(vim.tbl_deep_extend("force", {
         bufnr = buf,
         filter = function(client)
             if have_nls then
-                return client.name == 'null-ls'
+                return client.name == "null-ls"
             end
-            return client.name ~= 'null-ls'
+            return client.name ~= "null-ls"
         end,
-    }, require('util').opts('nvim-lspconfig').format or {}))
+    }, require("util").opts("nvim-lspconfig").format or {}))
 end
 
 function M.on_attach(client, buf)
-    if client.supports_method('textDocument/formatting') then
-        vim.api.nvim_create_autocmd('BufWritePre', {
-            group = vim.api.nvim_create_augroup('LspFormat.' .. buf, {}),
+    if client.supports_method("textDocument/formatting") then
+        vim.api.nvim_create_autocmd("BufWritePre", {
+            group = vim.api.nvim_create_augroup("LspFormat." .. buf, {}),
             buffer = buf,
             callback = function()
                 if M.autoformat then

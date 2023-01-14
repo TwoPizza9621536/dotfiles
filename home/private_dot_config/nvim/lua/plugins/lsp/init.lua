@@ -2,62 +2,62 @@
 -- Apache License 2.0
 return {
     -- Schemas
-    'b0o/SchemaStore.nvim',
+    "b0o/SchemaStore.nvim",
 
     -- lspconfig
     {
-        'neovim/nvim-lspconfig',
+        "neovim/nvim-lspconfig",
         dependencies = {
-            { 'folke/neoconf.nvim', cmd = 'Neoconf', config = true },
+            { "folke/neoconf.nvim", cmd = "Neoconf", config = true },
             {
-                'folke/neodev.nvim',
+                "folke/neodev.nvim",
                 opts = { experimental = { pathStrict = true } },
             },
-            'mason.nvim',
-            'williamboman/mason-lspconfig.nvim',
-            'hrsh7th/cmp-nvim-lsp',
+            "mason.nvim",
+            "williamboman/mason-lspconfig.nvim",
+            "hrsh7th/cmp-nvim-lsp",
         },
-        event = 'BufReadPre',
+        event = "BufReadPre",
         ---@param opts PluginLspOpts
         config = function(plugin, opts)
             if plugin.servers then
-                require('util').deprecate(
-                    'lspconfig.servers',
-                    'lspconfig.opts.servers'
+                require("util").deprecate(
+                    "lspconfig.servers",
+                    "lspconfig.opts.servers"
                 )
             end
             if plugin.setup_server then
-                require('util').deprecate(
-                    'lspconfig.setup_server',
-                    'lspconfig.opts.setup[SERVER]'
+                require("util").deprecate(
+                    "lspconfig.setup_server",
+                    "lspconfig.opts.setup[SERVER]"
                 )
             end
 
             -- setup formatting and keymaps
-            require('util').on_attach(function(client, buffer)
-                require('plugins.lsp.format').on_attach(client, buffer)
-                require('plugins.lsp.keymaps').on_attach(client, buffer)
+            require("util").on_attach(function(client, buffer)
+                require("plugins.lsp.format").on_attach(client, buffer)
+                require("plugins.lsp.keymaps").on_attach(client, buffer)
             end)
 
             -- diagnostics
-            for name, icon in pairs(require('config.icons').diagnostics) do
-                name = 'DiagnosticSign' .. name
+            for name, icon in pairs(require("config.icons").diagnostics) do
+                name = "DiagnosticSign" .. name
                 vim.fn.sign_define(
                     name,
-                    { text = icon, texthl = name, numhl = '' }
+                    { text = icon, texthl = name, numhl = "" }
                 )
             end
             vim.diagnostic.config(opts.diagnostics)
 
             local servers = opts.servers
-            local capabilities = require('cmp_nvim_lsp').default_capabilities(
+            local capabilities = require("cmp_nvim_lsp").default_capabilities(
                 vim.lsp.protocol.make_client_capabilities()
             )
 
-            require('mason-lspconfig').setup {
+            require("mason-lspconfig").setup {
                 ensure_installed = vim.tbl_keys(servers),
             }
-            require('mason-lspconfig').setup_handlers {
+            require("mason-lspconfig").setup_handlers {
                 function(server)
                     local server_opts = servers[server] or {}
                     server_opts.capabilities = capabilities
@@ -65,12 +65,12 @@ return {
                         if opts.setup[server](server, server_opts) then
                             return
                         end
-                    elseif opts.setup['*'] then
-                        if opts.setup['*'](server, server_opts) then
+                    elseif opts.setup["*"] then
+                        if opts.setup["*"](server, server_opts) then
                             return
                         end
                     end
-                    require('lspconfig')[server].setup(server_opts)
+                    require("lspconfig")[server].setup(server_opts)
                 end,
             }
         end,
@@ -81,7 +81,7 @@ return {
                 diagnostics = {
                     underline = true,
                     update_in_insert = false,
-                    virtual_text = { spacing = 4, prefix = '●' },
+                    virtual_text = { spacing = 4, prefix = "●" },
                     severity_sort = true,
                 },
                 -- options for vim.lsp.buf.format
@@ -99,7 +99,7 @@ return {
                                 format = {
                                     enable = true,
                                 },
-                                schemas = require('schemastore').json.schemas(),
+                                schemas = require("schemastore").json.schemas(),
                                 validate = { enable = true },
                             },
                         },
@@ -111,7 +111,7 @@ return {
                                     checkThirdParty = false,
                                 },
                                 completion = {
-                                    callSnippet = 'Replace',
+                                    callSnippet = "Replace",
                                 },
                             },
                         },
@@ -135,39 +135,39 @@ return {
 
     -- debuggers
     {
-        'mfussenegger/nvim-dap',
+        "mfussenegger/nvim-dap",
         dependencies = {
-            'mason.nvim',
-            'jayp0521/mason-nvim-dap.nvim',
+            "mason.nvim",
+            "jayp0521/mason-nvim-dap.nvim",
         },
         config = function(_, opts)
-            require('mason-nvim-dap').setup {
+            require("mason-nvim-dap").setup {
                 automatic_setup = true,
             }
 
-            require('mason-nvim-dap').setup_handlers {
+            require("mason-nvim-dap").setup_handlers {
                 function(source_name)
-                    require('mason-nvim-dap.automatic_setup')(source_name)
+                    require("mason-nvim-dap.automatic_setup")(source_name)
                 end,
             }
         end,
     },
     {
-        'rcarriga/nvim-dap-ui',
-        dependencies = { 'nvim-dap' },
-        event = 'BufReadPre',
+        "rcarriga/nvim-dap-ui",
+        dependencies = { "nvim-dap" },
+        event = "BufReadPre",
         config = function()
-            local dap = require('dap')
-            local dapui = require('dapui')
+            local dap = require("dap")
+            local dapui = require("dapui")
             dapui.setup()
 
-            dap.listeners.after.event_initialized['dapui_config'] = function()
+            dap.listeners.after.event_initialized["dapui_config"] = function()
                 dapui.open {}
             end
-            dap.listeners.before.event_terminated['dapui_config'] = function()
+            dap.listeners.before.event_terminated["dapui_config"] = function()
                 dapui.close {}
             end
-            dap.listeners.before.event_exited['dapui_config'] = function()
+            dap.listeners.before.event_exited["dapui_config"] = function()
                 dapui.close {}
             end
         end,
@@ -175,19 +175,19 @@ return {
 
     -- formatters
     {
-        'jose-elias-alvarez/null-ls.nvim',
-        event = 'BufReadPre',
-        dependencies = { 'mason.nvim', 'jayp0521/mason-null-ls.nvim' },
+        "jose-elias-alvarez/null-ls.nvim",
+        event = "BufReadPre",
+        dependencies = { "mason.nvim", "jayp0521/mason-null-ls.nvim" },
         config = function(_, opts)
-            require('null-ls').setup(opts)
-            require('mason-null-ls').setup {
+            require("null-ls").setup(opts)
+            require("mason-null-ls").setup {
                 ensure_installed = nil,
                 automatic_installation = true,
                 automatic_setup = false,
             }
         end,
         opts = function()
-            local nls = require('null-ls')
+            local nls = require("null-ls")
             return {
                 sources = {
                     nls.builtins.code_actions.cspell,
@@ -197,9 +197,9 @@ return {
                             diagnostic.severity = vim.diagnostic.severity.INFO
                         end,
                         disabled_filetypes = {
-                            'dashboard',
-                            'NvimTree',
-                            'TelescopePrompt',
+                            "dashboard",
+                            "NvimTree",
+                            "TelescopePrompt",
                         },
                     },
                     -- Python
@@ -215,19 +215,19 @@ return {
 
     -- cmdline tools and lsp servers
     {
-        'williamboman/mason.nvim',
-        cmd = 'Mason',
-        keys = { { '<leader>cm', '<cmd>Mason<cr>', desc = 'Mason' } },
+        "williamboman/mason.nvim",
+        cmd = "Mason",
+        keys = { { "<leader>cm", "<cmd>Mason<cr>", desc = "Mason" } },
         ---@param opts MasonSettings | {ensure_installed: string[]}
         config = function(plugin, opts)
             if plugin.ensure_installed then
-                require('util').deprecate(
-                    'treesitter.ensure_installed',
-                    'treesitter.opts.ensure_installed'
+                require("util").deprecate(
+                    "treesitter.ensure_installed",
+                    "treesitter.opts.ensure_installed"
                 )
             end
-            require('mason').setup(opts)
-            local mr = require('mason-registry')
+            require("mason").setup(opts)
+            local mr = require("mason-registry")
             for _, tool in ipairs(opts.ensure_installed) do
                 local p = mr.get_package(tool)
                 if not p:is_installed() then
@@ -238,18 +238,18 @@ return {
         opts = {
             ui = {
                 icons = {
-                    package_installed = '✓',
-                    package_pending = '➜',
-                    package_uninstalled = '✗',
+                    package_installed = "✓",
+                    package_pending = "➜",
+                    package_uninstalled = "✗",
                 },
             },
             ensure_installed = {
                 -- Python
-                'debugpy',
-                'jedi-language-server',
-                'pyright',
+                "debugpy",
+                "jedi-language-server",
+                "pyright",
                 -- Lua
-                'stylua',
+                "stylua",
             },
         },
     },

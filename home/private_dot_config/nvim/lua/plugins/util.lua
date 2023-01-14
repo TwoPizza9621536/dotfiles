@@ -3,8 +3,8 @@
 return {
     -- measure startuptime
     {
-        'dstein64/vim-startuptime',
-        cmd = 'StartupTime',
+        "dstein64/vim-startuptime",
+        cmd = "StartupTime",
         config = function()
             vim.g.startuptime_tries = 10
         end,
@@ -12,8 +12,8 @@ return {
 
     -- Highlight colors
     {
-        'NvChad/nvim-colorizer.lua',
-        cmd = 'ColorizerToggle',
+        "NvChad/nvim-colorizer.lua",
+        cmd = "ColorizerToggle",
         opts = {
             css = true,
             RRGGBBAA = true,
@@ -24,84 +24,84 @@ return {
     },
 
     -- Color Picker
-    { 'uga-rosa/ccc.nvim', cmd = { 'CccPick', 'CccConvert' } },
+    { "uga-rosa/ccc.nvim", cmd = { "CccPick", "CccConvert" } },
 
     -- Transparency
     {
-        'xiyaowong/nvim-transparent',
-        cmd = 'TransparentToggle',
+        "xiyaowong/nvim-transparent",
+        cmd = "TransparentToggle",
         opts = {
             extra_groups = {
-                'BufferLineTabClose',
-                'BufferlineBufferSelected',
-                'BufferLineFill',
-                'BufferLineBackground',
-                'BufferLineSeparator',
-                'BufferLineIndicatorSelected',
+                "BufferLineTabClose",
+                "BufferlineBufferSelected",
+                "BufferLineFill",
+                "BufferLineBackground",
+                "BufferLineSeparator",
+                "BufferLineIndicatorSelected",
             },
         },
     },
 
     -- Hide code
-    { 'folke/twilight.nvim', cmd = 'Twilight' },
+    { "folke/twilight.nvim", cmd = "Twilight" },
 
     -- Discord Integration
-    { 'andweeb/presence.nvim', event = 'VeryLazy' },
+    { "andweeb/presence.nvim", event = "VeryLazy" },
 
     -- Unicode
     {
-        'chrisbra/unicode.vim',
+        "chrisbra/unicode.vim",
         cmd = {
-            'Digraphs',
-            'UnicodeSearch',
-            'UnicodeName',
-            'UnicodeTable',
-            'DownloadUnicode',
-            'UnicodeCache',
+            "Digraphs",
+            "UnicodeSearch",
+            "UnicodeName",
+            "UnicodeTable",
+            "DownloadUnicode",
+            "UnicodeCache",
         },
     },
 
     -- session management
     {
-        'folke/persistence.nvim',
-        event = 'BufReadPre',
+        "folke/persistence.nvim",
+        event = "BufReadPre",
         keys = {
             {
-                '<leader>qs',
+                "<leader>qs",
                 function()
-                    require('persistence').load()
+                    require("persistence").load()
                 end,
-                desc = 'Restore Session',
+                desc = "Restore Session",
             },
             {
-                '<leader>ql',
+                "<leader>ql",
                 function()
-                    require('persistence').load { last = true }
+                    require("persistence").load { last = true }
                 end,
-                desc = 'Restore Last Session',
+                desc = "Restore Last Session",
             },
             {
-                '<leader>qd',
+                "<leader>qd",
                 function()
-                    require('persistence').stop()
+                    require("persistence").stop()
                 end,
                 desc = "Don't Save Current Session",
             },
         },
         opts = {
             options = {
-                'buffers',
-                'curdir',
-                'tabpages',
-                'winsize',
-                'help',
+                "buffers",
+                "curdir",
+                "tabpages",
+                "winsize",
+                "help",
             },
         },
     },
 
     -- library used by other plugins
-    'nvim-lua/plenary.nvim',
+    "nvim-lua/plenary.nvim",
 
     -- makes some plugins dot-repeatable like leap
-    { 'tpope/vim-repeat', event = 'VeryLazy' },
+    { "tpope/vim-repeat", event = "VeryLazy" },
 }
