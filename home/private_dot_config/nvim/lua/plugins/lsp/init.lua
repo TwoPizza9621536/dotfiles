@@ -18,51 +18,6 @@ return {
             'hrsh7th/cmp-nvim-lsp',
         },
         event = 'BufReadPre',
-        ---@class PluginLspOpts
-        opts = function()
-            return {
-                ---@type lspconfig.options
-                servers = {
-                    jsonls = {
-                        settings = {
-                            json = {
-                                format = {
-                                    enable = true,
-                                },
-                                schemas = require('schemastore').json.schemas(),
-                                validate = { enable = true },
-                            },
-                        },
-                    },
-                    sumneko_lua = {
-                        single_file_support = true,
-                        settings = {
-                            Lua = {
-                                workspace = {
-                                    checkThirdParty = false,
-                                },
-                                completion = {
-                                    callSnippet = 'Replace',
-                                },
-                            },
-                        },
-                    },
-                },
-                -- you can do any additional lsp server setup here
-                -- return true if you don't want this server to be setup with lspconfig
-                ---@type table<string, fun(server:string, opts:_.lspconfig.options):boolean?>
-                setup = {
-                    -- example to setup with typescript.nvim
-                    -- tsserver = function(_, opts)
-                    --   require("typescript").setup({ server = opts })
-                    --   return true
-                    -- end,
-                    -- Specify * to use this function as a fallback for any server
-                    -- ["*"] = function(server, opts) end,
-                },
-            }
-        end,
-
         ---@param opts PluginLspOpts
         config = function(plugin, opts)
             if plugin.servers then
@@ -124,14 +79,70 @@ return {
                 end,
             }
         end,
+        ---@class PluginLspOpts
+        opts = function()
+            return {
+                ---@type lspconfig.options
+                servers = {
+                    jsonls = {
+                        settings = {
+                            json = {
+                                format = {
+                                    enable = true,
+                                },
+                                schemas = require('schemastore').json.schemas(),
+                                validate = { enable = true },
+                            },
+                        },
+                    },
+                    pyright = {},
+                    sumneko_lua = {
+                        settings = {
+                            Lua = {
+                                workspace = {
+                                    checkThirdParty = false,
+                                },
+                                completion = {
+                                    callSnippet = 'Replace',
+                                },
+                            },
+                        },
+                    },
+                },
+                -- you can do any additional lsp server setup here
+                -- return true if you don't want this server to be setup with lspconfig
+                ---@type table<string, fun(server:string, opts:_.lspconfig.options):boolean?>
+                setup = {
+                    -- example to setup with typescript.nvim
+                    -- tsserver = function(_, opts)
+                    --   require("typescript").setup({ server = opts })
+                    --   return true
+                    -- end,
+                    -- Specify * to use this function as a fallback for any server
+                    -- ["*"] = function(server, opts) end,
+                },
+            }
+        end,
     },
 
     -- debuggers
-    { 'mfussenegger/nvim-dap' },
     {
-        'jayp0521/mason-nvim-dap.nvim',
-        dependencies = { 'mason.nvim', 'nvim-dap' },
-        opts = { automatic_installation = true },
+        'mfussenegger/nvim-dap',
+        dependencies = {
+            'mason.nvim',
+            'jayp0521/mason-nvim-dap.nvim',
+        },
+        config = function(_, opts)
+            require('mason-nvim-dap').setup {
+                automatic_setup = true,
+            }
+
+            require('mason-nvim-dap').setup_handlers {
+                function(source_name)
+                    require('mason-nvim-dap.automatic_setup')(source_name)
+                end,
+            }
+        end,
     },
     {
         'rcarriga/nvim-dap-ui',
@@ -156,19 +167,17 @@ return {
 
     -- formatters
     {
-        'jayp0521/mason-null-ls.nvim',
-        dependencies = { 'mason.nvim', 'null-ls.nvim' },
-        event = 'BufReadPre',
-        opts = {
-            ensure_installed = nil,
-            automatic_installation = true,
-            automatic_setup = false,
-        },
-    },
-
-    {
         'jose-elias-alvarez/null-ls.nvim',
-        dependencies = { 'mason.nvim' },
+        event = 'BufReadPre',
+        dependencies = { 'mason.nvim', 'jayp0521/mason-null-ls.nvim' },
+        config = function(_, opts)
+            require('null-ls').setup(opts)
+            require('mason-null-ls').setup {
+                ensure_installed = nil,
+                automatic_installation = true,
+                automatic_setup = false,
+            }
+        end,
         opts = function()
             local nls = require('null-ls')
             return {
@@ -185,6 +194,10 @@ return {
                             'TelescopePrompt',
                         },
                     },
+                    -- Python & Lua
+                    nls.builtins.diagnostics.pylint,
+                    nls.builtins.formatting.isort,
+                    nls.builtins.formatting.black,
                     nls.builtins.formatting.stylua,
                 },
             }
@@ -223,6 +236,7 @@ return {
             },
             ensure_installed = {
                 'stylua',
+                'debugpy',
             },
         },
     },
