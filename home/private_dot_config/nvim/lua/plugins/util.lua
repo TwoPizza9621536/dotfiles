@@ -26,24 +26,16 @@ return {
     -- Color Picker
     { "uga-rosa/ccc.nvim", cmd = { "CccPick", "CccConvert" } },
 
-    -- Transparency
+    -- Hide code
     {
-        "xiyaowong/nvim-transparent",
-        cmd = "TransparentToggle",
-        opts = {
-            extra_groups = {
-                "BufferLineTabClose",
-                "BufferlineBufferSelected",
-                "BufferLineFill",
-                "BufferLineBackground",
-                "BufferLineSeparator",
-                "BufferLineIndicatorSelected",
-            },
+        "folke/twilight.nvim",
+        cmd = "Twilight",
+        keys = {
+            "<leader>ut",
+            "<cmd>Twilight<cr>",
+            desc = "Toggle Twilight",
         },
     },
-
-    -- Hide code
-    { "folke/twilight.nvim", cmd = "Twilight" },
 
     -- Discord Integration
     { "andweeb/presence.nvim", event = "VeryLazy" },

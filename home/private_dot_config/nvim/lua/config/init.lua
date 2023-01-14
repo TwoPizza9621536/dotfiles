@@ -8,7 +8,8 @@ local defaults = {
     -- colorscheme can be a string like `catppuccin` or a function that will load the colorscheme
     ---@type string|fun()
     colorscheme = function()
-        require("vscode").setup { italic_comments = true }
+        require("vscode").setup { italic_comments = true, transparent = true }
+        vim.cmd("highlight BufferLineFill guibg=NONE")
     end,
 }
 

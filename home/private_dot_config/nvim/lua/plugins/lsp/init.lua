@@ -203,6 +203,7 @@ return {
                         },
                     },
                     -- Python
+                    nls.builtins.formatting.autopep8,
                     nls.builtins.diagnostics.pylint,
                     nls.builtins.formatting.isort,
                     nls.builtins.formatting.black,
