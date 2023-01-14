@@ -8,13 +8,13 @@ local Util = require('util')
 vim.keymap.set(
     'n',
     'j',
-    'v:count == 0 ? "gj" : "j"',
+    "v:count == 0 ? 'gj' : 'j'",
     { expr = true, silent = true }
 )
 vim.keymap.set(
     'n',
     'k',
-    'v:count == 0 ? "gk" : "k"',
+    "v:count == 0 ? 'gk' : 'k'",
     { expr = true, silent = true }
 )
 
@@ -54,10 +54,10 @@ vim.keymap.set(
 
 -- Move Lines
 vim.keymap.set('n', '<A-j>', ':m .+1<cr>==', { desc = 'Move down' })
-vim.keymap.set('v', '<A-j>', ':m ">+1<cr>gv=gv', { desc = 'Move down' })
+vim.keymap.set('v', '<A-j>', ":m '>+1<cr>gv=gv", { desc = 'Move down' })
 vim.keymap.set('i', '<A-j>', '<Esc>:m .+1<cr>==gi', { desc = 'Move down' })
 vim.keymap.set('n', '<A-k>', ':m .-2<cr>==', { desc = 'Move up' })
-vim.keymap.set('v', '<A-k>', ':m "<-2<cr>gv=gv', { desc = 'Move up' })
+vim.keymap.set('v', '<A-k>', ":m '<-2<cr>gv=gv", { desc = 'Move up' })
 vim.keymap.set('i', '<A-k>', '<Esc>:m .-2<cr>==gi', { desc = 'Move up' })
 
 -- buffers
@@ -89,16 +89,17 @@ vim.keymap.set(
 vim.keymap.set(
     { 'i', 'n' },
     '<esc>',
-    '<cmd>nohlsearch<cr><esc>',
+    '<cmd>noh<cr><esc>',
     { desc = 'Escape and clear hlsearch' }
 )
 
--- Clear search and redraw
+-- Clear search, diff update and redraw
+-- taken from runtime/lua/_editor.lua
 vim.keymap.set(
     'n',
     '<leader>ur',
-    '<cmd>nohlsearch<cr><cmd>redraw<cr><c-l>',
-    { desc = 'Redraw and clear hlsearch' }
+    '<Cmd>nohlsearch<Bar>diffupdate<Bar>normal! <C-L><CR>',
+    { desc = 'Redraw / clear hlsearch / diff update' }
 )
 
 vim.keymap.set('n', 'gw', '*N')
@@ -108,37 +109,37 @@ vim.keymap.set('x', 'gw', '*N')
 vim.keymap.set(
     'n',
     'n',
-    '"Nn"[v:searchforward]',
+    "'Nn'[v:searchforward]",
     { expr = true, desc = 'Next search result' }
 )
 vim.keymap.set(
     'x',
     'n',
-    '"Nn"[v:searchforward]',
+    "'Nn'[v:searchforward]",
     { expr = true, desc = 'Next search result' }
 )
 vim.keymap.set(
     'o',
     'n',
-    '"Nn"[v:searchforward]',
+    "'Nn'[v:searchforward]",
     { expr = true, desc = 'Next search result' }
 )
 vim.keymap.set(
     'n',
     'N',
-    '"nN"[v:searchforward]',
+    "'nN'[v:searchforward]",
     { expr = true, desc = 'Prev search result' }
 )
 vim.keymap.set(
     'x',
     'N',
-    '"nN"[v:searchforward]',
+    "'nN'[v:searchforward]",
     { expr = true, desc = 'Prev search result' }
 )
 vim.keymap.set(
     'o',
     'N',
-    '"nN"[v:searchforward]',
+    "'nN'[v:searchforward]",
     { expr = true, desc = 'Prev search result' }
 )
 
@@ -181,38 +182,41 @@ vim.keymap.set(
 -- stylua: ignore start
 
 -- toggle options
-vim.keymap.set('n', '<leader>uf', require('plugins.lsp.format').toggle, { desc = 'Toggle format on Save' })
-vim.keymap.set('n', '<leader>ud', Util.toggle_diagnostics, { desc = 'Toggle Diagnostics' })
+vim.keymap.set("n", "<leader>uf", require("plugins.lsp.format").toggle, { desc = "Toggle format on Save" })
+vim.keymap.set("n", "<leader>us", function() Util.toggle("spell") end, { desc = "Toggle Spelling" })
+vim.keymap.set("n", "<leader>uw", function() Util.toggle("wrap") end, { desc = "Toggle Word Wrap" })
+vim.keymap.set("n", "<leader>un", function() Util.toggle("relativenumber", true) Util.toggle("number") end, { desc = "Toggle Line Numbers" })
+vim.keymap.set("n", "<leader>ud", Util.toggle_diagnostics, { desc = "Toggle Diagnostics" })
 local conceallevel = vim.o.conceallevel > 0 and vim.o.conceallevel or 3
-vim.keymap.set('n', '<leader>uc', function() Util.toggle('conceallevel', false, {0, conceallevel}) end, { desc = 'Toggle Conceal' })
+vim.keymap.set("n", "<leader>uc", function() Util.toggle("conceallevel", false, {0, conceallevel}) end, { desc = "Toggle Conceal" })
 
 -- lazygit
-vim.keymap.set('n', '<leader>gg', function() require('util').float_term({ 'lazygit' }) end, { desc = 'Lazygit (cwd)' })
-vim.keymap.set('n', '<leader>gG', function() Util.float_term({ 'lazygit' }, { cwd = Util.get_root() }) end, { desc = 'Lazygit (root dir)' })
+vim.keymap.set("n", "<leader>gg", function() require("util").float_term({ "lazygit" }) end, { desc = "Lazygit (cwd)" })
+vim.keymap.set("n", "<leader>gG", function() Util.float_term({ "lazygit" }, { cwd = Util.get_root() }) end, { desc = "Lazygit (root dir)" })
 
 -- quit
-vim.keymap.set('n', '<leader>qq', '<cmd>qa<cr>', { desc = 'Quit all' })
+vim.keymap.set("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit all" })
 
 -- highlights under cursor
-if vim.fn.has('nvim-0.9.0') == 1 then
-    vim.keymap.set('n', '<leader>sH', vim.show_pos, { desc = 'Highlight Groups at cursor' })
+if vim.fn.has("nvim-0.9.0") == 1 then
+  vim.keymap.set("n", "<leader>sH", vim.show_pos, { desc = "Highlight Groups at cursor" })
 end
 
 -- floating terminal
-vim.keymap.set('n', '<leader>ft', function() Util.float_term(nil, { cwd = Util.get_root() }) end, { desc = 'Terminal (root dir)' })
-vim.keymap.set('n', '<leader>fT', function() require('util').float_term() end, { desc = 'Terminal (cwd)' })
-vim.keymap.set('t', '<esc><esc>', '<c-\\><c-n>', {desc = 'Enter Normal Mode'})
+vim.keymap.set("n", "<leader>ft", function() Util.float_term(nil, { cwd = Util.get_root() }) end, { desc = "Terminal (root dir)" })
+vim.keymap.set("n", "<leader>fT", function() require("util").float_term() end, { desc = "Terminal (cwd)" })
+vim.keymap.set("t", "<esc><esc>", "<c-\\><c-n>", {desc = "Enter Normal Mode"})
 
 -- windows
-vim.keymap.set('n', '<leader>ww', '<C-W>p', { desc = 'other-window' })
-vim.keymap.set('n', '<leader>wd', '<C-W>c', { desc = 'delete-window' })
-vim.keymap.set('n', '<leader>w-', '<C-W>s', { desc = 'split-window-below' })
-vim.keymap.set('n', '<leader>w|', '<C-W>v', { desc = 'split-window-right' })
+vim.keymap.set("n", "<leader>ww", "<C-W>p", { desc = "other-window" })
+vim.keymap.set("n", "<leader>wd", "<C-W>c", { desc = "delete-window" })
+vim.keymap.set("n", "<leader>w-", "<C-W>s", { desc = "split-window-below" })
+vim.keymap.set("n", "<leader>w|", "<C-W>v", { desc = "split-window-right" })
 
 -- tabs
-vim.keymap.set('n', '<leader><tab>l', '<cmd>tablast<cr>', { desc = 'Last' })
-vim.keymap.set('n', '<leader><tab>f', '<cmd>tabfirst<cr>', { desc = 'First' })
-vim.keymap.set('n', '<leader><tab><tab>', '<cmd>tabnew<cr>', { desc = 'New Tab' })
-vim.keymap.set('n', '<leader><tab>]', '<cmd>tabnext<cr>', { desc = 'Next' })
-vim.keymap.set('n', '<leader><tab>d', '<cmd>tabclose<cr>', { desc = 'Close' })
-vim.keymap.set('n', '<leader><tab>[', '<cmd>tabprevious<cr>', { desc = 'Previous' })
+vim.keymap.set("n", "<leader><tab>l", "<cmd>tablast<cr>", { desc = "Last" })
+vim.keymap.set("n", "<leader><tab>f", "<cmd>tabfirst<cr>", { desc = "First" })
+vim.keymap.set("n", "<leader><tab><tab>", "<cmd>tabnew<cr>", { desc = "New Tab" })
+vim.keymap.set("n", "<leader><tab>]", "<cmd>tabnext<cr>", { desc = "Next" })
+vim.keymap.set("n", "<leader><tab>d", "<cmd>tabclose<cr>", { desc = "Close" })
+vim.keymap.set("n", "<leader><tab>[", "<cmd>tabprevious<cr>", { desc = "Previous" })

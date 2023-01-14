@@ -43,6 +43,41 @@ return {
     {
         'danymat/neogen',
         cmd = 'Neogen',
+        keys = {
+            { '<leader>cg', desc = 'Generate Comment' },
+            {
+                '<leader>cgf',
+                function()
+                    require('neogen').generate { type = 'func' }
+                end,
+                desc = 'Generate Comment (function)',
+                silent = true,
+            },
+            {
+                '<leader>cgF',
+                function()
+                    require('neogen').generate { type = 'file' }
+                end,
+                desc = 'Generate Comment (file)',
+                silent = true,
+            },
+            {
+                '<leader>cgc',
+                function()
+                    require('neogen').generate { type = 'class' }
+                end,
+                desc = 'Generate Comment (class)',
+                silent = true,
+            },
+            {
+                '<leader>cgt',
+                function()
+                    require('neogen').generate { type = 'type' }
+                end,
+                desc = 'Generate Comment (type)',
+                silent = true,
+            },
+        },
         opts = { snippet_engine = 'luasnip' },
     },
 

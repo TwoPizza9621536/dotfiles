@@ -47,12 +47,7 @@ return {
                     { text = icon, texthl = name, numhl = '' }
                 )
             end
-            vim.diagnostic.config {
-                underline = true,
-                update_in_insert = false,
-                virtual_text = { spacing = 4, prefix = '●' },
-                severity_sort = true,
-            }
+            vim.diagnostic.config(opts.diagnostics)
 
             local servers = opts.servers
             local capabilities = require('cmp_nvim_lsp').default_capabilities(
@@ -79,9 +74,23 @@ return {
                 end,
             }
         end,
-        ---@class PluginLspOpts
         opts = function()
+            ---@class PluginLspOpts
             return {
+                -- options for vim.diagnostic.config()
+                diagnostics = {
+                    underline = true,
+                    update_in_insert = false,
+                    virtual_text = { spacing = 4, prefix = '●' },
+                    severity_sort = true,
+                },
+                -- options for vim.lsp.buf.format
+                -- `bufnr` and `filter` is handled by the LazyVim formatter,
+                -- but can be also overriden when specified
+                format = {
+                    formatting_options = nil,
+                    timeout_ms = nil,
+                },
                 ---@type lspconfig.options
                 servers = {
                     jsonls = {
@@ -95,7 +104,6 @@ return {
                             },
                         },
                     },
-                    pyright = {},
                     sumneko_lua = {
                         settings = {
                             Lua = {
@@ -194,10 +202,11 @@ return {
                             'TelescopePrompt',
                         },
                     },
-                    -- Python & Lua
+                    -- Python
                     nls.builtins.diagnostics.pylint,
                     nls.builtins.formatting.isort,
                     nls.builtins.formatting.black,
+                    -- Lua
                     nls.builtins.formatting.stylua,
                 },
             }
@@ -235,8 +244,12 @@ return {
                 },
             },
             ensure_installed = {
-                'stylua',
+                -- Python
                 'debugpy',
+                'jedi-language-server',
+                'pyright',
+                -- Lua
+                'stylua',
             },
         },
     },
