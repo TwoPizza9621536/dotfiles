@@ -1,48 +1,9 @@
--- From https://github.com/LazyVim/LazyVim
--- Apache License 2.0
 return {
     -- bufferline
     {
         "akinsho/nvim-bufferline.lua",
-        event = "VeryLazy",
-        init = function()
-            vim.keymap.set(
-                "n",
-                "<s-h>",
-                "<cmd>BufferLineCyclePrev<cr>",
-                { desc = "Prev Buffer" }
-            )
-            vim.keymap.set(
-                "n",
-                "<s-l>",
-                "<cmd>BufferLineCycleNext<cr>",
-                { desc = "Next Buffer" }
-            )
-            vim.keymap.set(
-                "n",
-                "<leader>b[",
-                "<cmd>BufferLineCyclePrev<cr>",
-                { desc = "Previous" }
-            )
-            vim.keymap.set(
-                "n",
-                "<leader>b]",
-                "<cmd>BufferLineCycleNext<cr>",
-                { desc = "Next" }
-            )
-        end,
         opts = {
             options = {
-                diagnostics = "nvim_lsp",
-                -- stylua: ignore
-                diagnostics_indicator = function(_, _, diag)
-                    local icons = require('config.icons').diagnostics
-                    local ret = (diag.error and icons.Error .. diag.error .. ' ' or '')
-                        .. (diag.warning and icons.Warn .. diag.warning .. ' ' or '')
-                        .. (diag.info and icons.Info .. diag.info or '')
-                    return vim.trim(ret)
-                end,
-                modified_icon = "●",
                 numbers = function(opts)
                     return string.format(
                         "%s·%s",
@@ -50,14 +11,6 @@ return {
                         opts.lower(opts.id)
                     )
                 end,
-                offsets = {
-                    {
-                        filetype = "neo-tree",
-                        text = "Neo Tree",
-                        highlight = "Directory",
-                        text_align = "center",
-                    },
-                },
                 show_close_icon = false,
             },
         },
@@ -107,7 +60,7 @@ return {
                 },
             }
 
-            local icons = require("config.icons")
+            local icons = require("lazyvim.config").icons
 
             local function fg(name)
                 -- stylua: ignore
@@ -125,6 +78,9 @@ return {
                     "nvim-tree",
                 },
                 options = {
+                    disabled_filetypes = {
+                        statusline = { "dashboard", "lazy", "alpha" },
+                    },
                     globalstatus = true,
                     theme = bubblegum,
                 },
@@ -192,7 +148,6 @@ return {
     -- indent guides for Neovim
     {
         "lukas-reineke/indent-blankline.nvim",
-        event = "BufReadPre",
         config = function(_, opts)
             -- stylua: ignore start
             vim.cmd([[highlight IndentBlanklineIndent1 guifg=#E06C75 gui=nocombine]])
@@ -229,54 +184,5 @@ return {
             show_trailing_blankline_indent = false,
             space_char_blankline = " ",
         },
-    },
-
-    -- lsp symbol navigation for lualine
-    {
-        "SmiteshP/nvim-navic",
-        init = function()
-            vim.g.navic_silence = true
-            require("util").on_attach(function(client, buffer)
-                if client.server_capabilities.documentSymbolProvider then
-                    require("nvim-navic").attach(client, buffer)
-                end
-            end)
-        end,
-        opts = function()
-            local icons = require("config.icons").kinds
-            return {
-                depth_limit = 5,
-                highlight = true,
-                icons = {
-                    Array = icons.Array,
-                    Boolean = icons.Boolean,
-                    Class = icons.Class,
-                    Constant = icons.Constant,
-                    Constructor = icons.Constructor,
-                    Enum = icons.Enum,
-                    EnumMember = icons.EnumMember,
-                    Event = icons.Event,
-                    Field = icons.Field,
-                    File = icons.File,
-                    Function = icons.Function,
-                    Interface = icons.Interface,
-                    Key = icons.Key,
-                    Method = icons.Method,
-                    Module = icons.Module,
-                    Namespace = icons.Namespace,
-                    Null = icons.Null,
-                    Number = icons.Number,
-                    Object = icons.Object,
-                    Operator = icons.Operator,
-                    Package = icons.Package,
-                    Property = icons.Property,
-                    String = icons.String,
-                    Struct = icons.Struct,
-                    TypeParameter = icons.TypeParameter,
-                    Variable = icons.Variable,
-                },
-                separator = " ",
-            }
-        end,
     },
 }

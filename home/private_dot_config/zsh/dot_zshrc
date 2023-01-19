@@ -1,9 +1,9 @@
 ## Tmux
-if (( $+commands[tmux] )) && [[ -z ${KITTY_PID+X} ]] &&
- [[ ! "$TERM_PROGRAM" == "vscode" ]] && [[ ! -f "/run/.toolboxenv" ]] &&
- [[ -z ${TMUX+X}${ZSH_SCRIPT+X}${ZSH_EXECUTION_STRING+X} ]]; then
- exec tmux -u
-fi
+# if (( $+commands[tmux] )) && [[ -z ${KITTY_PID+X} ]] &&
+#  [[ ! "$TERM_PROGRAM" == "vscode" ]] && [[ ! -f "/run/.toolboxenv" ]] &&
+#  [[ -z ${TMUX+X}${ZSH_SCRIPT+X}${ZSH_EXECUTION_STRING+X} ]]; then
+#  exec tmux -u
+# fi
 
 ## User Configuration
 export GPG_TTY=$TTY
@@ -39,7 +39,7 @@ plugins=(
   ripgrep
   rust
   ssh-agent
-  tmux
+#  tmux
   vi-mode
   zsh-autosuggestions
   zsh-syntax-highlighting
