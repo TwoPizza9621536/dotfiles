@@ -42,6 +42,7 @@ return {
             local nls = require("null-ls")
             return {
                 sources = {
+                    -- Spelling
                     nls.builtins.code_actions.cspell,
                     nls.builtins.completion.spell,
                     nls.builtins.diagnostics.cspell.with {
@@ -49,19 +50,25 @@ return {
                             diagnostic.severity = vim.diagnostic.severity.INFO
                         end,
                         disabled_filetypes = {
+                            "alpha",
                             "dashboard",
-                            "NvimTree",
+                            "help",
+                            "lazy",
+                            "neo-tree",
                             "TelescopePrompt",
+                            "Trouble",
                         },
                     },
+                    -- Markdown
+                    nls.builtins.diagnostics.markdownlint,
                     -- Python
+                    nls.builtins.diagnostics.flake8,
+                    nls.builtins.diagnostics.pylint,
                     nls.builtins.formatting.autopep8,
                     nls.builtins.formatting.black.with {
                         extra_args = { "-l", "79" },
                     },
-                    nls.builtins.diagnostics.flake8,
                     nls.builtins.formatting.isort,
-                    nls.builtins.diagnostics.pylint,
                 },
             }
         end,
