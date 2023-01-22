@@ -6,6 +6,20 @@ return {
         opts = {
             ---@type lspconfig.options
             servers = {
+                -- Lua
+                sumneko_lua = {
+                    settings = {
+                        Lua = {
+                            workspace = {
+                                checkThirdParty = false,
+                            },
+                            completion = {
+                                callSnippet = "Replace",
+                            },
+                        },
+                    },
+                },
+                -- Python
                 pyright = {},
                 jedi_language_server = {},
             },
@@ -59,6 +73,8 @@ return {
                             "Trouble",
                         },
                     },
+                    -- Lua
+                    nls.builtins.formatting.stylua,
                     -- Markdown
                     nls.builtins.diagnostics.markdownlint,
                     -- Python

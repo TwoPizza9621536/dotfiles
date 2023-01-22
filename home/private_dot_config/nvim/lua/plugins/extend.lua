@@ -12,6 +12,14 @@ return {
         },
     },
 
+    -- set neotree options
+    {
+        "nvim-neo-tree/neo-tree.nvim",
+        opts = {
+            window = { width = 40 },
+        },
+    },
+
     -- add telescope extensions
     {
         "nvim-telescope/telescope.nvim",

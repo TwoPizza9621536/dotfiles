@@ -22,15 +22,5 @@ return {
     { "andweeb/presence.nvim", event = "VeryLazy" },
 
     -- Unicode
-    {
-        "chrisbra/unicode.vim",
-        cmd = {
-            "Digraphs",
-            "UnicodeSearch",
-            "UnicodeName",
-            "UnicodeTable",
-            "DownloadUnicode",
-            "UnicodeCache",
-        },
-    },
+    { "chrisbra/unicode.vim", cmd = { "UnicodeName", "UnicodeTable" } },
 }
