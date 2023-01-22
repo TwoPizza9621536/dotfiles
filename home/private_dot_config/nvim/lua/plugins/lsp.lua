@@ -4,21 +4,7 @@ return {
         "neovim/nvim-lspconfig",
         ---@class PluginLspOpts
         opts = {
-            ---@type lspconfig.options
             servers = {
-                -- Lua
-                sumneko_lua = {
-                    settings = {
-                        Lua = {
-                            workspace = {
-                                checkThirdParty = false,
-                            },
-                            completion = {
-                                callSnippet = "Replace",
-                            },
-                        },
-                    },
-                },
                 -- Python
                 pyright = {},
                 jedi_language_server = {},
@@ -73,12 +59,9 @@ return {
                             "Trouble",
                         },
                     },
-                    -- Lua
-                    nls.builtins.formatting.stylua,
                     -- Markdown
                     nls.builtins.diagnostics.markdownlint,
                     -- Python
-                    nls.builtins.diagnostics.flake8,
                     nls.builtins.diagnostics.pylint,
                     nls.builtins.formatting.autopep8,
                     nls.builtins.formatting.black.with {
