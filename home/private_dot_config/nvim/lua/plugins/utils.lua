@@ -12,6 +12,33 @@ return {
         },
     },
 
+    -- Add node actions
+    {
+        "ckolkey/ts-node-action",
+        dependencies = "nvim-treesitter/nvim-treesitter",
+        keys = {
+            {
+                "<leader>cA",
+                "TSNodeAction",
+                desc = "Node Action",
+            },
+        },
+        opts = {},
+    },
+
+    -- Hex Editor
+    {
+        "RaafatTurki/hex.nvim",
+        cmd = { "HexToggle" },
+        opts = {},
+    },
+
+    -- Pasting Images
+    {
+        "ekickx/clipboard-image.nvim",
+        cmd = "PasteImg",
+    },
+
     -- Color Picker
     { "uga-rosa/ccc.nvim", cmd = { "CccPick", "CccConvert" } },
 

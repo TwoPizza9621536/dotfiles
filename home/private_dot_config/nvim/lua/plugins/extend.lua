@@ -4,7 +4,7 @@ return {
         "nvim-treesitter/nvim-treesitter",
         dependencies = {
             "nvim-treesitter/nvim-treesitter-context",
-            "p00f/nvim-ts-rainbow",
+            "mrjones2014/nvim-ts-rainbow",
         },
         opts = {
             context_commentstring = { enable = true, enable_autocmd = false },

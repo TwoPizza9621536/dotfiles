@@ -70,6 +70,13 @@ return {
         config = true,
     },
 
+    -- Markdown
+    {
+        "antonk52/markdowny.nvim",
+        ft = 'markdown',
+        opts = {}
+    },
+
     -- Scrollbar
     {
         "petertriho/nvim-scrollbar",
