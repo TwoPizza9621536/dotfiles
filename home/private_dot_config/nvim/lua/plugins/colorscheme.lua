@@ -14,7 +14,7 @@ return {
         },
     },
 
-    { "baskerville/bubblegum" },
-    { "doki-theme/doki-theme-vim" },
-    { "tanvirtin/monokai.nvim" },
+    { "baskerville/bubblegum", event = "VeryLazy" },
+    { "doki-theme/doki-theme-vim", event = "VeryLazy" },
+    { "tanvirtin/monokai.nvim", event = "VeryLazy" },
 }
