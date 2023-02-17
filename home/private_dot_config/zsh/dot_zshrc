@@ -1,12 +1,20 @@
-## Tmux
-# if (( $+commands[tmux] )) && [[ -z ${KITTY_PID+X} ]] &&
-#  [[ ! "$TERM_PROGRAM" == "vscode" ]] && [[ ! -f "/run/.toolboxenv" ]] &&
-#  [[ -z ${TMUX+X}${ZSH_SCRIPT+X}${ZSH_EXECUTION_STRING+X} ]]; then
-#  exec tmux -u
-# fi
+## Preload plugins that does not work with Instant Prompt
+zstyle :omz:plugins:ssh-agent lazy yes
+
+plugins=(asdf ssh-agent)
+
+source $ZSH/oh-my-zsh.sh
+source $ASDF_DIR/plugins/java/set-java-home.zsh
+source $ASDF_DIR/plugins/dotnet-core/set-dotnet-home.zsh
+
+hyfetch
+
+## Instant Prompt
+if [[ -r "${XDG_CACHE_HOME}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
 
 ## User Configuration
-export GPG_TTY=$TTY
 HISTFILE=$ZDOTDIR/.zsh_history
 HISTSIZE=1000
 SAVEHIST=10000
@@ -19,7 +27,7 @@ COMPLETION_WAITING_DOTS=true
 DISABLE_AUTO_UPDATE=true
 ZSH_AUTOSUGGEST_MANUAL_REBIND=1
 
-# Load rsePlugins
+# Load zsh plugins
 plugins=(
   aliases
   autopep8
@@ -27,19 +35,16 @@ plugins=(
   chezmoi
   deno
   dotenv
+  dotnet
   exa
   fd
   fzf
   golang
   gpg-agent
   npm
-  pdm
-  poetry
   pylint
   ripgrep
   rust
-  ssh-agent
-#  tmux
   vi-mode
   zsh-autosuggestions
   zsh-syntax-highlighting
@@ -49,5 +54,19 @@ fpath+=$ZSH_CUSTOM/plugins/zsh-completions/src
 
 source $ZSH/oh-my-zsh.sh
 source $ZDOTDIR/p10k.zsh
-
 unset plugins
+
+## Aliases
+alias cat=bat
+alias cloc=scc
+alias diff=batdiff
+alias find=fd
+alias fzf="fzf --preview 'bat --style=numbers --color=always --line-range :500 {}'"
+alias grep=batgrep
+alias icat="kitty +kitten icat"
+alias man=batman
+alias neofetch=hyfetch
+alias svn="svn --config-dir $XDG_CONFIG_HOME/subversion"
+alias tb="toolbox enter"
+
+eval $(thefuck --alias)

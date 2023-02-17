@@ -1,13 +1,10 @@
 wheel
 setuptools
 autopep8
-doki-theme-jupyter
 hyfetch
 jupyter
 thefuck
-pep8
-pdm
-poetry
+pre-commit
 pylint
 pyright
 pytest

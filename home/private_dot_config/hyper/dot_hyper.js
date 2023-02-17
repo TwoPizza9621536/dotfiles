@@ -95,7 +95,7 @@ module.exports = {
         shell: '',
         // for setting shell arguments (i.e. for using interactive shellArgs: `['-i']`)
         // by default `['--login']` will be used
-        shellArgs: ['-l', '-i'],
+        shellArgs: ['--login'],
         // for environment variables
         env: {},
         // Supported Options:
@@ -117,7 +117,7 @@ module.exports = {
         macOptionSelectionMode: 'vertical',
         // Whether to use the WebGL renderer. Set it to false to use canvas-based
         // rendering (slower, but supports transparent backgrounds)
-        webGLRenderer: false,
+        webGLRenderer: true,
         // keypress required for weblink activation: [ctrl|alt|meta|shift]
         // todo: does not pick up config changes automatically, need to restart terminal :/
         webLinksActivationKey: '',
@@ -133,7 +133,6 @@ module.exports = {
     },
     plugins: [
         'doki-theme-hyper',
-        'hyper-font-ligatures',
     ],
     localPlugins: [],
     keymaps: {
@@ -149,11 +148,6 @@ module.exports = {
                 opacity: 0.4
             }
         }
-    },
-    systemMatch: {
-        enabled: true,
-        lightTheme: 'Natsuki Dark',
-        darkTheme: 'Yuri Dark',
     },
 };
 //# sourceMappingURL=config-default.js.map

@@ -1,5 +1,4 @@
-HashKnownHosts no
-VisualHostKey yes
+AddKeysToAgent yes
 
 Host *
     ControlMaster auto

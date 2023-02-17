@@ -47,4 +47,3 @@ done
 
 unset flatpak flatpaks
 
-sudo rm /etc/xdg/autostart/org.gnome.Software.desktop

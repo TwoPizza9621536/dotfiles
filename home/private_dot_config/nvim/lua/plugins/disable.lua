@@ -1,15 +1,12 @@
 return {
     { "folke/tokyonight.nvim", enabled = false },
     { "catppuccin/nvim", enabled = false, name = "catppuccin" },
-    { "echasnovski/mini.indentscope", enabled = false },
     { "echasnovski/mini.comment", enabled = false },
 
     -- Disable tab behavior in LuaSnip
     {
         "L3MON4D3/LuaSnip",
-        keys = function()
-            return {}
-        end,
+        keys = function() return {} end,
     },
 
     -- Use super tab and add cpm-emoji and cmp-dap
