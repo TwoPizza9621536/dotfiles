@@ -1,7 +1,5 @@
-## Preload plugins that does not work with Instant Prompt
-zstyle :omz:plugins:ssh-agent lazy yes
-
-plugins=(asdf ssh-agent)
+## Preload plugins
+plugins=(asdf)
 
 source $ZSH/oh-my-zsh.sh
 source $ASDF_DIR/plugins/java/set-java-home.zsh
@@ -40,7 +38,6 @@ plugins=(
   fd
   fzf
   golang
-  gpg-agent
   npm
   pylint
   ripgrep

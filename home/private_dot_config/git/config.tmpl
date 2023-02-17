@@ -43,7 +43,7 @@
 [user]
 	name = {{ .name }}
 	email = {{ .email }}
-	signingkey = key::{{ .ssh_signing }}
+	signingkey = {{ .chezmoi.homeDir }}/.ssh/github_signing.pub
 
 [url "git@github.com:"]
 	insteadOf = https://github.com/
