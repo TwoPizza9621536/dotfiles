@@ -1,0 +1,2 @@
+# Map files to syntax highlight
+--map-syntax ".ignore:Git Ignore"

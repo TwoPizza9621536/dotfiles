@@ -2,6 +2,7 @@ return {
     { "folke/tokyonight.nvim", enabled = false },
     { "catppuccin/nvim", enabled = false, name = "catppuccin" },
     { "echasnovski/mini.comment", enabled = false },
+    { "echasnovski/mini.ai", enabled = false },
 
     -- Disable tab behavior in LuaSnip
     {

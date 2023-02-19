@@ -3,6 +3,7 @@ setuptools
 autopep8
 hyfetch
 jupyter
+neovim
 thefuck
 pre-commit
 pylint

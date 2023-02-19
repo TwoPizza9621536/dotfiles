@@ -1,11 +1,14 @@
 progress = true
 
 [data]
-email = "twopizza9621536@gmail.com"
-name = "Samuel Wu"
-ssh = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKr8XdrPlPiEBs7fdPJhVBWjDL/IYB4tpsrisUh35NkZ"
-ssh_signing = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIF/sxZI/tSYhJkeGsZQKGG50kzjNsofRScfWBMYQ2Qtb"
+    email = "twopizza9621536@gmail.com"
+    name = "Samuel Wu"
+    ssh = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKr8XdrPlPiEBs7fdPJhVBWjDL/IYB4tpsrisUh35NkZ"
+    ssh_signing = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIF/sxZI/tSYhJkeGsZQKGG50kzjNsofRScfWBMYQ2Qtb"
+
+[diff]
+    pager = "delta"
 
 [merge]
-command = "code"
-args = ["-w", "-m", "{{ .Destination }}", "{{ .Source }}", "{{ .Target }}"]
+    command = "code"
+    args = ["-w", "-m", "{{ .Destination }}", "{{ .Source }}", "{{ .Target }}"]

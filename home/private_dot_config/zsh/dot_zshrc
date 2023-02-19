@@ -1,69 +1,61 @@
-## Preload plugins
-plugins=(asdf)
+# Load zprof first if we need to profile.
+[[ ${ZPROFRC:-0} -eq 0 ]] || zmodload zsh/zprof
+alias zprofrc="ZPROFRC=1 zsh"
 
-source $ZSH/oh-my-zsh.sh
-source $ASDF_DIR/plugins/java/set-java-home.zsh
-source $ASDF_DIR/plugins/dotnet-core/set-dotnet-home.zsh
+# Lazy and autoload functions
+for funcdir in $ZDOTDIR/functions $ZDOTDIR/functions/*(N/); do
+  fpath=($funcdir $fpath)
+  autoload -Uz $fpath[1]/*(.:t)
+done
+unset funcdir
 
-hyfetch
+## Options
+setopt extended_glob
 
-## Instant Prompt
-if [[ -r "${XDG_CACHE_HOME}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
-## User Configuration
-HISTFILE=$ZDOTDIR/.zsh_history
-HISTSIZE=1000
-SAVEHIST=10000
-HIST_STAMPS=yyyy-mm-dd
-
-ZSH_THEME=powerlevel10k/powerlevel10k
+# Automaticly push directory path to the stack
+setopt autopushd
+setopt pushd_ignore_dups
+setopt pushdminus
 
 ENABLE_CORRECTION=true
 COMPLETION_WAITING_DOTS=true
-DISABLE_AUTO_UPDATE=true
 ZSH_AUTOSUGGEST_MANUAL_REBIND=1
 
-# Load zsh plugins
-plugins=(
-  aliases
-  autopep8
-  bw
-  chezmoi
-  deno
-  dotenv
-  dotnet
-  exa
-  fd
-  fzf
-  golang
-  npm
-  pylint
-  ripgrep
-  rust
-  vi-mode
-  zsh-autosuggestions
-  zsh-syntax-highlighting
-  zsh-history-substring-search
+# Add completions to loading them
+fpath=(
+  $ZDOTDIR/completions(-/FN)
+  $XDG_DATA_HOME/zsh/site_functions
+  $fpath
 )
-fpath+=$ZSH_CUSTOM/plugins/zsh-completions/src
 
-source $ZSH/oh-my-zsh.sh
-source $ZDOTDIR/p10k.zsh
-unset plugins
+# Set the name of the static .zsh plugins file antidote will generate.
+zsh_plugins=$ZDOTDIR/.zsh_plugins.zsh
 
-## Aliases
-alias cat=bat
-alias cloc=scc
-alias diff=batdiff
-alias find=fd
-alias fzf="fzf --preview 'bat --style=numbers --color=always --line-range :500 {}'"
-alias grep=batgrep
-alias icat="kitty +kitten icat"
-alias man=batman
-alias neofetch=hyfetch
-alias svn="svn --config-dir $XDG_CONFIG_HOME/subversion"
-alias tb="toolbox enter"
+# Lazy-load antidote
+fpath+=($ZDOTDIR/.antidote/functions)
+autoload -Uz $fpath[-1]/antidote
 
-eval $(thefuck --alias)
+# Generate static file in a subshell when .zsh_plugins.txt is updated.
+if [[ ! $zsh_plugins -nt ${zsh_plugins:r}.txt ]]; then
+  (antidote bundle <${zsh_plugins:r}.txt >|$zsh_plugins)
+fi
+
+## Load ASDF
+source $ASDF_DIR/asdf.sh
+source $ASDF_DIR/plugins/java/set-java-home.zsh
+source $ASDF_DIR/plugins/dotnet-core/set-dotnet-home.zsh
+
+# Run neofetch
+hyfetch
+
+# Instant Prompt
+if [[ -r "$XDG_CACHE_HOME/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "$XDG_CACHE_HOME/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+## Set options before loading plugins that requires it
+# Autopairs
+typeset -gA AUTOPAIR_PAIRS
+AUTOPAIR_PAIRS+=("<" ">")
+
+source $zsh_plugins

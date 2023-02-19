@@ -1,23 +1,14 @@
-# Locale
-export LANG=en_US.UTF-8
-export LC_ALL=en_US.UTF-8
-
 # Free Desktop
 export XDG_CACHE_HOME=$HOME/.cache
 export XDG_CONFIG_HOME=$HOME/.config
 export XDG_DATA_HOME=$HOME/.local/share
-export XDG_STATE_HOME=$HOME/.local/state
-
-export PKG_CONFIG_PATH=/usr/lib64/pkgconfig:/usr/local/lib/pkgconfig
-export MANPATH=$XDG_DATA_HOME/man:/usr/local/share/man:/usr/share/man
 
 # ZSH
-export ZSH=$ZDOTDIR/oh-my-zsh
-export ZSH_CUSTOM=$ZSH/custom
+export ZDOTDIR=$XDG_CONFIG_HOME/zsh
 
-# asdf
+# ASDF
 export ASDF_DIR=$XDG_DATA_HOME/asdf
-export ASDF_DATA_DIR=$XDG_DATA_HOME/asdf
+export ASDF_DATA_DIR=$ASDF_DIR
 export ASDF_CONFIG_FILE=$XDG_CONFIG_HOME/asdf/asdfrc
 
 export ASDF_CRATE_DEFAULT_PACKAGES_FILE=$XDG_CONFIG_HOME/asdf/cargo-crates
@@ -45,6 +36,7 @@ export CONDARC=$XDG_CONFIG_HOME/conda/condarc
 export BUNDLE_PATH=$XDG_DATA_HOME/bundle
 
 # Perl
+export ASDF_PERL_GENERATE_MAN=1
 export PERL_CPANM_HOME=$XDG_DATA_HOME/cpanm
 
 # Kubernetes
@@ -56,17 +48,10 @@ export WGETRC=$XDG_CONFIG_HOME/wgetrc
 # FZF
 export FZF_BASE=$XDG_DATA_HOME/asdf/installs/fzf/0.35.1/shell
 
-# Export Path
-export PATH=$HOME/.local/bin:$PATH:$HOME/.dotnet/tools
+# GnuPG
+export GNUPGHOME=$XDG_DATA_HOME/gnupg
 
-# Editor
-if (( $+commands[nvim] )); then
-  export EDITOR=nvim
-elif (( $+commands[nano] )); then
-  export EDITOR=nano
-elif (( $+commands[vim] )); then
-  export EDITOR=vim
-else
-  export EDITOR=vi
+# Use .zprofile for non-login and non-interactive shells
+if [[ ( "$SHLVL" -eq 1 && ! -o LOGIN ) && -s "$ZDOTDIR/.zprofile" ]]; then
+  source $ZDOTDIR/.zprofile
 fi
-export VISUAL=$EDITOR

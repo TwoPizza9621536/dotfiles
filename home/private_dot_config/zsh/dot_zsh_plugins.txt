@@ -1,0 +1,41 @@
+# Plugins
+davidde/git
+hlissner/zsh-autopair
+jeffreytse/zsh-vi-mode
+mattmc3/zman
+peterhurford/up.zsh
+twopizza9621536/zsh-exa
+
+# Prompt
+romkatv/powerlevel10k
+
+# Utils
+romkatv/zsh-bench kind:path
+
+# Framworks
+belak/zsh-utils path:history
+belak/zsh-utils path:utility
+
+ohmyzsh/ohmyzsh path:plugins/fancy-ctrl-z
+ohmyzsh/ohmyzsh path:plugins/fd
+ohmyzsh/ohmyzsh path:plugins/fzf
+ohmyzsh/ohmyzsh path:plugins/ripgrep
+
+# Completions
+zsh-users/zsh-completions path:src kind:fpath
+belak/zsh-utils path:completion
+Aloxaf/fzf-tab kind:defer
+
+# Source additonal rc files
+mattmc3/zshrc.d
+
+# Alias
+akash329d/zsh-alias-finder
+
+# Syntax highlighting
+zdharma-continuum/fast-syntax-highlighting kind:defer
+
+# Autocompletions and Search
+zsh-users/zsh-autosuggestions kind:defer
+zsh-users/zsh-history-substring-search
+
