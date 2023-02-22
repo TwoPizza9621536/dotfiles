@@ -24,8 +24,8 @@ export _JAVA_OPTIONS=-Djava.util.prefs.userRoot=$XDG_CONFIG_HOME/java
 export NUGET_PACKAGES=$XDG_CACHE_HOME/NuGetPackages
 
 # Node
-export NODE_REPL_HISTORY=$XDG_DATA_HOME/node_repl_history
 export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/npmrc
+export NODE_REPL_HISTORY=$XDG_DATA_HOME/node_repl_history
 
 # Python
 export PYTHONPYCACHEPREFIX=$XDG_CACHE_HOME/python
@@ -33,7 +33,13 @@ export JUPYTER_CONFIG_DIR=$XDG_CONFIG_HOME/jupyter
 export CONDARC=$XDG_CONFIG_HOME/conda/condarc
 
 # Ruby
-export BUNDLE_PATH=$XDG_DATA_HOME/bundle
+export GEM_HOME=$XDG_DATA_HOME/gem
+export GEM_SPEC_CACHE=$XDG_CACHE_HOME/gem
+
+# Bundle
+export BUNDLE_USER_CONFIG=$XDG_CONFIG_HOME/bundle
+export BUNDLE_USER_CACHE=$XDG_CACHE_HOME/bundle
+export BUNDLE_USER_PLUGIN=$XDG_DATA_HOME/bundle
 
 # Perl
 export ASDF_PERL_GENERATE_MAN=1
@@ -48,8 +54,15 @@ export WGETRC=$XDG_CONFIG_HOME/wgetrc
 # FZF
 export FZF_BASE=$XDG_DATA_HOME/asdf/installs/fzf/0.35.1/shell
 
+# Less
+export LESSKEY=$XDG_CONFIG_HOME/less/lesskey
+export LESSHISTFILE=$XDG_CACHE_HOME/less/history
+
 # GnuPG
 export GNUPGHOME=$XDG_DATA_HOME/gnupg
+
+# Readline
+export INPUTRC=$XDG_CONFIG_HOME/readline/inputrc
 
 # Use .zprofile for non-login and non-interactive shells
 if [[ ( "$SHLVL" -eq 1 && ! -o LOGIN ) && -s "$ZDOTDIR/.zprofile" ]]; then

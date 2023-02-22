@@ -17,9 +17,9 @@ belak/zsh-utils path:history
 belak/zsh-utils path:utility
 
 ohmyzsh/ohmyzsh path:plugins/fancy-ctrl-z
-ohmyzsh/ohmyzsh path:plugins/fd
+ohmyzsh/ohmyzsh path:plugins/fd kind:fpath
 ohmyzsh/ohmyzsh path:plugins/fzf
-ohmyzsh/ohmyzsh path:plugins/ripgrep
+ohmyzsh/ohmyzsh path:plugins/ripgrep kind:fpath
 
 # Completions
 zsh-users/zsh-completions path:src kind:fpath
