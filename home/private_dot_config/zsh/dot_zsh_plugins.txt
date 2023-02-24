@@ -13,6 +13,7 @@ romkatv/powerlevel10k
 romkatv/zsh-bench kind:path
 
 # Framworks
+belak/zsh-utils path:editor
 belak/zsh-utils path:history
 belak/zsh-utils path:utility
 

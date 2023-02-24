@@ -22,10 +22,13 @@ ENABLE_CORRECTION=true
 COMPLETION_WAITING_DOTS=true
 ZSH_AUTOSUGGEST_MANUAL_REBIND=1
 
+## Antidote Settings
+zstyle ':antidote:bundle' use-friendly-names 'yes'
+
 # Add completions to loading them
 fpath=(
   $ZDOTDIR/completions(-/FN)
-  $XDG_DATA_HOME/zsh/site_functions
+  $XDG_DATA_HOME/zsh/site-functions
   $fpath
 )
 
