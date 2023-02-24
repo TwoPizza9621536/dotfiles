@@ -45,9 +45,11 @@ if [[ ! $zsh_plugins -nt ${zsh_plugins:r}.txt ]]; then
 fi
 
 ## Load ASDF
-source $ASDF_DIR/asdf.sh
-source $ASDF_DIR/plugins/java/set-java-home.zsh
-source $ASDF_DIR/plugins/dotnet-core/set-dotnet-home.zsh
+if [[ -s "$ASDF_DIR/asdf.sh" ]]; then
+  source $ASDF_DIR/asdf.sh
+  source $ASDF_DIR/plugins/java/set-java-home.zsh
+  source $ASDF_DIR/plugins/dotnet-core/set-dotnet-home.zsh
+fi
 
 # Run neofetch
 hyfetch
