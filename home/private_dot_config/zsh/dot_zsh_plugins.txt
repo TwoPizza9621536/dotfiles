@@ -3,6 +3,7 @@ davidde/git
 hlissner/zsh-autopair
 jeffreytse/zsh-vi-mode
 mattmc3/zman
+mattmc3/zsh-safe-rm
 peterhurford/up.zsh
 twopizza9621536/zsh-exa
 
@@ -12,15 +13,21 @@ romkatv/powerlevel10k
 # Utils
 romkatv/zsh-bench kind:path
 
-# Framworks
-belak/zsh-utils path:editor
-belak/zsh-utils path:history
-belak/zsh-utils path:utility
+# Oh-My-Zsh
+ohmyzsh/ohmyzsh path:lib/clipboard.zsh
 
+ohmyzsh/ohmyzsh path:plugins/copybuffer
+ohmyzsh/ohmyzsh path:plugins/copyfile
+ohmyzsh/ohmyzsh path:plugins/copypath
+ohmyzsh/ohmyzsh path:plugins/extract
 ohmyzsh/ohmyzsh path:plugins/fancy-ctrl-z
 ohmyzsh/ohmyzsh path:plugins/fd kind:fpath
 ohmyzsh/ohmyzsh path:plugins/fzf
 ohmyzsh/ohmyzsh path:plugins/ripgrep kind:fpath
+
+# Zsh-Utils
+belak/zsh-utils path:editor
+belak/zsh-utils path:history
 
 # Completions
 zsh-users/zsh-completions path:src kind:fpath
@@ -31,7 +38,7 @@ Aloxaf/fzf-tab kind:defer
 mattmc3/zshrc.d
 
 # Alias
-akash329d/zsh-alias-finder
+MichaelAquilina/zsh-you-should-use
 
 # Syntax highlighting
 zdharma-continuum/fast-syntax-highlighting kind:defer
@@ -39,4 +46,3 @@ zdharma-continuum/fast-syntax-highlighting kind:defer
 # Autocompletions and Search
 zsh-users/zsh-autosuggestions kind:defer
 zsh-users/zsh-history-substring-search
-

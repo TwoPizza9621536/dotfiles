@@ -9,22 +9,19 @@ for funcdir in $ZDOTDIR/functions $ZDOTDIR/functions/*(N/); do
 done
 unset funcdir
 
-## Options
+## Preload Options
+# Set general Zsh options needed for config
 setopt extended_glob
-setopt interactive_comments
 
-# Automaticly push directory path to the stack
-setopt autocd
-setopt autopushd
-setopt pushd_ignore_dups
-setopt pushdminus
-
-ENABLE_CORRECTION=true
-COMPLETION_WAITING_DOTS=true
-ZSH_AUTOSUGGEST_MANUAL_REBIND=1
-
-## Antidote Settings
+# Antidote
 zstyle ':antidote:bundle' use-friendly-names 'yes'
+
+# Autopairs
+typeset -gA AUTOPAIR_PAIRS
+AUTOPAIR_PAIRS+=("<" ">")
+
+# Autosuggest
+ZSH_AUTOSUGGEST_MANUAL_REBIND=1
 
 # Add completions to loading them
 fpath=(
@@ -60,9 +57,5 @@ if [[ -r "$XDG_CACHE_HOME/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "$XDG_CACHE_HOME/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-## Set options before loading plugins that requires it
-# Autopairs
-typeset -gA AUTOPAIR_PAIRS
-AUTOPAIR_PAIRS+=("<" ">")
-
+# Source ZSH Plugins
 source $zsh_plugins
