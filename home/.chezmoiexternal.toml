@@ -4,14 +4,10 @@ url = "https://github.com/mattmc3/antidote.git"
 exact = true
 refreshPeriod = "168h"
 
-[".local/share/asdf"]
-type = "git-repo"
-url = "https://github.com/asdf-vm/asdf.git"
-
-[".config/tmux/plugins/tpm"]
-type = "git-repo"
-url = "https://github.com/tmux-plugins/tpm.git"
-exact = true
+# [".config/tmux/plugins/tpm"]
+# type = "git-repo"
+# url = "https://github.com/tmux-plugins/tpm.git"
+# exact = true
 
 [".config/nano/extra"]
 type = "git-repo"
