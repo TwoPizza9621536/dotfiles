@@ -1,3 +1,101 @@
+[alias]
+	a = add
+	aa = add --all
+	ai = add --interactive
+	am = commit --amend -m
+	ama = commit --amend -am
+	an = commit --amend --no-edit
+	ana = commit --amend --no-edit -a
+	ap = add --patch
+
+	b = branch
+	ba = branch --all
+	bd = branch --delete
+	bdf = branch --delete --force
+	bl = blame
+
+	bs = bisect
+	bsb = bisect bad
+	bsg = bisect good
+	bsr = bisect reset
+	bss = bisect start
+
+	c = commit --verbose
+	cam = commit -am
+	came = commit --allow-empty-message -am ""
+	camu = commit -am "Update"
+	cem = commit --allow-empty -m
+
+	cf = config
+	cfl = config --list
+	cl = clone --recurse-submodules
+	cm = commit -m
+
+	co = checkout
+	cob = checkout -b
+	cobb = checkout -
+	cod = checkout development
+	com = checkout main
+
+	cp = cherry-pick
+	cpa = cherry-pick --abort
+	cpc = cherry-pick --continue
+
+	d = diff
+	ds = diff --staged
+
+	f = fetch
+	fo = fetch origin
+
+	ignore = update-index --skip-worktree
+	unignore = update-index --no-skip-worktree
+
+	m = merge
+
+	p = push
+	pd = push --delete
+	pdo = push --delete origin
+	pdf = push --force-with-lease
+	pt = push --tags
+	pl = pull
+	plr = pull --rebase
+	plrs = pull --recurse-submodules
+
+	r = reset --mixed
+	rhard = reset --hard
+	rk = reset --keep
+	rs = reset --soft
+	rb = rebase
+	rem = remote
+	rema = remote add
+	remrm = remote rm
+	remset = remote set-url
+	remsh = remote show
+	remv = remote --verbose
+	rl = reflog
+
+	s = status
+	st = stash
+	sta = stash apply
+	std = stash drop
+	stl = stash list
+	stp = stash push
+	stpop = stash pop
+	stsl = stash show -l
+	stsp = stash show -p
+
+	sub = submodule
+	suba = submodule add
+	subi = submodule update --init
+	gsubpl='git submodule foreach git pull'
+	gsubs='git submodule status'
+	gsubu='git submodule update --remote --merge'
+
+	t = tag
+	tam = tag -am
+	td = tag --delete
+	tl = tag --list
+
 [apply]
 	whitespace = fix
 

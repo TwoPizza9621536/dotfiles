@@ -22,6 +22,7 @@ export _JAVA_OPTIONS=-Djava.util.prefs.userRoot=$XDG_CONFIG_HOME/java
 
 # Dotnet
 export NUGET_PACKAGES=$XDG_CACHE_HOME/NuGetPackages
+export DOTNET_CLI_TELEMETRY_OPTOUT=true
 
 # Node
 export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/npmrc

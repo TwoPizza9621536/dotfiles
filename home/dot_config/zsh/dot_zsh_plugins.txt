@@ -1,5 +1,4 @@
 # Plugins
-davidde/git
 hlissner/zsh-autopair
 jeffreytse/zsh-vi-mode
 mattmc3/zman
