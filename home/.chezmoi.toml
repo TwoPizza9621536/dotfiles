@@ -3,8 +3,6 @@ progress = true
 [data]
     email = "twopizza9621536@gmail.com"
     name = "Samuel Wu"
-    ssh = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJjDaQPi37t2ZK+bu1FvK3DBAqCr74jRYO5ShRkHhXyK"
-    ssh_signing = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIK+iUJAQIBiY+JI2sYLOL+iiT4Z8l3ER6THO1C77Cm2c"
 
 [diff]
     pager = "delta"
