@@ -16,7 +16,7 @@ $GitPromptSettings.LocalWorkingStatusSymbol.ForegroundColor = 0xFF6188
 $GitPromptSettings.BranchBehindAndAheadStatusSymbol.ForegroundColor = 0xFFD866
 
 # Theme
-oh-my-posh --init --shell pwsh --config $HOME/.powerlevel10k.omp.json | Invoke-Expression
+oh-my-posh --init --shell pwsh --config $HOME/.config/p10k.omp.json | Invoke-Expression
 function Set-PoshGitStatus {
   $global:GitStatus = Get-GitStatus
   $env:POSH_GIT_STRING = Write-GitStatus -Status $global:GitStatus
@@ -27,7 +27,6 @@ New-Alias -Name "Set-PoshContext" -Value "Set-PoshGitStatus"
 Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
 Set-PSReadLineOption -EditMode Vi
 Set-PSReadLineOption -MaximumHistoryCount 10000
-Set-PSReadLineOption -PredictionSource History
 Set-PSReadLineOption -PredictionViewStyle ListView
 Set-PSReadLineOption -ViModeIndicator Cursor
 
@@ -38,16 +37,16 @@ Set-PSReadLineOption -AddToHistoryHandler {
   $sensitive = "password|asplaintext|token|key|secret|TOKEN|KEY|SECRET"
   return ($line -notmatch $sensitive)
 }
+Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
+Set-PSReadlineKeyHandler -Key UpArrow -Function HistorySearchBackward
+Set-PSReadlineKeyHandler -Key DownArrow -Function HistorySearchForward
 Set-PSReadLineKeyHandler -Key Ctrl+d -Function DeleteCharOrExit
 
 # Aliases
-New-Alias -Name "cat" -Value "bat"
-New-Alias -Name "cloc" -Value "ssc"
-New-Alias -Name "diff" -Value "batdiff"
+New-Alias -Name "cat" -Value "bat" -Force
 New-Alias -Name "find" -Value "fd"
 New-Alias -Name "fzf" -Value "fzf --preview 'bat --style=numbers --color=always --line-range :500 {}'"
-New-Alias -Name "grep" -Value "batgrep"
-New-Alias -Name "man" -Value "batman"
+New-Alias -Name "grep" -Value "rg"
 New-Alias -Name "neofetch" -Value "hyfetch"
 New-Alias -Name "tb" -Value "toolbox enter"
 

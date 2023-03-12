@@ -1,8 +1,11 @@
 AddKeysToAgent yes
+IdentitiesOnly yes
 
 Host *
+{{ if eq .chezmoi.os "linux" }}
     ControlMaster auto
     ControlPath ~/.ssh/controlmasters/%r@%h:%p
+{{ end }}
     ControlPersist 5
     ServerAliveCountMax 6
     ServerAliveInterval 300
@@ -11,4 +14,7 @@ Host *
 Host github
     Hostname github.com
     User git
-    IdentityFile ~/.ssh/github
+
+Host amitie
+    Hostname amitie
+    IdentityFile ~/.ssh/amitie

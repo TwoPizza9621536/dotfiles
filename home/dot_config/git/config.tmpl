@@ -112,7 +112,10 @@
 
 [diff]
 	colorMoved = default
-
+{{ if ne .chezmoi.os "linux" }}
+[core]
+	editor = \"C:\\Users\\Samgo\\AppData\\Local\\Programs\\Microsoft VS Code\\bin\\code\" --wait
+{{ end }}
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
@@ -155,7 +158,4 @@
 [user]
 	name = {{ .name }}
 	email = {{ .email }}
-	signingkey = {{ .chezmoi.homeDir }}/.ssh/github_signing.pub
-
-[url "git@github.com:"]
-	insteadOf = https://github.com/
+	signingkey = {{ .chezmoi.homeDir }}/.ssh/github.pub
