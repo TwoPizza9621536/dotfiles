@@ -4,9 +4,9 @@ return {
     "echasnovski/mini.comment",
     opts = {
       mappings = {
-        comment = 'gC',
-      }
-    }
+        comment = "gC",
+      },
+    },
   },
 
   {
@@ -16,7 +16,7 @@ return {
       {
         "<leader>nf",
         function()
-          require("neogen").generate { type = "func" }
+          require("neogen").generate({ type = "func" })
         end,
         desc = "Generate Comment (function)",
         silent = true,
@@ -24,7 +24,7 @@ return {
       {
         "<leader>nF",
         function()
-          require("neogen").generate { type = "file" }
+          require("neogen").generate({ type = "file" })
         end,
         desc = "Generate Comment (file)",
         silent = true,
@@ -32,7 +32,7 @@ return {
       {
         "<leader>nc",
         function()
-          require("neogen").generate { type = "class" }
+          require("neogen").generate({ type = "class" })
         end,
         desc = "Generate Comment (class)",
         silent = true,
@@ -40,7 +40,7 @@ return {
       {
         "<leader>nt",
         function()
-          require("neogen").generate { type = "type" }
+          require("neogen").generate({ type = "type" })
         end,
         desc = "Generate Comment (type)",
         silent = true,
@@ -66,8 +66,8 @@ return {
   -- Markdown
   {
     "antonk52/markdowny.nvim",
-    ft = 'markdown',
-    opts = {}
+    ft = "markdown",
+    opts = {},
   },
 
   -- Scrollbar
@@ -124,4 +124,7 @@ return {
     end,
     opts = { handle = { color = "#808080" } },
   },
+
+  -- Generate GitIgnore
+  { "wintermute-cell/gitignore.nvim", cmd = "Gitignore" },
 }

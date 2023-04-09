@@ -35,4 +35,7 @@ return {
 
   -- Unicode
   { "chrisbra/unicode.vim", cmd = { "UnicodeName", "UnicodeTable" } },
+
+  -- Warn reaching ruler column
+  { "Bekaboo/deadcolumn.nvim" },
 }

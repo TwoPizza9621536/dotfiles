@@ -3,4 +3,5 @@ return {
   { "seandewar/killersheep.nvim", cmd = "KillKillKill" },
   { "seandewar/nvimesweeper", cmd = "Nvimesweeper" },
   { "ThePrimeagen/vim-be-good", cmd = "VimBeGood" },
+  { "letieu/hacker.nvim", cmd = { "Hack", "HackFollow" } },
 }
