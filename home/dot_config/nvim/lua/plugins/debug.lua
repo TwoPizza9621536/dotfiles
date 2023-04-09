@@ -7,12 +7,12 @@ return {
       "jayp0521/mason-nvim-dap.nvim",
     },
     config = function(_, opts)
-      require("mason-nvim-dap").setup {
+      require("mason-nvim-dap").setup({
         automatic_setup = true,
-      }
+      })
 
       local servers = opts.servers
-      require("mason-nvim-dap").setup_handlers {
+      require("mason-nvim-dap").setup_handlers({
         function(server)
           local server_opts = servers[server] or {}
           if opts.setup[server] then
@@ -26,7 +26,7 @@ return {
           end
           require("mason-nvim-dap.automatic_setup")(server)
         end,
-      }
+      })
     end,
     opts = {
       servers = { debugpy = {} },
@@ -43,13 +43,13 @@ return {
       dapui.setup()
 
       dap.listeners.after.event_initialized["dapui_config"] = function()
-        dapui.open {}
+        dapui.open({})
       end
       dap.listeners.before.event_terminated["dapui_config"] = function()
-        dapui.close {}
+        dapui.close({})
       end
       dap.listeners.before.event_exited["dapui_config"] = function()
-        dapui.close {}
+        dapui.close({})
       end
     end,
   },

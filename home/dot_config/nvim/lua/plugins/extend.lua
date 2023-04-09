@@ -4,19 +4,11 @@ return {
     "nvim-treesitter/nvim-treesitter",
     dependencies = {
       "nvim-treesitter/nvim-treesitter-context",
-      "mrjones2014/nvim-ts-rainbow",
+      "HiPhish/nvim-ts-rainbow2",
     },
     opts = {
       context_commentstring = { enable = true, enable_autocmd = false },
       rainbow = { enable = true },
-    },
-  },
-
-  -- set neotree options
-  {
-    "nvim-neo-tree/neo-tree.nvim",
-    opts = {
-      window = { width = 40 },
     },
   },
 
@@ -51,7 +43,7 @@ return {
       },
       {
         "nvim-telescope/telescope-fzf-native.nvim",
-        build = "make",
+        build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
         config = function()
           require("telescope").load_extension("fzf")
         end,
@@ -68,6 +60,14 @@ return {
     end,
     opts = {
       background_colour = "#000000",
+    },
+  },
+
+  -- set neotree options
+  {
+    "nvim-neo-tree/neo-tree.nvim",
+    opts = {
+      window = { width = 40 },
     },
   },
 

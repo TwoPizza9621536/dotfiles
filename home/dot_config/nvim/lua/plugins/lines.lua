@@ -60,17 +60,6 @@ return {
         },
       }
 
-      local icons = require("lazyvim.config").icons
-
-      local function fg(name)
-        -- stylua: ignore
-        return function()
-          ---@type {foreground?:number}?
-          local hl = vim.api.nvim_get_hl_by_name(name, true)
-          return hl and hl.foreground and { fg = string.format('#%06x', hl.foreground) }
-        end
-      end
-
       return {
         extensions = {
           "man",
@@ -84,63 +73,6 @@ return {
           globalstatus = true,
           theme = bubblegum,
         },
-        sections = {
-          lualine_b = {
-            "branch",
-            {
-              "diff",
-              symbols = {
-                added = icons.git.added,
-                modified = icons.git.modified,
-                removed = icons.git.removed,
-              },
-            },
-            {
-              "diagnostics",
-              symbols = {
-                error = icons.diagnostics.Error,
-                warn = icons.diagnostics.Warn,
-                info = icons.diagnostics.Info,
-                hint = icons.diagnostics.Hint,
-              },
-            },
-            -- stylua: ignore
-            {
-              function()
-                return require('nvim-navic').get_location()
-              end,
-              cond = function()
-                return package.loaded['nvim-navic'] and require('nvim-navic').is_available()
-              end,
-            },
-          },
-          -- Use vim-airline defaults for sections Y and Z.
-          lualine_x = {
-            -- stylua: ignore
-            {
-              function()
-                return require('noice').api.status.command.get()
-              end,
-              cond = function()
-                return package.loaded['noice'] and require('noice').api.status.command.has()
-              end,
-              color = fg('Statement'),
-            },
-            -- stylua: ignore
-            {
-              function()
-                return require('noice').api.status.mode.get()
-              end,
-              cond = function()
-                return package.loaded['noice'] and require('noice').api.status.mode.has()
-              end,
-              color = fg('Constant'),
-            },
-            "filetype",
-          },
-          lualine_y = { "encoding", "fileformat" },
-          lualine_z = { "%p%% :%l/%L ☰ :%v" },
-        },
       }
     end,
   },
@@ -149,15 +81,15 @@ return {
   {
     "lukas-reineke/indent-blankline.nvim",
     config = function(_, opts)
-      -- stylua: ignore start
-      vim.cmd([[highlight IndentBlanklineIndent1 guifg=#E06C75 gui=nocombine]])
-      vim.cmd([[highlight IndentBlanklineIndent2 guifg=#E5C07B gui=nocombine]])
-      vim.cmd([[highlight IndentBlanklineIndent3 guifg=#98C379 gui=nocombine]])
-      vim.cmd([[highlight IndentBlanklineIndent4 guifg=#56B6C2 gui=nocombine]])
-      vim.cmd([[highlight IndentBlanklineIndent5 guifg=#61AFEF gui=nocombine]])
-      vim.cmd([[highlight IndentBlanklineIndent6 guifg=#C678DD gui=nocombine]])
-
-      require('indent_blankline').setup(opts)
+        -- stylua: ignore start
+        vim.cmd([[highlight IndentBlanklineIndent1 guifg=#E06C75 gui=nocombine]])
+        vim.cmd([[highlight IndentBlanklineIndent2 guifg=#E5C07B gui=nocombine]])
+        vim.cmd([[highlight IndentBlanklineIndent3 guifg=#98C379 gui=nocombine]])
+        vim.cmd([[highlight IndentBlanklineIndent4 guifg=#56B6C2 gui=nocombine]])
+        vim.cmd([[highlight IndentBlanklineIndent5 guifg=#61AFEF gui=nocombine]])
+        vim.cmd([[highlight IndentBlanklineIndent6 guifg=#C678DD gui=nocombine]])
+  
+        require('indent_blankline').setup(opts)
     end,
     opts = {
       char = "┆",

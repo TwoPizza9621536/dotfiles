@@ -28,11 +28,11 @@ return {
   { "ekickx/clipboard-image.nvim", cmd = "PasteImg" },
 
   -- Hide code
-  { "folke/twilight.nvim",   cmd = "Twilight" },
+  { "folke/twilight.nvim", cmd = "Twilight" },
 
   -- Discord Integration
   { "andweeb/presence.nvim", event = "VeryLazy" },
 
   -- Unicode
-  { "chrisbra/unicode.vim",  cmd = { "UnicodeName", "UnicodeTable" } },
+  { "chrisbra/unicode.vim", cmd = { "UnicodeName", "UnicodeTable" } },
 }
