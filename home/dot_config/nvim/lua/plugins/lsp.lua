@@ -2,6 +2,18 @@ return {
   -- add additional lsp
   {
     "neovim/nvim-lspconfig",
+    dependencies =
+    {
+      "SmiteshP/nvim-navbuddy",
+      cmd = "Navbuddy",
+      dependencies = {
+        "SmiteshP/nvim-navic",
+        "MunifTanjim/nui.nvim"
+      },
+      opts = {
+        lsp = { auto_attach = true }
+      }
+    },
     ---@class PluginLspOpts
     opts = {
       servers = {

@@ -22,7 +22,11 @@ return {
   },
 
   -- Hex Editor
-  { "RaafatTurki/hex.nvim", cmd = { "HexToggle" }, opts = {} },
+  {
+    "RaafatTurki/hex.nvim",
+    cmd = { "HexToggle" },
+    opts = {},
+  },
 
   -- Pasting Images
   { "ekickx/clipboard-image.nvim", cmd = "PasteImg" },
@@ -37,5 +41,5 @@ return {
   { "chrisbra/unicode.vim", cmd = { "UnicodeName", "UnicodeTable" } },
 
   -- Warn reaching ruler column
-  { "Bekaboo/deadcolumn.nvim" },
+  { "Bekaboo/deadcolumn.nvim", event = "BufReadPost" },
 }
