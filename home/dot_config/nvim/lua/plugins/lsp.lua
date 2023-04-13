@@ -2,8 +2,7 @@ return {
   -- add additional lsp
   {
     "neovim/nvim-lspconfig",
-    dependencies =
-    {
+    dependencies = {
       "SmiteshP/nvim-navbuddy",
       cmd = "Navbuddy",
       dependencies = {
