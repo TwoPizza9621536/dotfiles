@@ -8,8 +8,71 @@ return {
     },
     opts = {
       context_commentstring = { enable = true, enable_autocmd = false },
-      rainbow = { enable = true },
+      rainbow = {
+        enable = true,
+        query = {
+          "rainbow-parens",
+          html = "rainbow-tags",
+          latex = "rainbow-blocks",
+          javascript = "rainbow-tags-react",
+          tsx = "rainbow-tags",
+        },
+      },
     },
+  },
+
+  -- Extend snippets to other filetypes
+  {
+    "L3MON4D3/LuaSnip",
+    dependencies = {
+      "rafamadriz/friendly-snippets",
+      config = function()
+        require("luasnip.loaders.from_vscode").lazy_load()
+
+        local ls = require("luasnip")
+        ls.filetype_extend("cpp", { "c" })
+        ls.filetype_extend("text", { "license" })
+        ls.filetype_extend("typescript", { "javascript" })  
+      end,
+    },
+    opts = function (_, opts)
+      local lsff = require("luasnip.extras.filetype_functions")
+      opts.ft_func = lsff.from_pos_or_filetype
+      opts.load_ft_func = lsff.extend_load_ft({
+        cpp = { "c" },
+        html = { "javascript", "css" },
+        text = { "license" },
+        typescript = { "javascript" },
+      })
+    end,
+  },
+
+  -- Setup more competion sources
+  {
+    "hrsh7th/nvim-cmp",
+    dependencies = { "hrsh7th/cmp-emoji", "rcarriga/cmp-dap" },
+    config = function(_, opts)
+      local cmp = require("cmp")
+      cmp.setup(opts)
+      cmp.setup.filetype({ "dap-repl", "dapui_watches", "dapui_hover" }, {
+        sources = {
+          { name = "dap" },
+        },
+      })
+    end,
+    ---@param opts cmp.ConfigSchema
+    opts = function(_, opts)
+      local cmp = require("cmp")
+
+      opts.sources = cmp.config.sources(
+        vim.list_extend(opts.sources, { { name = "emoji" } })
+      )
+
+      opts.enabled = function()
+        return vim.api.nvim_buf_get_option(0, "buftype") ~= "prompt"
+          or require("cmp_dap").is_dap_buffer()
+      end
+    end,
   },
 
   -- add telescope extensions
@@ -27,12 +90,6 @@ return {
         "benfowler/telescope-luasnip.nvim",
         config = function()
           require("telescope").load_extension("luasnip")
-        end,
-      },
-      {
-        "nvim-telescope/telescope-dap.nvim",
-        config = function()
-          require("telescope").load_extension("dap")
         end,
       },
       {
@@ -61,95 +118,5 @@ return {
     opts = {
       background_colour = "#000000",
     },
-  },
-
-  -- set neotree options
-  {
-    "nvim-neo-tree/neo-tree.nvim",
-    opts = {
-      window = { width = 40 },
-    },
-  },
-
-  -- Handle cmp docs with noice and use supertab for completion
-  {
-    "folke/noice.nvim",
-    opts = {
-      lsp = {
-        override = {
-          ["cmp.entry.get_documentation"] = true,
-        },
-      },
-    },
-  },
-
-  {
-    "L3MON4D3/LuaSnip",
-    keys = function()
-      return {}
-    end,
-  },
-
-  {
-    "hrsh7th/nvim-cmp",
-    dependencies = { "hrsh7th/cmp-emoji", "rcarriga/cmp-dap" },
-    config = function(_, opts)
-      local cmp = require("cmp")
-      cmp.setup(opts)
-      cmp.setup.filetype({ "dap-repl", "dapui_watches", "dapui_hover" }, {
-        sources = {
-          { name = "dap" },
-        },
-      })
-    end,
-    opts = function(_, opts)
-      local has_words_before = function()
-        unpack = unpack or table.unpack
-        local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-        return col ~= 0
-          and vim.api
-              .nvim_buf_get_lines(0, line - 1, line, true)[1]
-              :sub(col, col)
-              :match("%s")
-            == nil
-      end
-
-      local luasnip = require("luasnip")
-      local cmp = require("cmp")
-
-      opts.mapping = vim.tbl_extend("force", opts.mapping, {
-        ["<Tab>"] = cmp.mapping(function(fallback)
-          if cmp.visible() then
-            cmp.select_next_item()
-            -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
-            -- they way you will only jump inside the snippet region
-          elseif luasnip.expand_or_jumpable() then
-            luasnip.expand_or_jump()
-          elseif has_words_before() then
-            cmp.complete()
-          else
-            fallback()
-          end
-        end, { "i", "s" }),
-        ["<S-Tab>"] = cmp.mapping(function(fallback)
-          if cmp.visible() then
-            cmp.select_prev_item()
-          elseif luasnip.jumpable(-1) then
-            luasnip.jump(-1)
-          else
-            fallback()
-          end
-        end, { "i", "s" }),
-      })
-
-      opts.sources = cmp.config.sources(
-        vim.list_extend(opts.sources, { { name = "emoji" } })
-      )
-
-      opts.enabled = function()
-        return vim.api.nvim_buf_get_option(0, "buftype") ~= "prompt"
-          or require("cmp_dap").is_dap_buffer()
-      end
-    end,
   },
 }

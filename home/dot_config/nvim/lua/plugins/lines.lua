@@ -89,7 +89,7 @@ return {
       vim.cmd([[highlight IndentBlanklineIndent5 guifg=#61AFEF gui=nocombine]])
       vim.cmd([[highlight IndentBlanklineIndent6 guifg=#C678DD gui=nocombine]])
 
-      require('indent_blankline').setup(opts)
+      require("indent_blankline").setup(opts)
     end,
     opts = {
       char = "┆",

@@ -21,4 +21,8 @@ return {
   { "baskerville/bubblegum", event = "VeryLazy" },
   { "doki-theme/doki-theme-vim", event = "VeryLazy", name = "doki-theme" },
   { "tanvirtin/monokai.nvim", event = "VeryLazy" },
+
+  -- disable bundled themes
+  { "folke/tokyonight.nvim", enabled = false },
+  { "catppuccin/nvim", enabled = false, name = "catppuccin" },  
 }

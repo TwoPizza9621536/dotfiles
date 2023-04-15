@@ -79,7 +79,7 @@ return {
         {
           "n",
           function()
-            vim.cmd([[execute('normal! ' . v:count1 . 'n')]])
+            vim.cmd([[execute("normal! " . v:count1 . "n")]])
             require("hlslens").start()
           end,
           desc = "Jump to Next Matching Word",
@@ -87,30 +87,30 @@ return {
         {
           "N",
           function()
-            vim.cmd([[execute('normal! ' . v:count1 . 'N')]])
+            vim.cmd([[execute("normal! " . v:count1 . "N")]])
             require("hlslens").start()
           end,
           desc = "Jump to Previous Matching Word",
         },
         {
           "*",
-          [[*<cmd>lua require('hlslens').start()<cr>]],
+          [[*<cmd>lua require("hlslens").start()<cr>]],
           desc = "Find Next Matching Word",
         },
         {
           "#",
-          [[#<cmd>lua require('hlslens').start()<cr>]],
+          [[#<cmd>lua require("hlslens").start()<cr>]],
           desc = "Find Previous Matching Word",
         },
         {
           "n",
           "g*",
-          [[g*<cmd>lua require('hlslens').start()<cr>]],
+          [[g*<cmd>lua require("hlslens").start()<cr>]],
           { desc = "Find Next Whole Word" },
         },
         {
           "g#",
-          [[g#<cmd>lua require('hlslens').start()<cr>]],
+          [[g#<cmd>lua require("hlslens").start()<cr>]],
           desc = "Find Previous Whole Word",
         },
       },
