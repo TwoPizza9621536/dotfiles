@@ -1,6 +1,5 @@
 require("which-key").register({
   mode = { "n", "v" },
-  ["<leader>d"] = { name = "+debug" },
   ["<leader>n"] = { name = "+generate" },
 })
 
@@ -9,5 +8,5 @@ vim.keymap.set(
   "n",
   "<leader>cM",
   ":setlocal modeline <bar> doautocmd BufRead<cr>",
-  { desc = "Enable Modeline"}
+  { desc = "Enable Modeline" }
 )

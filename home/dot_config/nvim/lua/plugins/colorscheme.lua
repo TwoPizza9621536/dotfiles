@@ -8,13 +8,13 @@ return {
     end,
     opts = {
       italic_comments = true,
-      transparent = true,
+      transparent = false,
     },
   },
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "vscode",
+      colorscheme = "zero_two_dark_obsidian",
     },
   },
 
@@ -24,5 +24,5 @@ return {
 
   -- disable bundled themes
   { "folke/tokyonight.nvim", enabled = false },
-  { "catppuccin/nvim", enabled = false, name = "catppuccin" },  
+  { "catppuccin/nvim", enabled = false, name = "catppuccin" },
 }
