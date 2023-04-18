@@ -1,17 +1,14 @@
 return {
   -- Colors
   {
-    "NvChad/nvim-colorizer.lua",
-    cmd = "ColorizerToggle",
+    "uga-rosa/ccc.nvim",
+    event = "BufEnter",
     opts = {
-      css = true,
-      RRGGBBAA = true,
-      sass = {
-        enable = true,
+      highlighter = {
+        auto_enable = true,
       },
     },
   },
-  { "uga-rosa/ccc.nvim", cmd = { "CccPick", "CccConvert" } },
 
   -- Add node actions
   {
@@ -32,14 +29,14 @@ return {
   { "ekickx/clipboard-image.nvim", cmd = "PasteImg" },
 
   -- Hide code
-  { "folke/twilight.nvim", cmd = "Twilight" },
+  { "folke/twilight.nvim",         cmd = "Twilight" },
 
   -- Discord Integration
-  { "andweeb/presence.nvim", event = "VeryLazy" },
+  { "andweeb/presence.nvim",       event = "VeryLazy" },
 
   -- Unicode
-  { "chrisbra/unicode.vim", cmd = { "UnicodeName", "UnicodeTable" } },
+  { "chrisbra/unicode.vim",        cmd = { "UnicodeName", "UnicodeTable" } },
 
   -- Warn reaching ruler column
-  { "Bekaboo/deadcolumn.nvim", event = "BufReadPost" },
+  { "Bekaboo/deadcolumn.nvim",     event = "BufReadPost" },
 }

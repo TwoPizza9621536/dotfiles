@@ -8,21 +8,15 @@ return {
     end,
     opts = {
       italic_comments = true,
-      transparent = false,
+      transparent = true,
     },
   },
   {
     "LazyVim/LazyVim",
-    opts = {
-      colorscheme = "zero_two_dark_obsidian",
-    },
+    opts = { colorscheme = "zero_two_dark_obsidian" },
   },
 
-  { "baskerville/bubblegum", event = "VeryLazy" },
+  { "baskerville/bubblegum",     event = "VeryLazy" },
   { "doki-theme/doki-theme-vim", event = "VeryLazy", name = "doki-theme" },
-  { "tanvirtin/monokai.nvim", event = "VeryLazy" },
-
-  -- disable bundled themes
-  { "folke/tokyonight.nvim", enabled = false },
-  { "catppuccin/nvim", enabled = false, name = "catppuccin" },
+  { "tanvirtin/monokai.nvim",    event = "VeryLazy" },
 }

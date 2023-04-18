@@ -5,9 +5,16 @@ return {
     dependencies = {
       "nvim-treesitter/nvim-treesitter-context",
       "HiPhish/nvim-ts-rainbow2",
+      "windwp/nvim-ts-autotag",
     },
     opts = {
-      context_commentstring = { enable = true, enable_autocmd = false },
+      autotag = {
+        enable = true,
+      },
+      context_commentstring = {
+        enable = true,
+        enable_autocmd = false,
+      },
       rainbow = {
         enable = true,
         query = {
@@ -32,10 +39,10 @@ return {
         local ls = require("luasnip")
         ls.filetype_extend("cpp", { "c" })
         ls.filetype_extend("text", { "license" })
-        ls.filetype_extend("typescript", { "javascript" })  
+        ls.filetype_extend("typescript", { "javascript" })
       end,
     },
-    opts = function (_, opts)
+    opts = function(_, opts)
       local lsff = require("luasnip.extras.filetype_functions")
       opts.ft_func = lsff.from_pos_or_filetype
       opts.load_ft_func = lsff.extend_load_ft({
@@ -70,7 +77,7 @@ return {
 
       opts.enabled = function()
         return vim.api.nvim_buf_get_option(0, "buftype") ~= "prompt"
-          or require("cmp_dap").is_dap_buffer()
+            or require("cmp_dap").is_dap_buffer()
       end
     end,
   },
@@ -80,7 +87,7 @@ return {
     "nvim-telescope/telescope.nvim",
     keys = {
       {
-        "<space>fb",
+        "<space>fB",
         ":Telescope file_browser",
         { noremap = true },
       },
@@ -100,10 +107,23 @@ return {
       },
       {
         "nvim-telescope/telescope-fzf-native.nvim",
-        build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
+        build =
+        "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
         config = function()
           require("telescope").load_extension("fzf")
         end,
+      },
+      {
+        "nvim-telescope/telescope-media-files.nvim",
+        config = function()
+          require("telescope").load_extension("media_files")
+        end,
+      },
+      {
+        "nat-418/telescope-color-names.nvim",
+        config = function()
+          require('telescope').load_extension('color_names')
+        end
       },
     },
   },
