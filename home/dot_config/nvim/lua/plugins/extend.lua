@@ -31,17 +31,14 @@ return {
   -- Extend snippets to other filetypes
   {
     "L3MON4D3/LuaSnip",
-    dependencies = {
-      "rafamadriz/friendly-snippets",
-      config = function()
-        require("luasnip.loaders.from_vscode").lazy_load()
+    config = function(_, opts)
+      local ls = require("luasnip")
+      ls.setup(opts)
 
-        local ls = require("luasnip")
-        ls.filetype_extend("cpp", { "c" })
-        ls.filetype_extend("text", { "license" })
-        ls.filetype_extend("typescript", { "javascript" })
-      end,
-    },
+      ls.filetype_extend("cpp", { "c" })
+      ls.filetype_extend("text", { "license" })
+      ls.filetype_extend("typescript", { "javascript" })
+    end,
     opts = function(_, opts)
       local lsff = require("luasnip.extras.filetype_functions")
       opts.ft_func = lsff.from_pos_or_filetype
