@@ -20,6 +20,11 @@ return {
         pyright = {},
         jedi_language_server = {},
       },
+      setup = {
+        clangd = function(_, opts)
+          opts.capabilities.offsetEncoding = { "utf-16" }
+        end,
+      },
     },
   },
 
