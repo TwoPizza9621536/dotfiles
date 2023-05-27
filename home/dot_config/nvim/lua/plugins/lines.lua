@@ -1,9 +1,19 @@
 return {
   -- bufferline
   {
-    "akinsho/nvim-bufferline.lua",
+    "akinsho/bufferline.nvim",
+    config = function(_, opts)
+      require("bufferline").setup(opts)
+      vim.g.transparent_groups = vim.list_extend(
+        vim.g.transparent_groups or {},
+        vim.tbl_map(function(v)
+          return v.hl_group
+        end, vim.tbl_values(require('bufferline.config').highlights)
+        ))
+    end,
     opts = {
       options = {
+        always_show_bufferline = true,
         numbers = function(opts)
           return string.format(
             "%s·%s",
@@ -92,7 +102,8 @@ return {
       require("indent_blankline").setup(opts)
     end,
     opts = {
-      char = "┆",
+      char_list = { "|", "¦", "┆", "┊" },
+      char_list_blankline = { "|", "¦", "┆", "┊" },
       char_highlight_list = {
         "IndentBlanklineIndent1",
         "IndentBlanklineIndent2",
@@ -113,8 +124,7 @@ return {
       show_current_context = true,
       show_current_context_start = true,
       show_end_of_line = true,
-      show_trailing_blankline_indent = false,
-      space_char_blankline = " ",
+      use_treesitter = true,
     },
   },
 }

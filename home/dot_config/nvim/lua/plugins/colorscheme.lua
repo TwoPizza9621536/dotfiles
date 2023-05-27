@@ -1,19 +1,21 @@
 return {
+  -- transparent
+  {
+    "xiyaowong/transparent.nvim",
+    lazy = false,
+  },
+
   -- colorschemes
   {
     "Mofiqul/vscode.nvim",
-    config = function(_, opts)
-      require("vscode").setup(opts)
-      vim.cmd("highlight BufferLineFill guibg=NONE")
-    end,
     opts = {
       italic_comments = true,
-      transparent = true,
+      transparent = vim.g.transparent_enabled,
     },
   },
   {
     "LazyVim/LazyVim",
-    opts = { colorscheme = "zero_two_dark_obsidian" },
+    opts = { colorscheme = "hatsune_miku" },
   },
 
   { "baskerville/bubblegum",     event = "VeryLazy" },

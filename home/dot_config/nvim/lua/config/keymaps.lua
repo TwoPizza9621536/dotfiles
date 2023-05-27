@@ -1,12 +1,14 @@
-require("which-key").register({
+local wk = require("which-key")
+
+wk.register({
   mode = { "n", "v" },
   ["<leader>n"] = { name = "+generate" },
 })
 
 -- Enable modeline if mode line is safe
-vim.keymap.set(
-  "n",
-  "<leader>cM",
-  ":setlocal modeline <bar> doautocmd BufRead<cr>",
-  { desc = "Enable Modeline" }
-)
+wk.register({
+  ["cM"] = {
+    "<cmd>setlocal modeline <bar> doautocmd BufRead<cr>",
+    "Enable Modeline",
+  }
+})

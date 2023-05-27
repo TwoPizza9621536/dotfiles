@@ -2,6 +2,7 @@
 Import-Module posh-git
 Import-Module Terminal-Icons
 Import-Module PSReadLine
+Import-Module PSDscResources
 
 # Posh-Git Colors
 $GitPromptSettings.BranchColor.ForegroundColor = 0x89DDFF
@@ -55,4 +56,3 @@ Invoke-Expression "$(thefuck --alias)"
 if ($env:TERM_PROGRAM -ne "vscode") {
   neofetch
 }
-
