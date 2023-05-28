@@ -18,7 +18,7 @@ return {
     opts = { colorscheme = "hatsune_miku" },
   },
 
-  { "baskerville/bubblegum",     event = "VeryLazy" },
+  { "baskerville/bubblegum", event = "VeryLazy" },
   { "doki-theme/doki-theme-vim", event = "VeryLazy", name = "doki-theme" },
-  { "tanvirtin/monokai.nvim",    event = "VeryLazy" },
+  { "tanvirtin/monokai.nvim", event = "VeryLazy" },
 }

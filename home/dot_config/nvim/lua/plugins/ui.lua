@@ -43,7 +43,7 @@ return {
           desc = "Find Previous Whole Word",
         },
       },
-      opts = {},
+      config = true,
     },
     event = "BufReadPost",
     config = function(_, opts)

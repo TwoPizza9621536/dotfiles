@@ -49,11 +49,21 @@ return {
     opts = { snippet_engine = "luasnip" },
   },
 
+  -- Set keymap labels
+  {
+    "folke/which-key.nvim",
+    opts = {
+      defaults = {
+        ["<leader>n"] = { name = "+generate" },
+      },
+    },
+  },
+
   -- Markdown
   {
     "antonk52/markdowny.nvim",
     ft = "markdown",
-    opts = {},
+    config = true,
   },
 
   -- Generate GitIgnore

@@ -7,11 +7,11 @@ return {
       cmd = "Navbuddy",
       dependencies = {
         "SmiteshP/nvim-navic",
-        "MunifTanjim/nui.nvim"
+        "MunifTanjim/nui.nvim",
       },
       opts = {
-        lsp = { auto_attach = true }
-      }
+        lsp = { auto_attach = true },
+      },
     },
     ---@class PluginLspOpts
     opts = {
@@ -27,7 +27,6 @@ return {
       },
     },
   },
-
 
   -- change mason icons
   {
