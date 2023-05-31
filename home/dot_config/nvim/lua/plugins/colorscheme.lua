@@ -3,9 +3,17 @@ return {
   {
     "xiyaowong/transparent.nvim",
     lazy = false,
+    opts = {
+      extra_groups = {
+        "NormalFloat",
+        "NeoTreeDirectoryName",
+        "NeoTreeDirectoryIcon",
+      },
+    },
   },
 
   -- colorschemes
+  { "LazyVim/LazyVim", opts = { colorscheme = "vscode" } },
   {
     "Mofiqul/vscode.nvim",
     opts = {
@@ -13,11 +21,6 @@ return {
       transparent = vim.g.transparent_enabled,
     },
   },
-  {
-    "LazyVim/LazyVim",
-    opts = { colorscheme = "hatsune_miku" },
-  },
-
   { "baskerville/bubblegum", event = "VeryLazy" },
   { "doki-theme/doki-theme-vim", event = "VeryLazy", name = "doki-theme" },
   { "tanvirtin/monokai.nvim", event = "VeryLazy" },

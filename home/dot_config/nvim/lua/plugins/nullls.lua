@@ -1,7 +1,10 @@
 return {
   {
     "jose-elias-alvarez/null-ls.nvim",
-    dependencies = { "jayp0521/mason-null-ls.nvim" },
+    dependencies = {
+      "jayp0521/mason-null-ls.nvim",
+      "davidmh/cspell.nvim",
+    },
     config = function(_, opts)
       require("null-ls").setup(opts)
       require("mason-null-ls").setup({
@@ -12,25 +15,12 @@ return {
     end,
     opts = function()
       local nls = require("null-ls")
+      local cspell = require("cspell")
       return {
         sources = {
           -- Spelling
-          nls.builtins.code_actions.cspell,
-          nls.builtins.completion.spell,
-          nls.builtins.diagnostics.cspell.with({
-            diagnostics_postprocess = function(diagnostic)
-              diagnostic.severity = vim.diagnostic.severity.INFO
-            end,
-            disabled_filetypes = {
-              "alpha",
-              "dashboard",
-              "help",
-              "lazy",
-              "neo-tree",
-              "TelescopePrompt",
-              "Trouble",
-            },
-          }),
+          cspell.code_actions,
+          cspell.diagnostics,
           -- Markdown
           nls.builtins.diagnostics.markdownlint,
           -- Python
