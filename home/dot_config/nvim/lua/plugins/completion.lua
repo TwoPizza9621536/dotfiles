@@ -25,4 +25,29 @@ return {
       end
     end,
   },
+
+  {
+    "rafamadriz/friendly-snippets",
+    config = function()
+      local luasnip = require("luasnip")
+
+      luasnip.filetype_extend("cpp", { "c" })
+      luasnip.filetype_extend("csharp", { "csharpdoc" })
+      luasnip.filetype_extend("html", { "javascript", "css" })
+      luasnip.filetype_extend("java", { "javadoc" })
+      luasnip.filetype_extend("javascript", { "jsdoc" })
+      luasnip.filetype_extend("lua", { "luadoc" })
+      luasnip.filetype_extend("python", { "pydoc" })
+      luasnip.filetype_extend("rust", { "rustdoc" })
+
+      luasnip.filetype_extend("typescript", { "javascript", "tsdoc" })
+      luasnip.filetype_extend("javascriptreact", { "html", "javascript", "react" })
+      luasnip.filetype_extend(
+        "typescriptreact",
+        { "html", "javascript", "javascriptreact", "react-ts" }
+      )
+
+      require("luasnip.loaders.from_vscode").lazy_load()
+    end,
+  },
 }

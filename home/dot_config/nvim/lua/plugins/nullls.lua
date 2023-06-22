@@ -15,12 +15,12 @@ return {
     end,
     opts = function()
       local nls = require("null-ls")
-      local cspell = require("cspell")
+      -- local cspell = require("cspell")
       return {
         sources = {
           -- Spelling
-          cspell.code_actions,
-          cspell.diagnostics,
+          -- cspell.code_actions,
+          -- cspell.diagnostics,
           -- Markdown
           nls.builtins.diagnostics.markdownlint,
           -- Python
