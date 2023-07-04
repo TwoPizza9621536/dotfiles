@@ -1,3 +1,6 @@
+vim.g.mapleader = "<Space>"
+vim.g.maplocalleader = "<Space>"
+
 local opt = vim.opt
 
 opt.modeline = false -- Disable modelines
