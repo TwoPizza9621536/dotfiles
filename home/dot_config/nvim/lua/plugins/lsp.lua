@@ -1,5 +1,4 @@
 return {
-  -- add additional lsp
   {
     "neovim/nvim-lspconfig",
     dependencies = {
@@ -16,19 +15,33 @@ return {
     ---@class PluginLspOpts
     opts = {
       servers = {
-        -- Python
-        pyright = {},
-        jedi_language_server = {},
+        omnisharp = {},
       },
-      setup = {
-        clangd = function(_, opts)
-          opts.capabilities.offsetEncoding = { "utf-16" }
-        end,
-      },
+      setup = {},
     },
   },
 
-  -- change mason icons
+  {
+    "jose-elias-alvarez/null-ls.nvim",
+    dependencies = {
+      "davidmh/cspell.nvim",
+    },
+    opts = function(_, opts)
+      local nls = require("null-ls")
+      -- local cspell = require("cspell")
+      opts.sources = opts.sources or {}
+      vim.list_extend(opts.sources, {
+        -- cspell.code_actions,
+        -- cspell.diagnostics,
+        nls.builtins.diagnostics.markdownlint,
+        nls.builtins.diagnostics.pylint,
+        nls.builtins.formatting.autopep8,
+        nls.builtins.formatting.black.with({ extra_args = { "-l", "79" } }),
+        nls.builtins.formatting.isort,
+      })
+    end,
+  },
+
   {
     "williamboman/mason.nvim",
     opts = {

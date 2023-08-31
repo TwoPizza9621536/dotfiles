@@ -1,5 +1,4 @@
 return {
-  -- bufferline
   {
     "akinsho/bufferline.nvim",
     config = function(_, opts)
@@ -13,97 +12,176 @@ return {
     end,
     opts = {
       options = {
+        themable = true,
         always_show_bufferline = true,
         numbers = function(opts)
-          return string.format(
-            "%s·%s",
-            opts.raise(opts.ordinal),
-            opts.lower(opts.id)
-          )
+          return ("%d·%d").format(opts.raise(opts.ordinal), opts.lower(opts.id))
         end,
         show_close_icon = false,
       },
     },
   },
 
-  -- statusline
   {
     "nvim-lualine/lualine.nvim",
-    event = "VeryLazy",
     opts = function()
-      -- Port the bubblegum theme from vim-airlines
-      local colors = {
-        dark_gray = "#303030",
-        med_gray_hi = "#444444",
-        med_gray_lo = "#3a3a3a",
-        light_gray = "#b2b2b2",
-        green = "#afd787",
-        blue = "#87afd7",
-        purple = "#afafd7",
-        orange = "#d7af5f",
-        red = "#d78787",
-        pink = "#d7afd7",
-      }
-
-      local bubblegum = {
-        normal = {
-          a = { bg = colors.green, fg = colors.dark_gray },
-          b = { bg = colors.med_gray_lo, fg = colors.light_gray },
-          c = { bg = colors.med_gray_hi, fg = colors.green },
-        },
-        insert = {
-          a = { bg = colors.blue, fg = colors.med_gray_hi },
-          c = { bg = colors.med_gray_hi, fg = colors.blue },
-        },
-        visual = {
-          a = { bg = colors.pink, fg = colors.dark_gray },
-          c = { bg = colors.med_gray_hi, fg = colors.pink },
-        },
-        replace = {
-          a = { bg = colors.red, fg = colors.dark_gray },
-          c = { bg = colors.med_gray_hi, fg = colors.red },
-        },
-        inactive = {
-          a = { bg = colors.med_gray_hi, fg = colors.light_gray },
-          b = { bg = colors.med_gray_hi, fg = colors.light_gray },
-          c = { bg = colors.med_gray_hi, fg = colors.light_gray },
-        },
-      }
+      local icons = require("lazyvim.config").icons
+      local Util = require("lazyvim.util")
 
       return {
-        extensions = {
-          "man",
-          "nvim-dap-ui",
-          "nvim-tree",
-        },
         options = {
-          disabled_filetypes = {
-            statusline = { "dashboard", "lazy", "alpha" },
+          component_separators = { left = "", right = "" },
+          section_separators = { left = "", right = "" },
+          disabled_filetypes = { statusline = { "dashboard", "alpha" } },
+          extenstions = {
+            "lazy",
+            "man",
+            "neo-tree",
+            "symbols-outline",
           },
-          globalstatus = true,
-          theme = bubblegum,
+        },
+        sections = {
+          lualine_a = {
+            {
+              function()
+                return require("noice").api.status.command.get()
+              end,
+              cond = function()
+                return package.loaded["noice"] and require("noice").api.status.command.has()
+              end,
+              color = Util.fg("Statement"),
+            },
+            {
+              function()
+                return require("noice").api.status.mode.get()
+              end,
+              cond = function()
+                return package.loaded["noice"] and require("noice").api.status.mode.has()
+              end,
+              color = Util.fg("Constant"),
+            },
+            {
+              function()
+                return "  " .. require("dap").status()
+              end,
+              cond = function()
+                return package.loaded["dap"] and require("dap").status() ~= ""
+              end,
+              color = Util.fg("Debug"),
+            },
+            { require("lazy.status").updates, cond = require("lazy.status").has_updates, color = Util.fg("Special") },
+          },
+          lualine_b = {
+            { "branch", icon = "" },
+            {
+              "diff",
+              symbols = {
+                added = icons.git.added,
+                modified = icons.git.modified,
+                removed = icons.git.removed,
+              },
+            },
+            {
+              "diagnostics",
+              symbols = {
+                error = icons.diagnostics.Error,
+                warn = icons.diagnostics.Warn,
+                info = icons.diagnostics.Info,
+                hint = icons.diagnostics.Hint,
+              },
+            },
+            {
+              "mode",
+              fmt = function(content, _)
+                return ("-- %s --"):format(content)
+              end,
+            },
+          },
+          lualine_c = {
+            { "filename", path = 1, symbols = { modified = "  ", readonly = "", unnamed = "" } },
+            {
+              function()
+                return require("nvim-navic").get_location()
+              end,
+              cond = function()
+                return package.loaded["nvim-navic"] and require("nvim-navic").is_available()
+              end,
+            },
+          },
+          lualine_x = {
+            {
+              "space_style",
+              fmt = function()
+                local expand = vim.opt_local.expandtab:get()
+                local width = vim.opt_local.shiftwidth:get()
+                local style = expand and "Spaces" or "Tab Size"
+                return ("%s: %d"):format(style, width)
+              end,
+            },
+            "encoding",
+            {
+              "fileformat",
+              icons_enabled = false,
+              fmt = function(content, _)
+                local style = {
+                  mac = "CR",
+                  unix = "LF",
+                  dos = "CRLF",
+                }
+                return style[content]
+              end,
+            },
+          },
+          lualine_y = {
+            {
+              "location",
+              padding = { left = 0, right = 1 },
+              fmt = function(content, _)
+                local _, _, current_line, current_column = string.find(content, "(%d+):(%d+)")
+                return ("%d:%d"):format(current_line, current_column)
+              end,
+            },
+            {
+              "progress",
+              fmt = function(content, _)
+                local visual_str = {
+                  ["v"] = true,
+                  ["V"] = true,
+                  ["\22"] = true,
+                }
+
+                if visual_str[tostring(vim.fn.mode())] then
+                  local ln_beg = vim.fn.line("v")
+                  local ln_end = vim.fn.line(".")
+                  local lines = ln_beg <= ln_end and ln_end - ln_beg + 1 or ln_beg - ln_end + 1
+                  return ("- %d -"):format(tostring(lines))
+                end
+
+                return content
+              end,
+            },
+          },
+          lualine_z = {
+            { "filetype" },
+          },
         },
       }
     end,
   },
 
-  -- indent guides for Neovim
   {
     "lukas-reineke/indent-blankline.nvim",
     config = function(_, opts)
-      -- stylua: ignore start
       vim.cmd([[highlight IndentBlanklineIndent1 guifg=#E06C75 gui=nocombine]])
       vim.cmd([[highlight IndentBlanklineIndent2 guifg=#E5C07B gui=nocombine]])
       vim.cmd([[highlight IndentBlanklineIndent3 guifg=#98C379 gui=nocombine]])
       vim.cmd([[highlight IndentBlanklineIndent4 guifg=#56B6C2 gui=nocombine]])
       vim.cmd([[highlight IndentBlanklineIndent5 guifg=#61AFEF gui=nocombine]])
       vim.cmd([[highlight IndentBlanklineIndent6 guifg=#C678DD gui=nocombine]])
-
       require("indent_blankline").setup(opts)
     end,
     opts = {
       char_list = { "|", "¦", "┆", "┊" },
-      char_list_blankline = { "|", "¦", "┆", "┊" },
       char_highlight_list = {
         "IndentBlanklineIndent1",
         "IndentBlanklineIndent2",
@@ -113,7 +191,6 @@ return {
         "IndentBlanklineIndent6",
       },
       filetype_exclude = {
-        "alpha",
         "dashboard",
         "help",
         "lazy",

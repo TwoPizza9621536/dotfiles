@@ -1,12 +1,19 @@
 return {
-  -- Comments
   {
-    "echasnovski/mini.comment",
-    opts = {
-      mappings = {
-        comment = "gC",
-      },
-    },
+    "hrsh7th/nvim-cmp",
+    dependencies = { "hrsh7th/cmp-emoji", "rcarriga/cmp-dap" },
+    ---@param opts cmp.ConfigSchema
+    opts = function(_, opts)
+      local cmp = require("cmp")
+      opts.sources = cmp.config.sources(vim.list_extend(opts.sources, { { name = "emoji" } }))
+    end,
+  },
+
+  {
+    "simrat39/symbols-outline.nvim",
+    cmd = "SymbolsOutline",
+    keys = { { "<leader>cs", "<cmd>SymbolsOutline<cr>", desc = "Symbols Outline" } },
+    config = true,
   },
 
   {
@@ -49,7 +56,6 @@ return {
     opts = { snippet_engine = "luasnip" },
   },
 
-  -- Set keymap labels
   {
     "folke/which-key.nvim",
     opts = {
@@ -59,13 +65,5 @@ return {
     },
   },
 
-  -- Markdown
-  {
-    "antonk52/markdowny.nvim",
-    ft = "markdown",
-    config = true,
-  },
-
-  -- Generate GitIgnore
   { "wintermute-cell/gitignore.nvim", cmd = "Gitignore" },
 }

@@ -1,5 +1,4 @@
 return {
-  -- transparent
   {
     "xiyaowong/transparent.nvim",
     lazy = false,
@@ -12,16 +11,14 @@ return {
     },
   },
 
-  -- colorschemes
-  { "LazyVim/LazyVim", opts = { colorscheme = "vscode" } },
+  { "LazyVim/LazyVim", opts = { colorscheme = "visual_studio_code_dark" } },
   {
-    "Mofiqul/vscode.nvim",
+    "askfiy/visual_studio_code",
     opts = {
-      italic_comments = true,
       transparent = vim.g.transparent_enabled,
     },
   },
-  { "baskerville/bubblegum", event = "VeryLazy" },
+  { "TwoPizza9621536/bubblegum", event = "VeryLazy" },
   { "doki-theme/doki-theme-vim", event = "VeryLazy", name = "doki-theme" },
   { "tanvirtin/monokai.nvim", event = "VeryLazy" },
 }

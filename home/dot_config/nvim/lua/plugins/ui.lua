@@ -1,5 +1,4 @@
 return {
-  -- Scrollbar
   {
     "petertriho/nvim-scrollbar",
     dependencies = {
@@ -43,7 +42,6 @@ return {
           desc = "Find Previous Whole Word",
         },
       },
-      config = true,
     },
     event = "BufReadPost",
     config = function(_, opts)
@@ -54,7 +52,6 @@ return {
     opts = { handle = { color = "#808080" } },
   },
 
-  -- Set notify background_color to transparent
   {
     "rcarriga/nvim-notify",
     config = function(_, opts)
@@ -64,19 +61,5 @@ return {
     opts = {
       background_colour = "#000000",
     },
-  },
-
-  -- outline symbols
-  {
-    "simrat39/symbols-outline.nvim",
-    cmd = "SymbolsOutline",
-    keys = {
-      {
-        "<leader>cs",
-        "<cmd>SymbolsOutline<cr>",
-        desc = "Symbols Outline",
-      },
-    },
-    config = true,
   },
 }

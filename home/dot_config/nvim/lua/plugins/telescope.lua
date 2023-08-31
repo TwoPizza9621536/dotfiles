@@ -1,25 +1,11 @@
 return {
   {
     "nvim-telescope/telescope.nvim",
-    keys = {
-      {
-        "<space>fB",
-        "<cmd>Telescope file_browser<cr>",
-        desc = "Telescope File Browser",
-        { noremap = true },
-      },
-    },
     dependencies = {
       {
         "benfowler/telescope-luasnip.nvim",
         config = function()
           require("telescope").load_extension("luasnip")
-        end,
-      },
-      {
-        "nvim-telescope/telescope-file-browser.nvim",
-        config = function()
-          require("telescope").load_extension("file_browser")
         end,
       },
       {
@@ -48,5 +34,13 @@ return {
         end,
       },
     },
+  },
+
+  {
+    "nvim-telescope/telescope-dap.nvim",
+    dependencies = "nvim-dap",
+    config = function()
+      require("telescope").load_extension("dap")
+    end,
   },
 }
