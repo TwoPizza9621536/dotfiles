@@ -53,6 +53,6 @@ New-Alias -Name "tb" -Value "toolbox enter"
 
 Invoke-Expression "$(thefuck --alias)"
 
-if (!$env:DevEnvDir -and ($env:TERM_PROGRAM -ne "vscode")) {
+if ($env:TERM_PROGRAM -ne "vscode") {
   neofetch
 }
