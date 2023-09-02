@@ -4,25 +4,9 @@ Import-Module Terminal-Icons
 Import-Module PSReadLine
 Import-Module PSDscResources
 
-# Posh-Git Colors
-$GitPromptSettings.BranchColor.ForegroundColor = 0x89DDFF
-$GitPromptSettings.IndexColor.ForegroundColor = 0xC3E88D
-$GitPromptSettings.WorkingColor.ForegroundColor = 0xF07178
-
-$GitPromptSettings.BranchIdenticalStatusSymbol.ForegroundColor = 0x78DCE8
-$GitPromptSettings.BranchAheadStatusSymbol.ForegroundColor = 0xA9DC76
-$GitPromptSettings.BranchBehindStatusSymbol.ForegroundColor = 0xFF6188
-
-$GitPromptSettings.LocalWorkingStatusSymbol.ForegroundColor = 0xFF6188
-$GitPromptSettings.BranchBehindAndAheadStatusSymbol.ForegroundColor = 0xFFD866
-
 # Theme
-oh-my-posh --init --shell pwsh --config $HOME/.config/p10k.omp.json | Invoke-Expression
-function Set-PoshGitStatus {
-  $global:GitStatus = Get-GitStatus
-  $env:POSH_GIT_STRING = Write-GitStatus -Status $global:GitStatus
-}
-New-Alias -Name "Set-PoshContext" -Value "Set-PoshGitStatus"
+oh-my-posh --init --shell pwsh --config ~/.config/p10k.omp.json | Invoke-Expression
+$env:POSH_GIT_ENABLED = $true
 
 # PSReadLine
 Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
