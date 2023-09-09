@@ -1,11 +1,3 @@
-# Run neofetch
-hyfetch
-
-# Instant Prompt
-if [[ -r "$XDG_CACHE_HOME/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "$XDG_CACHE_HOME/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
 ## Load ASDF
 if [[ -f "$ASDF_DIR/asdf.sh" ]]; then
   source $ASDF_DIR/asdf.sh
