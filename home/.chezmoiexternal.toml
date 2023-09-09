@@ -1,9 +1,3 @@
-[".config/zsh/.antidote"]
-type = "git-repo"
-url = "https://github.com/mattmc3/antidote.git"
-exact = true
-refreshPeriod = "168h"
-
 # [".config/tmux/plugins/tpm"]
 # type = "git-repo"
 # url = "https://github.com/tmux-plugins/tpm.git"

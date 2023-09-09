@@ -35,6 +35,10 @@ unset funcdir
 setopt extended_glob
 
 # Antidote
+if [[ ! -d $ZDOTDIR/.antidote ]]; then
+  git clone https://github.com/mattmc3/antidote $ZDOTDIR/.antidote
+fi
+
 zstyle ':antidote:bundle' use-friendly-names 'yes'
 
 # Add completions to loading them
