@@ -16,13 +16,6 @@ setopt extended_glob
 # Antidote
 zstyle ':antidote:bundle' use-friendly-names 'yes'
 
-# Autopairs
-typeset -gA AUTOPAIR_PAIRS
-AUTOPAIR_PAIRS+=("<" ">")
-
-# Autosuggest
-ZSH_AUTOSUGGEST_MANUAL_REBIND=1
-
 # Add completions to loading them
 fpath=(
   $ZDOTDIR/completions(-/FN)
@@ -40,27 +33,6 @@ autoload -Uz $fpath[-1]/antidote
 # Generate static file in a subshell when .zsh_plugins.txt is updated.
 if [[ ! $zsh_plugins -nt ${zsh_plugins:r}.txt ]]; then
   (antidote bundle <${zsh_plugins:r}.txt >|$zsh_plugins)
-fi
-
-## Load ASDF
-if [[ -f "$ASDF_DIR/asdf.sh" ]]; then
-  source $ASDF_DIR/asdf.sh
-
-  if [[ -f "$ASDF_DIR/plugins/java/set-java-home.zsh" ]]; then
-    source $ASDF_DIR/plugins/java/set-java-home.zsh
-  fi
-
-  if [[ -f "$ASDF_DIR/plugins/dotnet-core/set-dotnet-home.zsh" ]]; then
-    source $ASDF_DIR/plugins/dotnet-core/set-dotnet-home.zsh
-  fi
-fi
-
-# Run neofetch
-hyfetch
-
-# Instant Prompt
-if [[ -r "$XDG_CACHE_HOME/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "$XDG_CACHE_HOME/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
 # Source ZSH Plugins

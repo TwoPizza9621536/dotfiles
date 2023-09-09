@@ -2,6 +2,10 @@
 export XDG_CACHE_HOME=$HOME/.cache
 export XDG_CONFIG_HOME=$HOME/.config
 export XDG_DATA_HOME=$HOME/.local/share
+export XDG_STATE_HOME=$HOME/.local/state
+
+## Locale
+export LANG=en_US.UTF-8
 
 # ZSH
 export ZDOTDIR=$XDG_CONFIG_HOME/zsh
@@ -51,9 +55,6 @@ export MINIKUBE_HOME=$XDG_DATA_HOME/minikube
 
 # Wget
 export WGETRC=$XDG_CONFIG_HOME/wgetrc
-
-# FZF
-export FZF_BASE=$XDG_DATA_HOME/asdf/installs/fzf/0.35.1/shell
 
 # Less
 export LESSKEY=$XDG_CONFIG_HOME/less/lesskey

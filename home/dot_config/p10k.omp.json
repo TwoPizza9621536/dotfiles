@@ -160,7 +160,7 @@
           "type": "executiontime",
           "style": "plain",
           "foreground": "101",
-          "template": " {{ .FormattedMs }}",
+          "template": " {{ .FormattedMs }} ",
           "properties": {
             "threshold": 3000,
             "style": "round"

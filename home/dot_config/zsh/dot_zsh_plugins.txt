@@ -1,17 +1,20 @@
-# Plugins
-hlissner/zsh-autopair
-jeffreytse/zsh-vi-mode
-mattmc3/zman
-mattmc3/zsh-safe-rm
-peterhurford/up.zsh
-twopizza9621536/zsh-exa
+# Set fzf options
+ohmyzsh/ohmyzsh path:plugins/fzf
+
+# Source config files
+mattmc3/zshrc.d
 
 # Prompt
 romkatv/powerlevel10k
 
+# Plugins
+fdellwing/zsh-bat
+jeffreytse/zsh-vi-mode
+mattmc3/zsh-safe-rm
+twopizza9621536/zsh-eza
+
 # Utils
 romkatv/zsh-bench kind:path
-
 
 # Zsh-Utils
 belak/zsh-utils path:editor
@@ -19,14 +22,7 @@ belak/zsh-utils path:history
 
 # Oh-My-Zsh
 ohmyzsh/ohmyzsh path:lib/clipboard.zsh
-
-ohmyzsh/ohmyzsh path:plugins/copybuffer
-ohmyzsh/ohmyzsh path:plugins/copyfile
-ohmyzsh/ohmyzsh path:plugins/copypath
-ohmyzsh/ohmyzsh path:plugins/extract
-ohmyzsh/ohmyzsh path:plugins/fancy-ctrl-z
 ohmyzsh/ohmyzsh path:plugins/fd kind:fpath
-ohmyzsh/ohmyzsh path:plugins/fzf
 ohmyzsh/ohmyzsh path:plugins/ripgrep kind:fpath
 
 # Completions
@@ -34,14 +30,12 @@ zsh-users/zsh-completions path:src kind:fpath
 belak/zsh-utils path:completion
 Aloxaf/fzf-tab kind:defer
 
-# Source additonal rc files
-mattmc3/zshrc.d
-
 # Alias
 MichaelAquilina/zsh-you-should-use
 
-# Syntax highlighting
+# Syntax highlighting and Brackets
 zdharma-continuum/fast-syntax-highlighting kind:defer
+hlissner/zsh-autopair
 
 # Autocompletions and Search
 zsh-users/zsh-autosuggestions kind:defer

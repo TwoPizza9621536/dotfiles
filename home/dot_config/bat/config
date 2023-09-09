@@ -1,2 +1,6 @@
+# Theme
+--theme "Monokai Extended Bright"
+# Enable italic text
+--italic-text=always
 # Map files to syntax highlight
 --map-syntax ".ignore:Git Ignore"
