@@ -36,4 +36,4 @@ export YSU_MESSAGE_FORMAT="%alias_type Tip: %alias"
 export YSU_MESSAGE_POSITION=after
 
 # FZF
-export FZF_DEFAULT_COMMAND="$FZF_DEFAULT_COMMAND --preview 'bat --style=numbers --color=always --line-range :500 {}'"
+export FZF_DEFAULT_COMMAND="$FZF_DEFAULT_COMMAND --preview 'cat --style=numbers --color=always --line-range :500 {}'"
