@@ -2,7 +2,7 @@ wheel
 setuptools
 autopep8
 hyfetch
-jupyter
+notebook
 neovim
 thefuck
 pre-commit
