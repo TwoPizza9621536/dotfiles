@@ -3,6 +3,7 @@ Import-Module posh-git
 Import-Module Terminal-Icons
 Import-Module PSReadLine
 Import-Module PSDscResources
+Import-Module PSWindowsUpdate
 
 # Theme
 oh-my-posh --init --shell pwsh --config ~/.config/p10k.omp.json | Invoke-Expression
@@ -19,7 +20,7 @@ Set-PSReadLineOption -ViModeIndicator Cursor
 Set-PSReadLineOption -AddToHistoryHandler {
   param([string]$line)
 
-  $sensitive = "password|asplaintext|token|key|secret|TOKEN|KEY|SECRET"
+  $sensitive = "password|asplaintext|token|secret|TOKEN|KEY|SECRET"
   return ($line -notmatch $sensitive)
 }
 Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
@@ -28,12 +29,12 @@ Set-PSReadlineKeyHandler -Key DownArrow -Function HistorySearchForward
 Set-PSReadLineKeyHandler -Key Ctrl+d -Function DeleteCharOrExit
 
 # Aliases
+New-Alias -Name "ls" -Value "eza" -Force
 New-Alias -Name "cat" -Value "bat" -Force
 New-Alias -Name "find" -Value "fd"
 New-Alias -Name "fzf" -Value "fzf --preview 'bat --style=numbers --color=always --line-range :500 {}'"
 New-Alias -Name "grep" -Value "rg"
 New-Alias -Name "neofetch" -Value "hyfetch"
-New-Alias -Name "tb" -Value "toolbox enter"
 
 Invoke-Expression "$(thefuck --alias)"
 
