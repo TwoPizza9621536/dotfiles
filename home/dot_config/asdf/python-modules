@@ -8,3 +8,4 @@ thefuck
 pre-commit
 pytest
 virtualenv
+black
