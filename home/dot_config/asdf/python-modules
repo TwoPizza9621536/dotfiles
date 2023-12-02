@@ -1,13 +1,10 @@
 wheel
 setuptools
-autopep8
 hyfetch
 notebook
 neovim
 ruff
 thefuck
 pre-commit
-pylint
-pyright
 pytest
 virtualenv
