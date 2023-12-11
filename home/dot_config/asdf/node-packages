@@ -1,4 +1,4 @@
-html-minifier
 markdownlint-cli
+minify
 neovim
 ts-standard
