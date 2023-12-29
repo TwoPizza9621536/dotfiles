@@ -1,4 +1,5 @@
 progress = true
+encryption = "gpg"
 
 [data]
     email = "twopizza9621536@gmail.com"
@@ -6,6 +7,9 @@ progress = true
 
 [diff]
     pager = "delta"
+
+[gpg]
+    recipient = "5804F6DF89820B7B6F9E8A5E598117FC783D70FD"
 
 [merge]
     command = "code"
