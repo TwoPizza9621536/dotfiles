@@ -4,7 +4,8 @@ typeset -gU path fpath cdpath mailpath manpath
 
 path=(
   $HOME/{,s}bin(N)
-  $HOME/.local/{,s}bin(N)
+  $HOME/.{local,cargo}/{,s}bin(N)
+  $XDG_DATA_HOME/gem/ruby/3.0.0/bin
   /opt/{homebrew,local}/{,s}bin(N)
   /usr/local/{,s}bin(N)
   $path
