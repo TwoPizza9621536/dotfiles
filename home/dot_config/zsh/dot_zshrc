@@ -21,11 +21,6 @@ unset funcdir
 # Set general Zsh options needed for config
 setopt extended_glob
 
-# Antidote
-if [[ ! -d $ZDOTDIR/.antidote ]]; then
-  git clone https://github.com/mattmc3/antidote $ZDOTDIR/.antidote
-fi
-
 zstyle ':antidote:bundle' use-friendly-names 'yes'
 
 # Add completions to loading them
@@ -39,7 +34,7 @@ fpath=(
 zsh_plugins=$ZDOTDIR/.zsh_plugins.zsh
 
 # Lazy-load antidote
-fpath+=($ZDOTDIR/.antidote/functions)
+fpath+=($ZDOTDIR/antidote/functions)
 autoload -Uz $fpath[-1]/antidote
 
 # Generate static file in a subshell when .zsh_plugins.txt is updated.

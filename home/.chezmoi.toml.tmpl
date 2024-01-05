@@ -13,4 +13,10 @@ encryption = "gpg"
 
 [merge]
     command = "code"
-    args = ["-w", "-m", "{{ .Destination }}", "{{ .Source }}", "{{ .Target }}"]
+    args = [
+        "-w",
+        "-m",
+        "{{ "{{" }} .Destination {{ "}}" }}",
+        "{{ "{{" }} .Source {{ "}}" }}",
+        "{{ "{{" }} .Target {{ "}}" }}"
+    ]

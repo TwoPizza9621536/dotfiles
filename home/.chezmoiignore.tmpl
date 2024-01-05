@@ -1,0 +1,10 @@
+# Linux Config
+{{- if ne .chezmoi.os "linux" }}
+.config/kitty
+.config/nano/**
+.config/zsh/**
+
+.ssh/controlmasters
+
+.zshenv
+{{- end }}

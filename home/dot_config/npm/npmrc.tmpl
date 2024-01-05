@@ -1,2 +1,4 @@
+{{- if eq .chezmoi.os "linux" }}
 cache=${XDG_CACHE_HOME}/npm
+{{- end }}
 init-module=${XDG_CONFIG_HOME}/npm/config/npm-init.js
