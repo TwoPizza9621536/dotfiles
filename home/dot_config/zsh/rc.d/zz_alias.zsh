@@ -21,4 +21,7 @@ alias pnpx="corepack pnpx"
 (( $+aliases[run-help] )) && unalias run-help && autoload -Uz run-help
 alias help=run-help
 
+# zoxide
+eval $(zoxide init zsh --cmd cd)
+
 eval $(thefuck --alias)
