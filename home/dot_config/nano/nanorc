@@ -2,47 +2,50 @@
 ## stop at word ends instead of at beginnings.
 set afterends
 
-## Automatic Indents
+## Automatically indent a newly created line to the same number of
+## tabs and/or spaces as the preceding line -- or as the next line
+## if the preceding line is the beginning of a paragraph.
 set autoindent
 
-## Set Closing Brackets
-set brackets ""')>]}"
+## Automatically hard-wrap the current line when it becomes overlong.
+set breaklonglines
 
 ## Constantly display the cursor position in the status bar or minibar.
 set constantshow
 
-## Vertical Stripe
-set guidestripe 80
+## Use cut-from-cursor-to-end-of-line by default.
+set cutfromcursor
 
-## Remember the used search/replace strings for the next session.
-set historylog
+## Do not use the line below the title bar, leaving it entirely blank.
+set emptyline
+
+## Set the target width for automatic hard-wrapping and for justifying
+## paragraphs.  If the specified value is 0 or less, the wrapping point
+## will be the terminal's width minus this number.
+set fill 80
+
+## Draw a vertical stripe at the given column, to help judge text width.
+## (This option does not have a default value.)
+set guidestripe 80
 
 ## Display a "scrollbar" on the righthand side of the edit window.
 set indicator
 
-## Scroll the buffer contents per half-screen instead of per line.
-set jumpyscrolling
-
-## Display Line Numbers
+## Display line numbers to the left (and any anchors in the margin).
 set linenumbers
 
-## Enable vim-style lock-files.
-# set locking
-
-## Match Brackets
+## The opening and closing brackets that are found by a matching-bracket
+## search.  This may not contain blank characters.  The opening brackets
+## must come before the closing ones, and they must be in the same order.
 set matchbrackets "(<[{)>]}"
 
-## Mouse Support
-set mouse
+## Suppress the title bar and show the filename plus a cursor-position
+## percentage in the space of the status bar.
+set minibar
 
-## Switch on multiple file buffers (inserting a file will put it into
-## a separate buffer).
-set multibuffer
-
-## Remember Cursor Position
-set positionlog
-
-## Closing Punctuation For Ending Sentences.
+## The characters treated as closing punctuation when justifying paragraphs.
+## This may not contain blank characters.  Only these closing punctuations,
+## optionally followed by closing brackets, can end sentences.
 set punct "!.?"
 
 ## Make the Home key smarter: when Home is pressed anywhere but at the
@@ -52,17 +55,17 @@ set punct "!.?"
 ## of the line (the left edge).
 set smarthome
 
-## Set State Flags in the Title Bar: I = auto-indenting,
+## Use the end of the title bar for some state flags: I = auto-indenting,
 ## M = mark, L = hard-wrapping long lines, R = recording, S = soft-wrapping.
 set stateflags
 
-## Use 4 Spaces for Tabs
+## Use this tab size instead of the default; it must be greater than 0.
 set tabsize 4
 
-## Use Spaces
+## Convert each typed tab to the fitting number of spaces.
 set tabstospaces
 
-## Trim Whitespace
+## Snip whitespace at the end of lines when justifying or hard-wrapping.
 set trimblanks
 
 ## The two single-column characters used to display the first characters
@@ -72,6 +75,15 @@ set trimblanks
 set whitespace "»·"
 ## The default otherwise:
 # set whitespace ">."
+
+## Detect word boundaries differently by treating punctuation
+## characters as parts of words.
+set wordbounds
+
+## Let an unmodified Backspace or Delete erase the marked region (instead
+## of a single character, and without affecting the cutbuffer).
+set zap
+
 
 ## Paint the interface elements of nano.  These are examples; there are
 ## no colors by default, except for errorcolor and spotlightcolor.
@@ -101,61 +113,24 @@ set functioncolor green
 # set functioncolor magenta
 
 ## === Syntax coloring ===
-## For all details, see 'man nanorc', section SYNTAX HIGHLIGHTING.
-
 ## To include most of the existing syntax definitions, you can do:
 include "/usr/share/nano/*.nanorc"
-include "~/.config/nano/extra/*.nanorc"
-
-## Or you can select just the ones you need.  For example:
-# include "/usr/share/nano/html.nanorc"
-# include "/usr/share/nano/python.nanorc"
-# include "/usr/share/nano/sh.nanorc"
-
-## In /usr/share/nano/extra/ you can find some syntaxes that are
-## specific for certain distros or for some less common languages.
-
-
-## If <Tab> should always produce four spaces when editing a Python file,
-## independent of the settings of 'tabsize' and 'tabstospaces':
-extendsyntax python tabgives "    "
+include "/usr/share/nano/extra/*.nanorc"
 
 ## If <Tab> should always produce an actual TAB when editing a Makefile:
 extendsyntax makefile tabgives "	"
 
-
 ## === Key bindings ===
-## For all details, see 'man nanorc', section REBINDING KEYS.
+## For quickly uppercasing or lowercasing the word under or after the cursor.
+## (These effectively select a word and pipe it through a sed command.)
+bind Sh-M-U "{nextword}{mark}{prevword}{execute}|sed 's/.*/\U&/'{enter}" main
+bind Sh-M-L "{nextword}{mark}{prevword}{execute}|sed 's/.*/\L&/'{enter}" main
 
-## If you want to suspend nano with one keystroke (instead of with ^T^Z):
-unbind M-T main
-bind M-T suspend main
+## For copying a marked region to the system clipboard:
+bind Sh-M-T "{execute}|wl-clip{enter}{undo}" main
 
-## The <Ctrl+Delete> keystroke deletes the word to the right of the cursor.
-## On some terminals the <Ctrl+Backspace> keystroke produces ^H, which is
-## the ASCII character for backspace, so it is bound by default to the
-## backspace function.  The <Backspace> key itself produces a different
-## keycode, which is hard-bound to the backspace function.  So, if you
-## normally use <Backspace> for backspacing and not ^H, you can make
-## <Ctrl+Backspace> delete the word to the left of the cursor with:
-# bind ^H chopwordleft main
-
-## For a more mnemonic Comment keystroke (overriding Cut-from-cursor):
-# bind M-K comment main
-
-## If you want ^L to just refresh the screen and not center the cursor:
-# bind ^L refresh main
-
-## When you sometimes type M-J instead of M-K, or M-T instead of M-R:
-# unbind M-J main
-# unbind M-T main
-## (Those functions are still accessible through ^T^J and ^T^V.)
-
-## For quickly uppercasing or lowercasing the word under the cursor.
-## (These effectively do a Ctrl+Right followed by a Shift+Ctrl+Left,
-## and then pipe the selected text through a sed command.)
-#bind Sh-M-U "^[Oc^[[1;6D^T|sed 's/.*/\U&/'^M" main
-#bind Sh-M-L "^[Oc^[[1;6D^T|sed 's/.*/\L&/'^M" main
+## For snipping trailing blanks when you save a file:
+bind ^S "{execute}| sed 's/\s\+$//' {enter}{savefile}" main
 
 ## If you would like nano to have keybindings that are more "usual",
 ## such as ^O for Open, ^F for Find, ^H for Help, and ^Q for Quit,
@@ -175,15 +150,11 @@ bind ^G findnext all
 bind ^B wherewas all
 bind ^D findprevious all
 bind ^R replace main
-bind ^Z undo main
-bind ^Y redo main
-unbind ^K main
 unbind ^U all
 unbind ^N main
 unbind ^Y all
 unbind M-J main
-
-#unbind M-T main
+unbind M-T main
 bind ^A mark main
 bind ^P location main
 bind ^T gotoline main
@@ -191,3 +162,7 @@ bind ^T gotodir browser
 bind ^T cutrestoffile execute
 bind ^L linter execute
 bind ^E execute main
+bind ^K "{mark}{end}{zap}" main
+bind ^U "{mark}{home}{zap}" main
+bind ^Z undo main
+bind ^Y redo main

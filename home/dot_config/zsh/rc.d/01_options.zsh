@@ -15,8 +15,8 @@ zstyle ':completion:*:git-checkout:*' sort false
 zstyle ':completion:*:descriptions' format '[%d]'
 # set list-colors to enable filename colorizing
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-# preview directory's content with ls when completing cd
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls -1 --color=always $realpath'
+# preview directory's content with eza when completing cd
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
 # switch group using `,` and `.`
 zstyle ':fzf-tab:*' switch-group ',' '.'
 
@@ -36,4 +36,4 @@ export YSU_MESSAGE_FORMAT="%alias_type Tip: %alias"
 export YSU_MESSAGE_POSITION=after
 
 # FZF
-export FZF_DEFAULT_COMMAND="$FZF_DEFAULT_COMMAND --preview 'cat --style=numbers --color=always --line-range :500 {}'"
+export FZF_DEFAULT_COMMAND="$FZF_DEFAULT_COMMAND --follow"

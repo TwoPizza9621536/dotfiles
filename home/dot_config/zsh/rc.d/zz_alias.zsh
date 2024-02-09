@@ -7,9 +7,7 @@ alias neofetch=hyfetch
 alias mkdir="mkdir -p"
 alias type="type -a"
 
-alias svn="svn --config-dir $XDG_CONFIG_HOME/subversion"
 alias icat="kitty +kitten icat"
-alias tb="toolbox enter"
 
 # Corepack
 alias yarn="corepack yarn"
