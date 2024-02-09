@@ -60,10 +60,10 @@
     # nvm                   # node.js version from nvm (https://github.com/nvm-sh/nvm)
     # nodeenv               # node.js environment (https://github.com/ekalinin/nodeenv)
     node_version            # node.js version
-    go_version              # go version (https://golang.org)
+    # go_version            # go version (https://golang.org)
     rust_version            # rustc version (https://www.rust-lang.org)
     dotnet_version          # .NET version (https://dotnet.microsoft.com)
-    php_version             # php version (https://www.php.net/)
+    # php_version           # php version (https://www.php.net/)
     # laravel_version       # laravel php framework version (https://laravel.com/)
     java_version            # java version (https://www.java.com/)
     package                 # name@version from package.json (https://docs.npmjs.com/files/package.json)
@@ -103,7 +103,7 @@
     # todo                  # todo items (https://github.com/todotxt/todo.txt-cli)
     # timewarrior           # timewarrior tracking status (https://timewarrior.net/)
     # taskwarrior           # taskwarrior task count (https://taskwarrior.org/)
-    per_directory_history   # Oh My Zsh per-directory-history local/global indicator
+    # per_directory_history # Oh My Zsh per-directory-history local/global indicator
     # cpu_arch              # CPU architecture
     time                    # current time
     # =========================[ Line #2 ]=========================

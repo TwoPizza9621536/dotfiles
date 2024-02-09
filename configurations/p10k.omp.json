@@ -1,0 +1,116 @@
+{
+  "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "version": 2,
+  "blocks": [
+    {
+      "type": "prompt",
+      "alignment": "left",
+      "newline": true,
+      "segments": [
+        {
+          "type": "os",
+          "style": "plain",
+          "template": "{{ .Icon }} "
+        },
+        {
+          "type": "session",
+          "style": "plain",
+          "foreground": "180",
+          "foreground_templates": [
+            "{{ if .Root }}178{{ end }}"
+          ],
+          "template": "{{ .UserName }}@{{ .HostName }}"
+        },
+        {
+          "type": "path",
+          "style": "plain",
+          "foreground": "31",
+          "template": " {{ if eq .Path \"~\" }}\uF015{{ else if .Writable }}\uF115{{ else }}\uF023{{ end }} {{ .Path }}",
+          "properties": {
+            "style": "powerlevel",
+            "max_width": 80
+          }
+        },
+        {
+          "type": "git",
+          "style": "plain",
+          "foreground": "76",
+          "template": " {{ .UpstreamIcon }}{{ .HEAD }}{{ if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }} \uF044 {{ .Working.String }}{{ end }}{{ if and (.Staging.Changed) (.Working.Changed) }} |{{ end }}{{ if .Staging.Changed }} \uF046 {{ .Staging.String }}{{ end }}",
+          "properties": {
+            "fetch_upstream_icon": true,
+            "branch_icon": "\uF126 ",
+            "github_icon": "\uF113 "
+          }
+        }
+      ]
+    },
+    {
+      "type": "prompt",
+      "alignment": "right",
+      "segments": [
+        {
+          "type": "python",
+          "style": "plain"
+        },
+        {
+          "type": "node",
+          "style": "plain"
+        },
+        {
+          "type": "rust",
+          "style": "plain"
+        },
+        {
+          "type": "dotnet",
+          "style": "plain"
+        },
+        {
+          "type": "java",
+          "style": "plain"
+        },
+        {
+          "type": "project",
+          "style": "plain"
+        },
+        {
+          "type": "time",
+          "style": "plain",
+          "foreground": "66",
+          "template": "\uF017 {{ .CurrentDate | date .Format }}"
+        }
+      ]
+    },
+    {
+      "type": "prompt",
+      "alignment": "left",
+      "newline": true,
+      "segments": [
+        {
+          "type": "executiontime",
+          "style": "plain",
+          "foreground": "101",
+          "template": "\uF252 {{ .FormattedMs }}",
+          "properties": {
+            "threshold": 3000
+          }
+        },
+        {
+          "type": "text",
+          "style": "plain",
+          "foreground": "76",
+          "foreground_templates": [
+            "{{ if ne .Code 0 }}196{{ end }}"
+          ],
+          "template": "\u276F "
+        }
+      ]
+    }
+  ],
+  "transient_prompt": {
+    "foreground": "76",
+    "foreground_templates": [
+      "{{ if ne .Code 0 }}196{{ end }}"
+    ],
+    "template": "\u276F "
+  }
+}
