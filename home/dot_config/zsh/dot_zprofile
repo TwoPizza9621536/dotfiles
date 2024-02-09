@@ -19,3 +19,6 @@ manpath=(
 
 # Use `< file` to quickly view the contents of any file.
 [[ -z "$READNULLCMD" ]] || READNULLCMD=$PAGER
+
+# OpenSSH
+export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/ssh-agent.socket
