@@ -19,13 +19,13 @@
           "foreground_templates": [
             "{{ if .Root }}178{{ end }}"
           ],
-          "template": "{{ .UserName }}@{{ .HostName }}"
+          "template": "{{ .UserName }}@{{ .HostName }} "
         },
         {
           "type": "path",
           "style": "plain",
           "foreground": "31",
-          "template": " {{ if eq .Path \"~\" }}\uF015{{ else if .Writable }}\uF115{{ else }}\uF023{{ end }} {{ .Path }}",
+          "template": "{{ if eq .Path \"~\" }}\uF015{{ else if .Writable }}\uF115{{ else }}\uF023{{ end }} {{ .Path }}",
           "properties": {
             "style": "powerlevel",
             "max_width": 80
@@ -35,7 +35,6 @@
           "type": "git",
           "style": "plain",
           "foreground": "76",
-          "template": " {{ .UpstreamIcon }}{{ .HEAD }}{{ if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }} \uF044 {{ .Working.String }}{{ end }}{{ if and (.Staging.Changed) (.Working.Changed) }} |{{ end }}{{ if .Staging.Changed }} \uF046 {{ .Staging.String }}{{ end }}",
           "properties": {
             "fetch_upstream_icon": true,
             "branch_icon": "\uF126 ",
@@ -50,27 +49,47 @@
       "segments": [
         {
           "type": "python",
-          "style": "plain"
+          "style": "plain",
+          "foreground": "37",
+          "template": "\uE73C {{ if .Error }}{{ .Error }}{{ else }}{{ if .Venv }}{{ .Venv }} {{ end }}{{ .Full }}{{ end }}"
         },
         {
           "type": "node",
-          "style": "plain"
+          "style": "plain",
+          "foreground": "70",
+          "template": "\uE718 {{ .PackageManagerIcon }} {{ .Full }}",
+          "properties": {
+            "fetch_package_manager": true
+          }
         },
         {
           "type": "rust",
-          "style": "plain"
+          "style": "plain",
+          "foreground": "37",
+          "template": "\uE7A8 {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}"
         },
         {
           "type": "dotnet",
-          "style": "plain"
+          "style": "plain",
+          "foreground": "134",
+          "template": "\uE77F {{ if .Unsupported }}\uF071{{ else }}{{ .Full }}{{ end }}"
         },
         {
           "type": "java",
-          "style": "plain"
+          "style": "plain",
+          "foreground": "32",
+          "template": "\uE738 {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}"
+        },
+        {
+          "type": "ruby",
+          "style": "plain",
+          "foreground": "168",
+          "template": "\uF219 {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}"
         },
         {
           "type": "project",
-          "style": "plain"
+          "style": "plain",
+          "foreground": "117"
         },
         {
           "type": "time",
