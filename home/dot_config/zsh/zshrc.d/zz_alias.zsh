@@ -20,7 +20,7 @@ alias pnpx="corepack pnpx"
 alias help=run-help
 
 # zoxide
-eval "$(zoxide init zsh)"
+eval "$(zoxide init zsh --cmd cd)"
 
 # theFuck
 eval "$(thefuck --alias)"
