@@ -1,0 +1,2 @@
+This is \n, running \S{ANSI_COLOR}\S\e{reset}, kernel version \r (\l)
+
