@@ -1,7 +1,15 @@
-# Run neofetch
+#!/usr/bin/zsh
+#
+# .zshrc - Zsh file loaded on interactive shell sessions.
+#
+
+# Show neofetch
 hyfetch
 
 # Instant Prompt
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
 if [[ -r "$XDG_CACHE_HOME/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "$XDG_CACHE_HOME/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
@@ -17,30 +25,19 @@ for funcdir in $ZDOTDIR/functions $ZDOTDIR/functions/*(N/); do
 done
 unset funcdir
 
-## Preload Options
-# Set general Zsh options needed for config
-setopt extended_glob
+# Load additional zshrc files
+for _zrc in $ZDOTDIR/zshrc.d/*.zsh; source $_zrc; unset _zrc
 
-zstyle ':antidote:bundle' use-friendly-names 'yes'
+# Source zstyle configurations for plugins
+[[ -e $ZDOTDIR/.zstyles ]] && source $ZDOTDIR/.zstyles
 
-# Add completions to loading them
-fpath=(
-  $ZDOTDIR/completions(-/FN)
-  $XDG_DATA_HOME/zsh/site-functions
-  $fpath
-)
+# Clone antidote if necessary
+[[ -d $ZDOTDIR/antidote ]] ||
+  git clone https://github.com/mattmc3/antidote $ZDOTDIR/antidote
 
-# Set the name of the static .zsh plugins file antidote will generate.
-zsh_plugins=$ZDOTDIR/.zsh_plugins.zsh
+# Load antidote
+source $ZDOTDIR/antidote/antidote.zsh
+antidote load
 
-# Lazy-load antidote
-fpath+=($ZDOTDIR/antidote/functions)
-autoload -Uz $fpath[-1]/antidote
-
-# Generate static file in a subshell when .zsh_plugins.txt is updated.
-if [[ ! $zsh_plugins -nt ${zsh_plugins:r}.txt ]]; then
-  (antidote bundle <${zsh_plugins:r}.txt >|$zsh_plugins)
-fi
-
-# Source ZSH Plugins
-source $zsh_plugins
+# Load aliases
+[[ -e $ZDOTDIR/.zsh_aliases ]] && source $ZDOTDIR/.zsh_aliases

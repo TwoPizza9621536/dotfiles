@@ -1,3 +1,4 @@
+#!/usr/bin/zsh
 ##? Post load function for zsh-history-substring-search plugin
 
 # function history-substring-search-keybinds {

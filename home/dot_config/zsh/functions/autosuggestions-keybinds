@@ -1,3 +1,4 @@
+#!/usr/bin/zsh
 ##? Post load function for zsh-autosuggestions
 
 # function autosuggestions-keybinds {

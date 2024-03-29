@@ -1,54 +1,86 @@
-# Free Desktop
-export XDG_CACHE_HOME=$HOME/.cache
+#!/usr/bin/zsh
+#
+# .zshenv: Zsh environment file, loaded always.
+#
+
+# XDG
 export XDG_CONFIG_HOME=$HOME/.config
+export XDG_CACHE_HOME=$HOME/.cache
 export XDG_DATA_HOME=$HOME/.local/share
 export XDG_STATE_HOME=$HOME/.local/state
-
-## Locale
-export LANG=en_US.UTF-8
+export XDG_RUNTIME_DIR=$HOME/.xdg
 
 # ZSH
 export ZDOTDIR=$XDG_CONFIG_HOME/zsh
+export ZFUNCDIR=$ZDOTDIR/functions
 
-# POWERSHELL
-export POWERSHELL_TELEMETRY_OPTOUT=true
+# Locale
+export LANG=en_US.UTF-8
 
-# Java
-export _JAVA_OPTIONS=-Djava.util.prefs.userRoot=$XDG_CONFIG_HOME/java
-
-# Dotnet
-export NUGET_PACKAGES=$XDG_CACHE_HOME/NuGetPackages
-export DOTNET_CLI_TELEMETRY_OPTOUT=true
-
-# Node
-export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/npmrc
-export NODE_REPL_HISTORY=$XDG_DATA_HOME/node_repl_history
-
-# Python
-export JUPYTER_CONFIG_DIR=$XDG_CONFIG_HOME/jupyter
-export CONDARC=$XDG_CONFIG_HOME/conda/condarc
-
-# Bundle
-export BUNDLE_USER_HOME=$XDG_CONFIG_HOME/bundle
-export BUNDLE_USER_CACHE=$XDG_CACHE_HOME/bundle
-
-# Perl
-export PERL_CPANM_HOME=$XDG_DATA_HOME/cpanm
-
-# Wget
-export WGETRC=$XDG_CONFIG_HOME/wgetrc
+#
+# Shell utils
+#
 
 # Less
 export LESSKEY=$XDG_CONFIG_HOME/less/lesskey
 export LESSHISTFILE=$XDG_CACHE_HOME/less/history
 
-# GnuPG
-export GNUPGHOME=$XDG_DATA_HOME/gnupg
-
 # Readline
 export INPUTRC=$XDG_CONFIG_HOME/readline/inputrc
 
-# Use .zprofile for non-login and non-interactive shells
+# Wget
+export WGETRC=$XDG_CONFIG_HOME/wget/wgetrc
+
+#
+# Dev tools
+#
+
+# GnuPG
+export GNUPGHOME=$XDG_DATA_HOME/gnupg
+
+# Node
+export NPM_CONFIG_USERCONFIG=XDG_CONFIG_HOME/npm/npmrc
+export NODE_REPL_HISTORY=$XDG_DATA_HOME/node_repl_history
+
+# Dotnet
+export NUGET_PACKAGES=$XDG_CACHE_HOME/NuGetPackages
+export DOTNET_CLI_TELEMETRY_OPTOUT=true
+export POWERSHELL_TELEMETRY_OPTOUT=true
+
+# Java
+export _JAVA_OPTIONS=-Djava.util.prefs.userRoot=$XDG_CONFIG_HOME/java
+
+# Jupyter
+export JUPYTER_CONFIG_DIR=$XDG_CONFIG_HOME/jupyter
+
+# Conda
+export CONDARC=$XDG_CONFIG_HOME/conda/condarc
+
+# Ruby
+export GEM_HOME=$XDG_DATA_HOME/gem
+export GEM_SPEC_CACHE=$XDG_CACHE_HOME/gem
+
+# Bundle
+export BUNDLE_USER_CONFIG=$XDG_CONFIG_HOME/bundle
+export BUNDLE_USER_CACHE=$XDG_CACHE_HOME/bundle
+export BUNDLE_USER_PLUGIN=$XDG_DATA_HOME/bundle
+
+# Perl
+export PERL_CPANM_HOME=$XDG_DATA_HOME/cpanm
+
+# Rust
+export CARGO_HOME=$XDG_DATA_HOME/cargo
+export RUSTUP_HOME=$XDG_DATA_HOME/rustup
+
+# Ensure Zsh directories exist.
+() {
+  local zdir
+  for zdir in $@; do
+    [[ -d "${(P)zdir}" ]] || mkdir -p -- "${(P)zdir}"
+  done
+} XDG_{CONFIG,CACHE,DATA,STATE}_HOME XDG_RUNTIME_DIR
+
+# Set enironment variables for non-login, non-interactive shells
 if [[ ( "$SHLVL" -eq 1 && ! -o LOGIN ) && -s "$ZDOTDIR/.zprofile" ]]; then
-  source $ZDOTDIR/.zprofile
+  source "$ZDOTDIR/.zprofile"
 fi

@@ -1,0 +1,90 @@
+#!/usr/bin/zsh
+#
+# aliases - Zsh and bash aliases
+#
+
+# Substitutions
+(( $+commands[bat] )) && alias cat=bat
+(( $+commands[eza] )) && alias ls=eza
+(( $+commands[delta] )) && alias diff=delta
+(( $+commands[fd] )) && alias find=fd
+(( $+commands[rg] )) && alias grep=rg
+(( $+commands[batman] )) && alias man=batman
+(( $+commands[hyfetch] )) && alias neofetch=hyfetch
+
+# General Aliases
+alias mkdir="mkdir -p"
+alias type="type -a"
+
+# Single character shortcuts - be sparing!
+alias _=sudo
+alias l=ls
+alias g=git
+
+# Common Typos
+alias quit='exit'
+alias cd..='cd ..'
+
+# Tar
+alias tarls="tar -tvf"
+alias untar="tar -xf"
+
+# Find
+alias fD='find . -type d -name'
+alias fF='find . -type f -name'
+
+# Cat
+alias cata="cat -A"
+alias catp="cat -p"
+
+# LS
+alias lh='ls -d .*'
+alias lD='ls -D'
+alias lF='ls -F'
+alias lc='ls -1'
+
+alias ll='ls -l'
+alias la='ll -a'
+
+alias llh='ll -d .*'
+alias llD='ll -D'
+alias llF='ll -F'
+
+alias lA='ll --sort=acc'
+alias lC='ll --sort=cr'
+alias lM='ll --sort=mod'
+alias lS='ll --sort=size'
+alias lX='ll --sort=ext'
+
+alias lsa='la -a'
+alias lx='lsa -HimUuS'
+alias lxa='lx -Z@'
+
+alias lt='ls -T'
+alias tree=lt
+
+# Url encode/decode
+alias urldecode='python3 -c "import sys, urllib.parse as ul; \
+    print(ul.unquote_plus(sys.argv[1]))"'
+alias urlencode='python3 -c "import sys, urllib.parse as ul; \
+    print (ul.quote_plus(sys.argv[1]))"'
+
+# Misc
+alias please=sudo
+alias zshrc='$EDITOR "$ZDOTDIR/.zshrc"'
+alias zbench='for i in {1..10}; do /usr/bin/time zsh -lic exit; done'
+alias zdot='cd $ZDOTDIR'
+alias cls=clear
+
+# Print things
+alias print-fpath='for fp in $fpath; do echo $fp; done; unset fp'
+alias print-path='echo $PATH | tr ":" "\n"'
+alias print-functions='print -l ${(k)functions[(I)[^_]*]} | sort'
+
+# Corepack
+if (( $+commands[corepack] )); then
+  alias yarn="corepack yarn"
+  alias yarnpkg="corepack yarnpkg"
+  alias pnpm="corepack pnpm"
+  alias pnpx="corepack pnpx"
+fi
