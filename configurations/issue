@@ -1,4 +1,4 @@
-You are accessing \e{}\n\e{reset}, the current datetime is \d \t.
+You are accessing \e{}\n\e{reset}, the current datetime is \d\t.
 This system is running \S{ANSI_COLOR}\S\e{reset}, kernel version \r.
 There are currently \U logged in, you are using \l to login.
 
