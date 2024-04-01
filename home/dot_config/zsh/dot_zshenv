@@ -14,9 +14,6 @@ export XDG_RUNTIME_DIR=$HOME/.xdg
 export ZDOTDIR=$XDG_CONFIG_HOME/zsh
 export ZFUNCDIR=$ZDOTDIR/functions
 
-# Locale
-export LANG=en_US.UTF-8
-
 #
 # Shell utils
 #

@@ -4,13 +4,13 @@
 #
 
 # Substitutions
-(( $+commands[bat] )) && alias cat=bat
-(( $+commands[eza] )) && alias ls=eza
-(( $+commands[delta] )) && alias diff=delta
-(( $+commands[fd] )) && alias find=fd
-(( $+commands[rg] )) && alias grep=rg
-(( $+commands[batman] )) && alias man=batman
-(( $+commands[hyfetch] )) && alias neofetch=hyfetch
+(($ + commands[bat])) && alias cat=bat
+(($ + commands[eza])) && alias ls=eza
+(($ + commands[delta])) && alias diff=delta
+(($ + commands[fd])) && alias find=fd
+(($ + commands[rg])) && alias grep=rg
+(($ + commands[batman])) && alias man=batman
+(($ + commands[hyfetch])) && alias neofetch=hyfetch
 
 # General Aliases
 alias mkdir="mkdir -p"
@@ -28,6 +28,13 @@ alias cd..='cd ..'
 # Tar
 alias tarls="tar -tvf"
 alias untar="tar -xf"
+
+# Date/Time
+alias timestamp="date '+%Y-%m-%d %H:%M:%S'"
+alias datestamp="date '+%Y-%m-%d'"
+alias isodate="date +%Y-%m-%dT%H:%M:%S%z"
+alias utc="date -u +%Y-%m-%dT%H:%M:%SZ"
+alias unixepoch="date +%s"
 
 # Find
 alias fD='find . -type d -name'
@@ -82,7 +89,7 @@ alias print-path='echo $PATH | tr ":" "\n"'
 alias print-functions='print -l ${(k)functions[(I)[^_]*]} | sort'
 
 # Corepack
-if (( $+commands[corepack] )); then
+if (($ + commands[corepack])); then
   alias yarn="corepack yarn"
   alias yarnpkg="corepack yarnpkg"
   alias pnpm="corepack pnpm"
