@@ -1,10 +1,11 @@
-                * * * * * WARNING * * * * *
-            You are accessing a PRIVATE system!
-        You MUST be a user that is apart of this system
-    and MUST have a REGISTERED public key to access the system.
+                      * * * * * * * WARNING * * * * * * *
+                      You are accessing a PRIVATE system!
+              You MUST be a user that is apart of this system and
+            MUST have a REGISTERED public key in the authorized_keys
+                    file for that user to access the system.
 
-        UNAUTHORIZED attempts to access this system is
-          FORBIDDEN and may result in legal actions.
+                 UNAUTHORIZED attempts to access this system is
+                   FORBIDDEN and may result in legal actions.
 
- All activities performed on this device are logged and monitored.
-                * * * * *   END   * * * * *
+       All activities performed on this device are logged and monitored.
+                      * * * * * * *   END   * * * * * * *
