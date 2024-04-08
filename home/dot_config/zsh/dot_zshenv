@@ -18,12 +18,18 @@ export ZFUNCDIR=$ZDOTDIR/functions
 # Shell utils
 #
 
+# Bat
+export BAT_CONFIG_PATH=$XDG_CONFIG_HOME/bat/config
+
 # Less
 export LESSKEY=$XDG_CONFIG_HOME/less/lesskey
 export LESSHISTFILE=$XDG_CACHE_HOME/less/history
 
 # Readline
 export INPUTRC=$XDG_CONFIG_HOME/readline/inputrc
+
+# Ripgrep
+export RIPGREP_CONFIG_PATH=$XDG_CONFIG_HOME/ripgrep/config
 
 # Wget
 export WGETRC=$XDG_CONFIG_HOME/wget/wgetrc
@@ -36,7 +42,7 @@ export WGETRC=$XDG_CONFIG_HOME/wget/wgetrc
 export GNUPGHOME=$XDG_DATA_HOME/gnupg
 
 # Node
-export NPM_CONFIG_USERCONFIG=XDG_CONFIG_HOME/npm/npmrc
+export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/npmrc
 export NODE_REPL_HISTORY=$XDG_DATA_HOME/node_repl_history
 
 # Dotnet

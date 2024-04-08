@@ -6,20 +6,22 @@
 # Substitutions
 (( $+commands[bat] )) && alias cat=bat
 (( $+commands[eza] )) && alias ls=eza
-(( $+commands[delta] )) && alias diff=delta
 (( $+commands[fd] )) && alias find=fd
 (( $+commands[rg] )) && alias grep=rg
 (( $+commands[batman] )) && alias man=batman
 (( $+commands[hyfetch] )) && alias neofetch=hyfetch
 
+if [ "$TERM" == "xterm-kitty" ]; then
+  alias icat="kitten icat"
+  alias diff="kitten diff"
+  alias ssh="kitten ssh"
+else
+  (( $+commands[delta] )) && alias diff=delta  
+fi
+
 # General Aliases
 alias mkdir="mkdir -p"
 alias type="type -a"
-
-# Single character shortcuts - be sparing!
-alias _=sudo
-alias l=ls
-alias g=git
 
 # Common Typos
 alias quit='exit'
