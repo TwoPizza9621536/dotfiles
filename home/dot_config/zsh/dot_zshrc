@@ -3,6 +3,13 @@
 # .zshrc - Zsh file loaded on interactive shell sessions.
 #
 
+# Start tmux if terminal is not Kitty or VSCode
+if (( $+commands[tmux] )) && [[ ! "$TERM_PROGRAM" == "vscode" ]] &&
+  [[ ! "$TERM_PROGRAM" == "xterm-kitty" ]] && [[ -z "$TMUX" ]]
+then
+  exec tmux new-session -A -s $USER
+fi
+
 # Instant Prompt
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
