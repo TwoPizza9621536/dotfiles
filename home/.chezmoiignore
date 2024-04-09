@@ -1,8 +1,9 @@
 # Linux Config
 {{- if ne .chezmoi.os "linux" }}
 .config/kitty
-.config/nano/**
-.config/zsh/**
+.config/nano
+.config/zsh
+.config/tmux
 
 .ssh/controlmasters
 
