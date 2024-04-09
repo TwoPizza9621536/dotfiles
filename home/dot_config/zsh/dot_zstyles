@@ -14,6 +14,7 @@ zstyle ':antidote:bundle' use-friendly-names 'yes'
 # FZF-Tab
 #
 
+[[ -z "$TMUX" ]] && zstyle ':fzf-tab:*' fzf-command
 zstyle ':completion:*:git-checkout:*' sort false
 zstyle ':completion:*:descriptions' format '[%d]'
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
