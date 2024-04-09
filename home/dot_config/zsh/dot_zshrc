@@ -7,10 +7,8 @@
 if (( $+commands[tmux] )) && [[ ! "$TERM" == "xterm-kitty" ]] &&
   [[ ! "$TERM_PROGRAM" == "vscode" ]] && [[ -z "$TMUX" ]]; then
   # Clone tpm if necessary
-  if [[ -d $XDG_CONFIG_HOME/tmux/plugins/tpm ]]; then
-    mkdir -p $XDG_CONFIG_HOME/tmux/plugins
+  [[ -d $XDG_CONFIG_HOME/tmux/plugins/tpm ]] ||
     git clone https://github.com/tmux-plugins/tpm $XDG_CONFIG_HOME/tmux/plugins/tpm
-  fi
 
   # Start tmux and attach to existing session, if not create new session
   exec tmux new-session -A -s $USER
