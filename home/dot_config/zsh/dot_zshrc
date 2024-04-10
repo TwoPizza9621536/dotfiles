@@ -54,5 +54,8 @@ for _zrc in $ZDOTDIR/zshrc.d/*.zsh; source $_zrc; unset _zrc
 source $ZDOTDIR/antidote/antidote.zsh
 antidote load
 
+# Emacs key bindings are better than vi keys, even for vim users
+bindkey -e
+
 # Load aliases
 [[ -e $ZDOTDIR/.zsh_aliases ]] && source $ZDOTDIR/.zsh_aliases
