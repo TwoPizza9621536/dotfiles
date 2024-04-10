@@ -1,0 +1,13 @@
+# Delete all existing rules
+
+# Watch for changes in /etc/
+-a exit,always -F arch=b64 -F dir=/etc/ -F perm=wa
+
+# Watch for changes in file ownership
+-a exit,always -F arch=b64 -S chown -S chmod
+
+# Ignore sudo invocations and services
+-A exclude,always -F msgtype=SERVICE_START
+-A exclude,always -F msgtype=SERVICE_STOP
+-A exclude,always -F msgtype=BPF
+-A exclude,always -F exe=/usr/bin/sudo
