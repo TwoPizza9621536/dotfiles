@@ -2,5 +2,8 @@
 typeset -gA AUTOPAIR_PAIRS
 AUTOPAIR_PAIRS+=("<" ">")
 
-# Syntax Highlighting
-ZSH_HIGHLIGHT_HIGHLIGHTERS+=(brackets pattern cursor)
+# Autosuggestions
+typeset -ga ZSH_AUTOSUGGEST_STRATEGY
+ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+
+export ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
